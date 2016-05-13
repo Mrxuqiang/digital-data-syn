@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender class="org.apache.log4j.ConsoleAppender" name="console">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param value="%d{yyyy-MM-dd HH:mm:ss} [%p]-[%t]-[%l] %m%n" name="ConversionPattern"/>
+        </layout>
+        <!--过滤器设置输出的级别-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="error"/>
+            <param name="levelMax" value="error"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/Users/ccdashu/Work/local-project/cc-test-project/logs/service_log.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{MMdd HH:mm:ss SSS\} %-5p] [%t] %c{3\} - %m%n"/>
+        </layout>
+        <!--过滤器设置输出的级别-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="info"/>
+            <param name="levelMax" value="error"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <root>
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+</log4j:configuration>
