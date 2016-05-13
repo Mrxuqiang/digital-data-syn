@@ -1,0 +1,31 @@
+/*
+================================================================================
+表结构代码:TB_PMTFJ
+表结构名称:交款返券促销单不参与支付表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTFJ;
+drop index AK_TB_PMTFJ;
+drop table TB_PMTFJ;
+create table TB_PMTFJ  (
+   PMTFJ_ID             INTEGER                         not null,  /*交款返券单不参与支付表ID      */
+   PMTFJ001             INTEGER                         not null,  /*交款返券单ID          */
+   PMTFJ002             INTEGER                         not null,  /*支付方式          */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTFJ primary key (PMTFJ_ID)
+);
+create unique index AK_TB_PMTFJ on TB_PMTFJ (PMTFJ001,PMTFJ002);
+create sequence SEQ_TB_PMTFJ minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTFJ to public;
+grant index  on TB_PMTFJ to public;
+grant update on TB_PMTFJ to public; 
+grant delete on TB_PMTFJ to public;  
+grant insert on TB_PMTFJ to public; 
+grant select on SEQ_TB_PMTFJ to public;   

@@ -1,0 +1,47 @@
+/*
+================================================================================
+表结构代码:TB_PMTRA
+表结构名称:拼单返券促销单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTRA;
+drop index AK_TB_PMTRA;
+drop table TB_PMTRA;
+create table TB_PMTRA  (
+   PMTRA_ID             INTEGER                         not null,  /*拼单返券单ID      */
+   PMTRA001             INTEGER                         not null,  /*单别ID            */
+   PMTRA002             VARCHAR2(30)                    not null,  /*促销单号          */
+   PMTRA003             DATE                            not null,  /*单据日期          */
+   PMTRA004             INTEGER                         not null,  /*负责营运组织      */
+   PMTRA005             INTEGER                         not null,  /*负责部门ID        */
+   PMTRA006             INTEGER                         not null,  /*负责人员ID        */
+   PMTRA007             INTEGER                         not null,  /*促销主题ID        */
+   PMTRA008             VARCHAR2(255),                             /*促销描述          */
+   PMTRA009             VARCHAR2(1),                               /*是否能积分        */
+   PMTRA010             VARCHAR2(2),                               /*返券方式          */
+   PMTRA011             INTEGER,                                   /*券种ID            */
+   PMTRA012             VARCHAR2(2)                     not null,  /*促销类型          */
+   PMTRA013             INTEGER,                                   /*录入人ID          */
+   PMTRA014             DATE,                                      /*录入日期          */
+   PMTRA015             INTEGER,                                   /*审核人ID          */
+   PMTRA016             DATE,                                      /*审核日期          */
+   PMTRA017             VARCHAR2(1)                     not null,  /*审核状态          */
+   PMTRA018             VARCHAR2(1),                               /*促销活动叠加      */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTRA primary key (PMTRA_ID)
+);
+create unique index AK_TB_PMTRA on TB_PMTRA (PMTRA002,PMTRA004);
+create sequence SEQ_TB_PMTRA minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTRA to public;
+grant index  on TB_PMTRA to public;
+grant update on TB_PMTRA to public; 
+grant delete on TB_PMTRA to public;  
+grant insert on TB_PMTRA to public; 
+grant select on SEQ_TB_PMTRA to public;   

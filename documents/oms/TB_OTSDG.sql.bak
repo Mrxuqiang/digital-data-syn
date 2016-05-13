@@ -1,0 +1,33 @@
+/*
+================================================================================
+表结构代码:TB_OTSDG
+表结构名称:OMS费用项与SAP费用科目对照关系表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_OTSDG;
+drop index AK_TB_OTSDG;
+drop table TB_OTSDG;
+create table TB_OTSDG  (
+   OTSDG_ID             INTEGER                         not null,  /*费用单ID             */
+   OTSDG001             INTEGER                         not null,  /*商场ID               */
+   OTSDG002             VARCHAR2(30)                    not null,  /*SAP公司代码          */
+   OTSDG003             DATE                            not null,  /*OMS费用项            */
+   OTSDG004             INTEGER                         not null,  /*SAP费用科目          */
+   OTSDG005             INTEGER                         not null,  /*SAP承诺项目          */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员             */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门         */                               
+   CREATE_DATE          DATE,                                      /*建立日期             */
+   MODIFIER             VARCHAR2(12),                              /*修改人员             */
+   MODI_DATE            DATE,                                      /*修改日期             */
+   FLAG                 NUMBER(1),                                 /*资料状态             */
+   constraint PK_TB_OTSDG primary key (OTSDG_ID)
+);
+create sequence SEQ_TB_OTSDG minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_OTSDG to public;
+grant index  on TB_OTSDG to public;
+grant update on TB_OTSDG to public; 
+grant delete on TB_OTSDG to public;  
+grant insert on TB_OTSDG to public; 
+grant select on SEQ_TB_OTSDG to public;   

@@ -1,0 +1,49 @@
+/*
+================================================================================
+表结构代码:TB_PMTSI
+表结构名称:赠品促销单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTSI;
+drop index AK_TB_PMTSI;
+drop table TB_PMTSI;
+create table TB_PMTSI  (
+   PMTSI_ID             INTEGER                         not null,  /*赠品促销单ID      */
+   PMTSI001             INTEGER                         not null,  /*单别ID            */
+   PMTSI002             VARCHAR2(30)                    not null,  /*促销单号          */
+   PMTSI003             DATE                            not null,  /*单据日期          */
+   PMTSI004             INTEGER                         not null,  /*负责营运组织      */
+   PMTSI005             INTEGER                         not null,  /*负责部门ID        */
+   PMTSI006             INTEGER                         not null,  /*负责人员ID        */
+   PMTSI007             INTEGER                         not null,  /*促销主题ID        */
+   PMTSI008             VARCHAR2(255),                             /*促销描述          */
+   PMTSI009             VARCHAR2(2),                               /*送赠方式          */
+   PMTSI010             VARCHAR2(2)                     not null,  /*促销类型          */
+   PMTSI011             INTEGER,                                   /*录入人ID          */
+   PMTSI012             DATE,                                      /*录入日期          */
+   PMTSI013             INTEGER,                                   /*审核人ID          */
+   PMTSI014             DATE,                                      /*审核日期          */
+   PMTSI015             VARCHAR2(1)                     not null,  /*审核状态          */
+   PMTSI016             VARCHAR2(1)                             ,  /*促销活动叠加      */
+   PMTSI017             VARCHAR2(1),                               /*补贴类型          */
+   PMTSI018             VARCHAR2(1),                               /*分摊金额          */
+   PMTSI019             NUMBER(12,2),                               /*活动补贴租金倍数          */
+   PMTSI020             NUMBER(12,2),                               /*公司承担费用          */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTSI primary key (PMTSI_ID)
+);
+create unique index AK_TB_PMTSI on TB_PMTSI (PMTSI002,PMTSI004);
+create sequence SEQ_TB_PMTSI minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTSI to public;
+grant index  on TB_PMTSI to public;
+grant update on TB_PMTSI to public; 
+grant delete on TB_PMTSI to public;  
+grant insert on TB_PMTSI to public; 
+grant select on SEQ_TB_PMTSI to public;   

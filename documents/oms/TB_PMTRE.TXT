@@ -1,0 +1,32 @@
+/*
+================================================================================
+表结构代码:TB_PMTRE
+表结构名称:拼单返券单生效范围表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTRE;
+drop index AK_TB_PMTRE;
+drop table TB_PMTRE;
+create table TB_PMTRE  (
+   PMTRE_ID             INTEGER                         not null,  /*拼单返券生效范围ID*/
+   PMTRE001             INTEGER                         not null,  /*拼单返券单ID      */
+   PMTRE002             INTEGER                         not null,  /*营运组织ID        */
+   PMTRE003             VARCHAR2(1)                             ,  /*全场参与        */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTRE primary key (PMTRE_ID)
+);
+create unique index AK_TB_PMTRE on TB_PMTRE (PMTRE001,PMTRE002);
+create sequence SEQ_TB_PMTRE minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTRE to public;
+grant index  on TB_PMTRE to public;
+grant update on TB_PMTRE to public; 
+grant delete on TB_PMTRE to public;  
+grant insert on TB_PMTRE to public; 
+grant select on SEQ_TB_PMTRE to public;   

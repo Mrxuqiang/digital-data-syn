@@ -1,0 +1,28 @@
+/*
+================================================================================
+表结构代码:TB_OTM_LOG
+表结构名称:HMO2O接口日志表
+表结构目的:局部表
+================================================================================
+*/
+
+drop sequence SEQ_TB_OTM_LOG;
+drop index AK_TB_OTM_LOG;
+drop table TB_OTM_LOG;
+create table TB_OTM_LOG  (
+   OTM_LOG_ID             INTEGER                         not null,  /*日志表ID             */
+   OTM_LOG001             VARCHAR2(1)                     not null,  /*创建时间         */
+   OTM_LOG002             INTEGER				                  not null,  /*作业名           */
+   OTM_LOG003             INTEGER                         not null,  /*表名               */
+   OTM_LOG004             VARCHAR2(30)                    not null,  /*错误信息描述               */   
+   FLAG                 NUMBER,                                    /*资料状态           */
+   constraint PK_TB_OTM_LOG primary key (OTM_LOG_ID)
+);
+--create unique index AK_TB_OTMEE on TB_OTMEE (OTMEE002);
+create sequence SEQ_TB_OTM_LOG minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_OTM_LOG to public;
+grant index  on TB_OTM_LOG to public;
+grant update on TB_OTM_LOG to public; 
+grant delete on TB_OTM_LOG to public;  
+grant insert on TB_OTM_LOG to public; 
+grant select on SEQ_TB_OTM_LOG to public;   

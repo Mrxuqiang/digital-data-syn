@@ -1,0 +1,32 @@
+/*
+================================================================================
+表结构代码:TB_SEREQ
+表结构名称:销售及送赠明细表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_SEREQ;
+drop index AK_TB_SEREQ;
+drop table TB_SEREQ;
+create table TB_SEREQ  (
+   SEREQ_ID             INTEGER                         not null,  /*销售及送赠明细ID*/
+   SEREQ001             INTEGER                         not null,  /*赠品发放单ID  */
+   SEREQ002             INTEGER                         not null,  /*营运组织ID          */
+   SEREQ003             INTEGER                         not null,  /*销售单号ID          */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_SEREQ primary key (SEREQ_ID)
+);
+create unique index AK_TB_SEREQ on TB_SEREQ (SEREQ001,SEREQ002,SEREQ003);
+create sequence SEQ_TB_SEREQ minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_SEREQ to public;
+grant index  on TB_SEREQ to public;
+grant update on TB_SEREQ to public; 
+grant delete on TB_SEREQ to public;  
+grant insert on TB_SEREQ to public; 
+grant select on SEQ_TB_SEREQ to public;  

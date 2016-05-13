@@ -1,0 +1,114 @@
+/**
+
+商户商品销售开单表
+*/
+create table TB_SERZB  (
+  SERZB_ID          INTEGER              not null,  /*价签外键ID        */ 
+  SERZB001          INTEGER              not null,  /*价签ID            */ 
+  SERZB002          INTEGER              not null,  /*商场ID            */ 
+  SERZB003          VARCHAR2(50)                 ,   /*营运组织代码      */ 
+  SERZB004          VARCHAR2(100)                 ,   /*营运组织简称      */ 
+  SERZB005          VARCHAR2(100)                 ,   /*营运组织全称      */ 
+  SERZB006          INTEGER               not null,  /*商户ID            */ 
+  SERZB007          VARCHAR2(100)                 ,   /*客商号            */ 
+  SERZB008          VARCHAR2(50)                 ,   /*客商简称          */ 
+  SERZB009          VARCHAR2(100)                 ,   /*客商全称          */ 
+  SERZB010          INTEGER               not null,  /*合同ID            */ 
+  SERZB012          VARCHAR2(50)                 ,  /*合同号            */ 
+  SERZB013          INTEGER                       ,  /*展位ID            */ 
+  SERZB014          VARCHAR2(100)                 ,  /*摊位编号          */ 
+  SERZB015           INTEGER                       ,  /*楼层ID            */ 
+  SERZB016          VARCHAR2(50)                 ,  /*楼层代码          */ 
+  SERZB017          VARCHAR2(100)                 ,  /*楼层名称          */ 
+  SERZB018           INTEGER                       ,  /*楼栋ID            */ 
+  SERZB019          VARCHAR2(50)                 ,  /*楼栋代码          */ 
+  SERZB020          VARCHAR2(100)                 ,  /*楼栋名称          */ 
+  SERZB021           INTEGER               not null,  /*商品ID            */ 
+  SERZB022          VARCHAR2(50)                 ,  /*商品编号          */ 
+  SERZB023          VARCHAR2(100)                 ,  /*商品全称          */ 
+  SERZB024          VARCHAR2(100)                 ,  /*商品简称          */ 
+  SERZB025          VARCHAR2(100)                 ,  /*规格型号          */ 
+  SERZB026          VARCHAR2(100)                 ,  /*条码号            */ 
+  SERZB027          NUMBER(12,2)                 ,  /*税前单价*/             
+  SERZB028           INTEGER                       ,  /*品牌ID      */       
+  SERZB029          VARCHAR2(50)                 ,  /*品牌代码          */ 
+  SERZB030          VARCHAR2(100)                 ,  /*品牌名称          */ 
+  SERZB031           INTEGER                       ,  /*系列ID)      */      
+  SERZB032          VARCHAR2(50)                 ,  /*系列代码          */ 
+  SERZB033          VARCHAR2(100)                 ,  /*系列名称          */ 
+  SERZB034          INTEGER                 ,  /*商品分类ID        */ 
+  SERZB035          VARCHAR2(50)                 ,  /*商品分类代码      */ 
+  SERZB036          VARCHAR2(100)                 ,  /*商品分类名称      */ 
+  SERZB037           INTEGER                       ,  /*等级ID            */ 
+  SERZB038          VARCHAR2(50)                 ,  /*等级代码          */ 
+  SERZB039          VARCHAR2(100)                 ,  /*等级名称          */ 
+  SERZB040           INTEGER               not null,  /*单位ID            */ 
+  SERZB041          VARCHAR2(50)                 ,  /*单位代码          */ 
+  SERZB042          VARCHAR2(100)                 ,  /*单位名称          */ 
+  SERZB043          VARCHAR2(100)                 ,  /*经营方式          */ 
+  SERZB044          NUMBER(12,2)              ,  /*默认供货天数      */ 
+  SERZB045          VARCHAR2(1)                 ,  /*是否套件          */ 
+  SERZB046          VARCHAR2(1)                 ,  /*是否启用维度1     */ 
+  SERZB047          VARCHAR2(1)                 ,  /*是否启用维度1     */ 
+  SERZB048          VARCHAR2(1)                 ,  /*是否启用维度2     */ 
+  SERZB049          VARCHAR2(1)                 ,  /*是否启用维度3     */ 
+  SERZB050          VARCHAR2(1)                 ,  /*是否启用维度4     */ 
+  SERZB051          VARCHAR2(1)                 ,  /*是否启用维度5     */ 
+  SERZB052           INTEGER                       ,  /*自定义分类1       */ 
+  SERZB053          VARCHAR2(50)                 ,  /*自定义分类项代码  */ 
+  SERZB054          VARCHAR2(100)                 ,  /*自定义分类项描述  */ 
+  SERZB055          VARCHAR2(2)                 ,  /*自定义分类项类型  */ 
+  SERZB056           INTEGER                       ,  /*自定义分类2       */ 
+  SERZB057          VARCHAR2(50)                 ,  /*自定义分类项代码  */ 
+  SERZB058          VARCHAR2(100)                 ,  /*自定义分类项描述  */ 
+  SERZB059          VARCHAR2(2)                 ,  /*自定义分类项类型  */ 
+  SERZB060           INTEGER                       ,  /*自定义分类3       */ 
+  SERZB061          VARCHAR2(50)                 ,  /*自定义分类项代码  */ 
+  SERZB062          VARCHAR2(100)                 ,  /*自定义分类项描述  */ 
+  SERZB063          VARCHAR2(2)                 ,  /*自定义分类项类型  */ 
+  SERZB064           INTEGER                       ,  /*自定义分类4       */ 
+  SERZB065          VARCHAR2(50)                 ,   /*自定义分类项代码  */ 
+  SERZB066          VARCHAR2(100)                 ,  /*自定义分类项描述  */ 
+  SERZB067          VARCHAR2(2)                 ,    /*自定义分类项类型  */ 
+  SERZB068           INTEGER                    ,    /*自定义分类5       */ 
+  SERZB069          VARCHAR2(50)                 ,   /*自定义分类项代码  */ 
+  SERZB070          VARCHAR2(100)                 ,  /*自定义分类项描述  */ 
+  SERZB071          VARCHAR2(2)                 ,    /*自定义分类项类型  */ 
+  SERZB072          INTEGER                       ,  /*自定义分类6       */ 
+  SERZB073          VARCHAR2(50)                 ,   /*自定义分类项代码  */ 
+  SERZB074          VARCHAR2(100)                 ,  /*自定义分类项描述  */ 
+  SERZB075          VARCHAR2(2)                 ,     /*自定义分类项类型  */ 
+  SERZB076           INTEGER                    ,     /*自定义分类7       */ 
+  SERZB077          VARCHAR2(50)                ,     /*自定义分类项代码  */ 
+  SERZB078          VARCHAR2(100)               ,     /*自定义分类项描述  */ 
+  SERZB079          VARCHAR2(2)                 ,     /*自定义分类项类型  */ 
+  SERZB080           INTEGER                       ,  /*自定义分类8       */ 
+  SERZB081          VARCHAR2(50)                 ,    /*自定义分类项代码  */ 
+  SERZB082          VARCHAR2(100)                 ,   /*自定义分类项描述  */ 
+  SERZB083          VARCHAR2(2)                 ,     /*自定义分类项类型  */ 
+  SERZB084           VARCHAR2(100)                 ,  /*备注              */ 
+  SERZB085           INTEGER                       ,  /*录入人            */ 
+  SERZB086          VARCHAR2(100)                 ,  /*员工帐号          */ 
+  SERZB087          VARCHAR2(100)                 ,  /*员工中文名        */ 
+  SERZB088          INTEGER                       ,  /*审核人            */ 
+  SERZB089          VARCHAR2(100)                 ,  /*员工帐号          */ 
+  SERZB090          VARCHAR2(100)                 ,  /*员工中文名        */
+  serzb091          VARCHAR2(1)                 ,     /*经营方式       */
+  serzb092          VARCHAR2(100)                 ,  /*套件  */
+  serzb093          VARCHAR2(100)                 ,  /*型号       Serin013 */
+  serzb094          VARCHAR2(256)                 ,  /*主要材质       SERIN025*/
+  serzb095          VARCHAR2(1)                 ,    /*可定制      0  */
+  serzb096          VARCHAR2(1)                 ,     /*规格单位 Serin015      */
+  serzb097          VARCHAR2(1)                 ,     /*通用商品标示   pubhd098  */
+  serzb098            VARCHAR2(1)                 ,  /*pubhd099   商品属性标示：‘1’ 单品 ‘0’ 配套    */
+  CREATE_USER       VARCHAR2(100)                 ,  /*建立人员          */   
+  USER_GROUP        VARCHAR2(100)                 ,  /*建立人员部门      */
+  CREATE_DATE       DATE                         ,  /*建立日期          */
+  MODIFIER          VARCHAR2(12)                 ,  /*修改人员          */
+  MODI_DATE         DATE                         ,  /*修改日期          */ 
+  FLAG                 NUMBER(1)                 ,  /*资料状态          */
+  constraint PK_TB_SERZB primary key (SERZB_ID)
+);
+create unique index AK_TB_SERZB on TB_SERZB (SERZB001);                                                  
+create sequence SEQ_TB_SERZB minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select,index,update,delete,insert on TB_SERZB to public;

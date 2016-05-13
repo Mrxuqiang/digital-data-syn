@@ -1,0 +1,40 @@
+/*
+================================================================================
+表结构代码:TB_PMTEJ（公用）
+表结构名称:促销单生效商场品牌范围表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTEJ;
+drop index AK_TB_PMTEJ;
+drop table TB_PMTEJ;
+create table TB_PMTEJ  (
+   PMTEJ_ID             INTEGER                         not null,  /*生效商场品牌范围ID*/
+   PMTEJ001             INTEGER                         not null,  /*促销单ID          */
+   PMTEJ002             INTEGER                         ,          /*楼栋ID            */
+   PMTEJ003             INTEGER                         ,          /*楼层ID            */
+   PMTEJ004             INTEGER                         ,          /*品牌ID            */
+   PMTEJ005             INTEGER                         ,          /*品牌系列ID        */
+   PMTEJ006             INTEGER                         ,          /*商户ID            */
+   PMTEJ007             INTEGER                         ,          /*展位ID            */
+   PMTEJ008             INTEGER                         ,          /*合同ID            */
+   PMTEJ009             INTEGER                         ,          /*生效商场ID        */
+   PMTEJ010             INTEGER                         ,          /*生效商场范围表ID(二级子表外键) */
+   PMTEJ011             VARCHAR2(1)                     ,          /*促销单类型（1.交款折扣促销单，2.预存售券促销单,3.返券促销单，4.拼单返券促销单，5.收劵促销单） */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTEJ primary key (PMTEJ_ID)
+);
+--create unique index AK_TB_PMTEJ on TB_PMTEJ (PMTEJ001,PMTEJ010,PMTEJ011);
+create sequence SEQ_TB_PMTEJ minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTEJ to public;
+grant index  on TB_PMTEJ to public;
+grant update on TB_PMTEJ to public; 
+grant delete on TB_PMTEJ to public;  
+grant insert on TB_PMTEJ to public; 
+grant select on SEQ_TB_PMTEJ to public;  

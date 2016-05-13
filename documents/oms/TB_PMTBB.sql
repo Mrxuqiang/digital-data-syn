@@ -1,0 +1,39 @@
+/*
+================================================================================
+表结构代码:TB_PMTBB
+表结构名称:单品特价单折扣规则表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTBB;
+drop index AK_TB_PMTBB;
+drop table TB_PMTBB;
+create table TB_PMTBB  (
+   PMTBB_ID             INTEGER                         not null,  /*折扣规则ID        */
+   PMTBB001             INTEGER                         not null,  /*单品特价单ID      */
+   PMTBB002             VARCHAR2(1)                     not null,  /*对象类型          */
+   PMTBB003             INTEGER,                                   /*对象ID            */
+   PMTBB004             NUMBER(5)                       not null,  /*优先顺序号        */
+   PMTBB005             NUMBER(12,2),                              /*原售价            */
+   PMTBB006             NUMBER(12,2),                              /*售价特价          */
+   PMTBB007             NUMBER(12,2),                              /*原会员价          */
+   PMTBB008             NUMBER(12,2),                              /*会员特价          */
+   PMTBB009             NUMBER(12,2),                              /*原最低售价        */
+   PMTBB010             NUMBER(12,2),                              /*最低售价特价      */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTBB primary key (PMTBB_ID)
+);
+create unique index AK_TB_PMTBB on TB_PMTBB (PMTBB001,PMTBB002,PMTBB003);
+create sequence SEQ_TB_PMTBB minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTBB to public;
+grant index  on TB_PMTBB to public;
+grant update on TB_PMTBB to public; 
+grant delete on TB_PMTBB to public;  
+grant insert on TB_PMTBB to public; 
+grant select on SEQ_TB_PMTBB to public;   

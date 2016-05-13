@@ -1,0 +1,92 @@
+/*
+================================================================================
+表结构代码:TB_SALBB
+表结构名称:销售订单商品表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_SALBB;
+drop index AK_TB_SALBB;
+drop table TB_SALBB;
+create table TB_SALBB  (
+   SALBB_ID             INTEGER                         not null,  /*销售订单商品ID                                 */
+   SALBB001             INTEGER                         not null,  /*销售订单ID                                     */
+   SALBB002             INTEGER,                                   /*商品条码ID                                     */
+   SALBB003             INTEGER                         not null,  /*商品编码ID                                     */
+   SALBB004             VARCHAR2(1)                     not null,  /*是否组装品                                     */
+   SALBB005             VARCHAR2(1),                               /*是否成份                                       */
+   SALBB006             INTEGER,                                   /*所属组装品ID                                   */
+   SALBB007             VARCHAR2(1),                               /*是否替代品                                     */
+   SALBB008             INTEGER                         not null,  /*原商品ID                                       */
+   SALBB009             INTEGER,                                   /*单套单位ID        				    */
+   SALBB010             NUMBER(18,3),                              /*单套数量          				    */
+   SALBB011             VARCHAR2(1)                     not null,  /*经营方式                                       */
+   SALBB012             INTEGER                         not null,  /*客商ID                                         */
+   SALBB013             NUMBER(5),                                 /*供货天数                                       */
+   SALBB014             INTEGER                         not null,  /*品牌ID                                         */
+   SALBB015             INTEGER                         not null,  /*品类ID                                         */
+   SALBB016             INTEGER,                                   /*维度1ID                                        */
+   SALBB017             INTEGER,                                   /*维度2ID                                        */
+   SALBB018             INTEGER,                                   /*维度3ID                                        */
+   SALBB019             INTEGER,                                   /*维度4ID                                        */
+   SALBB020             INTEGER,                                   /*维度5ID                                        */
+   SALBB021             INTEGER                         not null,  /*销售单位ID                                     */
+   SALBB022             NUMBER(12,2)                    not null,  /*换算率                                         */
+   SALBB023             INTEGER                         not null,  /*仓库ID                                         */
+   SALBB024             NUMBER(18,3),                              /*可用库存量                                     */
+   SALBB025             NUMBER(12,2)                    not null,  /*原售价                                         */
+   SALBB026             NUMBER(18,3)                    not null,  /*数量                                           */
+   SALBB027             NUMBER(18,3),                              /*已转销售数                                     */
+   SALBB028             NUMBER(18,3),                              /*已退数量                                       */
+   SALBB029             NUMBER(18,3),                              /*被结案销售数                                   */
+   SALBB030             INTEGER                         not null,  /*税率ID                                         */
+   SALBB031             NUMBER(12,2)                    not null,  /*税率(%)                                        */
+   SALBB032             NUMBER(12,2)                    not null,  /*原未税金额                                     */
+   SALBB033             NUMBER(12,2)                    not null,  /*原含税金额                                     */
+   SALBB034             NUMBER(12,2),                              /*原扣率(%)                                      */
+   SALBB035             NUMBER(12,2),                              /*新扣率(%)                                      */
+   SALBB036             NUMBER(12,2),                              /*单项折价                                       */
+   SALBB037             NUMBER(12,2),                              /*小计折价                                       */
+   SALBB038             NUMBER(12,2),                              /*批发折价                                       */
+   SALBB039             NUMBER(12,2),                              /*会员折价                                       */
+   SALBB040             NUMBER(12,2),                              /*会员折扣卡折价                                 */
+   SALBB041             NUMBER(12,2),                              /*促销特价折价                                   */
+   SALBB042             NUMBER(12,2),                              /*促销折扣折价                                   */
+   SALBB043             NUMBER(12,2),                              /*促销组合折价                                   */
+   SALBB044             NUMBER(12,2)                    not null,  /*折后未税金额(不含交款折价)                     */
+   SALBB045             NUMBER(12,2)                    not null,  /*折后含税金额(不含交款折价)                     */
+   SALBB046             NUMBER(12,2),                              /*促销交款折价                                   */
+   SALBB047             NUMBER(12,2),                              /*订单实交款金额                                 */
+   SALBB048             NUMBER(12,2)                    not null,  /*单价                                           */
+   SALBB049             NUMBER(12,2)                    not null,  /*未税金额                                       */
+   SALBB050             NUMBER(12,2)                    not null,  /*含税金额                                       */
+   SALBB051             VARCHAR2(255),                             /*备注                                           */
+   SALBB052             INTEGER,                                   /*单品特价促销单ID    	   		    */
+   SALBB053             INTEGER,                                   /*单品折扣促销单ID 				    */
+   SALBB054             INTEGER,                                   /*单品组合促销单ID  				    */
+   SALBB055             INTEGER,                                   /*单品买赠促销单ID 				    */
+   SALBB056             INTEGER,                                   /*交款折扣促销单ID  				    */
+   SALBB057             INTEGER,                                   /*交款返券促销单ID  				    */
+   SALBB058             INTEGER,                                   /*累计返券促销单ID  				    */
+   SALBB059             INTEGER,                                   /*累计送赠促销单ID  				    */
+   SALBB065             NUMBER(12,2),                              /*已转金额                                       */
+   SALBB066             NUMBER(12,2),                              /*已退金额                                       */
+   SALBB067             NUMBER(12,2),                              /*已结案金额                                     */
+   SALBB068             NUMBER(12,2),                              /*入库量                                         */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员                                       */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门                                   */                               
+   CREATE_DATE          DATE,                                      /*建立日期                                       */
+   MODIFIER             VARCHAR2(12),                              /*修改人员                                       */
+   MODI_DATE            DATE,                                      /*修改日期                                       */
+   FLAG                 NUMBER(1),                                 /*资料状态                                       */
+   constraint PK_TB_SALBB primary key (SALBB_ID)
+);
+create index AK_TB_SALBB on TB_SALBB (SALBB_ID,SALBB001,SALBB002,SALBB003);
+create sequence SEQ_TB_SALBB minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_SALBB to public;
+grant index  on TB_SALBB to public;
+grant update on TB_SALBB to public; 
+grant delete on TB_SALBB to public;  
+grant insert on TB_SALBB to public; 
+grant select on SEQ_TB_SALBB to public;   

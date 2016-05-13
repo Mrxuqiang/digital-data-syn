@@ -1,0 +1,47 @@
+/*
+================================================================================
+表结构代码:TB_PMTAG
+表结构名称:特殊营销金协议表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTAG;
+drop index AK_TB_PMTAG;
+drop table TB_PMTAG;
+create table TB_PMTAG  (
+   PMTAG_ID             INTEGER                         not null,  /*特殊营销金协议ID*/
+   PMTAG001             INTEGER                         not null,  /*单别ID          */
+   PMTAG002             VARCHAR2(30),				                       /*特殊营销金协议单号*/		
+   PMTAG003             INTEGER                         not null,  /*营运组织ID        */
+   PMTAG004             DATE,				                               /*签约日期          */
+   PMTAG005             INTEGER,			                             /*租赁合同号        */
+   PMTAG006             DATE,				                               /*租赁起始日期      */
+   PMTAG007             DATE,				                               /*租赁结束日期      */
+   PMTAG008             NUMBER(18,3),				                       /*面积              */
+   PMTAG009             INTEGER,				                           /*付款方式          */
+   PMTAG010             NUMBER(18,3),				                       /*租金单价          */
+   PMTAG011             VARCHAR2(30),				                       /*SAP公司代码       */
+   PMTAG012             VARCHAR2(30),                              /*SAP商业主体       */
+   PMTAG013             INTEGER,			                             /*录入人            */
+   PMTAG014             DATE,				                               /*录入日期          */
+   PMTAG015             INTEGER,			                             /*审核人            */
+   PMTAG016             DATE,				                               /*审核日期          */
+   PMTAG017             VARCHAR2(1),				                       /*单据状态          */		
+   PMTAG018             VARCHAR2(255),				                     /*备注              */		
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTAG primary key (PMTAG_ID)
+);
+create unique index AK_TB_PMTAG on TB_PMTAG (PMTAG001,PMTAG002,PMTAG003,FLAG);
+create sequence SEQ_TB_PMTAG minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTAG to public;
+grant index  on TB_PMTAG to public;
+grant update on TB_PMTAG to public; 
+grant delete on TB_PMTAG to public;  
+grant insert on TB_PMTAG to public; 
+grant select on SEQ_TB_PMTAG to public;  

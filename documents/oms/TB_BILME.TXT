@@ -1,0 +1,44 @@
+/*
+================================================================================
+表结构代码:TB_BILME
+表结构名称:促销费用分摊单商户汇总子表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_BILME;
+drop index AK_TB_BILME;
+drop table TB_BILME;
+create table TB_BILME  (
+   BILME_ID             INTEGER                         not null,  /*促销费用分摊单商户汇总明细ID */
+   BILME001             INTEGER                         not null,  /*促销费用分摊单ID     */
+   BILME002             INTEGER                         not null,  /*促销费用分摊促销单明细ID（TB_BILMC二级子表）     */
+   BILME003             VARCHAR2(2)                     not null,  /*促销单类型           */
+   BILME004             INTEGER                         not null,  /*促销单ID             */
+   BILME005             INTEGER                         not null,  /*商户ID               */
+   BILME006             INTEGER                         not null,  /*合同ID               */
+   BILME007             INTEGER                         not null,  /*品牌ID               */
+   BILME008             INTEGER                         not null,  /*展位ID               */
+   BILME009             NUMBER(12,2),                              /*促销金额             */ 
+   BILME010             NUMBER(12,2),                              /*商户承担费用         */ 
+   BILME011             NUMBER(12,2),                              /*公司承担费用         */ 
+   BILME012             NUMBER(12,2),                              /*公司承担特殊营销金   */ 
+   BILME013             NUMBER(12,2),                              /*商户承担费用差异 = 商户承担费用 - 上一笔费用     */ 
+   BILME014             NUMBER(12,2),                              /*公司承担费用差异      */ 
+   BILME015             NUMBER(12,2),                              /*公司承担特殊营销金差异*/ 
+   CREATE_USER          VARCHAR2(12),                              /*建立人员             */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门         */                               
+   CREATE_DATE          DATE,                                      /*建立日期             */
+   MODIFIER             VARCHAR2(12),                              /*修改人员             */
+   MODI_DATE            DATE,                                      /*修改日期             */
+   FLAG                 NUMBER(1),                                 /*资料状态             */
+   constraint PK_TB_BILME primary key (BILME_ID)
+);
+create unique index AK_TB_BILME on TB_BILME (BILME001,BILME002,BILME003,BILME004,BILME005,BILME006,BILME007,BILME008,FLAG);
+create sequence SEQ_TB_BILME minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BILME to public;
+grant index  on TB_BILME to public;
+grant update on TB_BILME to public; 
+grant delete on TB_BILME to public;  
+grant insert on TB_BILME to public; 
+grant select on SEQ_TB_BILME to public;   

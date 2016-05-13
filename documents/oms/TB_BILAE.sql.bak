@@ -1,0 +1,57 @@
+/*
+================================================================================
+表结构代码:TB_BILAE
+表结构名称:费用收款单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_BILAE;
+drop index AK_TB_BILAE;
+drop table TB_BILAE;
+create table TB_BILAE  (
+   BILAE_ID             INTEGER                         not null,  /*费用收款单主ID       */
+   BILAE001             INTEGER                         not null,  /*单别ID               */
+   BILAE002             VARCHAR2(30)                    not null,  /*单号                 */
+   BILAE003             DATE                            not null,  /*收款日期             */
+   BILAE004             INTEGER                         not null,  /*商户ID               */
+   BILAE005             INTEGER,                                   /*展位ID               */  
+   BILAE006             INTEGER,                                   /*合同ID               */
+   BILAE007             INTEGER,                                   /*营运组织ID           */        
+   BILAE008             VARCHAR2(1)                     not null,  /*收款方式             */
+   BILAE009             NUMBER(22,2),                              /*收款金额             */
+   BILAE010             VARCHAR2(30),                              /*刷卡卡号             */ 
+   BILAE011             INTEGER,                                   /*手续费率             */   
+   BILAE012             NUMBER(7,6),                               /*手续费率（%）        */     
+   BILAE013             NUMBER(22,2),                              /*手续费               */  
+   BILAE014             VARCHAR2(30),                              /*来源单号             */ 
+   BILAE015             INTEGER,                                   /*来源单主ID           */ 
+   BILAE016             INTEGER,                                   /*来源单子ID           */ 
+   BILAE017             INTEGER,                                   /*项目ID               */ 
+   BILAE018             INTEGER,                                   /*冲销商户ID           */            
+   BILAE019             VARCHAR2(255),                             /*备注                 */  
+   BILAE020             INTEGER,                                   /*录入人               */
+   BILAE021             DATE,                                      /*录入日期             */
+   BILAE022             VARCHAR2(1),                               /*单据状态             */
+   BILAE023             INTEGER,                                   /*审核人               */
+   BILAE024             DATE,                                      /*审核日期             */ 
+   BILAE025             VARCHAR2(1),                               /*红冲标示             */ 
+   BILAE030             VARCHAR2(100),                             /*费用收款单门牌号     */ 
+   BILAE031             VARCHAR2(100),                             /*订金转租金转入商户门牌号     */    
+   BILAE032             VARCHAR2(40),                              /*核销批号             */              
+   CREATE_USER          VARCHAR2(12),                              /*建立人员             */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门         */                               
+   CREATE_DATE          DATE,                                      /*建立日期             */
+   MODIFIER             VARCHAR2(12),                              /*修改人员             */
+   MODI_DATE            DATE,                                      /*修改日期             */
+   FLAG                 NUMBER,                                    /*资料状态             */
+   constraint PK_TB_BILAE primary key (BILAE_ID)
+);
+create unique index AK_TB_BILAE on TB_BILAE (BILAE001,BILAE002,FLAG);
+create sequence SEQ_TB_BILAE minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BILAE to public;
+grant index  on TB_BILAE to public;
+grant update on TB_BILAE to public; 
+grant delete on TB_BILAE to public;  
+grant insert on TB_BILAE to public; 
+grant select on SEQ_TB_BILAE to public;   

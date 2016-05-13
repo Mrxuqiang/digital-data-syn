@@ -1,0 +1,31 @@
+/*
+================================================================================
+表结构代码:TB_PMTRC
+表结构名称:拼单返券促销单不参与支付表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTRC;
+drop index AK_TB_PMTRC;
+drop table TB_PMTRC;
+create table TB_PMTRC  (
+   PMTRC_ID             INTEGER                         not null,  /*拼单返券单不参与支付表ID      */
+   PMTRC001             INTEGER                         not null,  /*拼单返券单ID          */
+   PMTRC002             INTEGER                         not null,  /*支付方式          */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTRC primary key (PMTRC_ID)
+);
+create unique index AK_TB_PMTRC on TB_PMTRC (PMTRC001,PMTRC002);
+create sequence SEQ_TB_PMTRC minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTRC to public;
+grant index  on TB_PMTRC to public;
+grant update on TB_PMTRC to public; 
+grant delete on TB_PMTRC to public;  
+grant insert on TB_PMTRC to public; 
+grant select on SEQ_TB_PMTRC to public;   

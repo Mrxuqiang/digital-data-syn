@@ -1,0 +1,45 @@
+/*
+================================================================================
+表结构代码:TB_PUBBP
+表结构名称:工厂资质明细表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PUBBP;
+drop index AK_TB_PUBBP;
+drop table TB_PUBBP;
+create table TB_PUBBP  (
+   PUBBP_ID             INTEGER                         not null,  /*工厂资质明细ID         */
+   PUBBP001             INTEGER                         not null,  /*资质ID             */
+   PUBBP002             VARCHAR2(10),                              /*有效期             */
+   PUBBP003             VARCHAR2(10) ,                             /*年检             */
+   PUBBP004             VARCHAR2(255),                             /*图片路径             */
+   PUBBP005             VARCHAR2(1),                               /*状态         */ 
+   PUBBP006             VARCHAR2(1),                               /*资质类型 1、营业执照；2、税务登记证；3、组织机构代码证；4、商标注册证 5.质检报告 6.产品说明书
+										7.3C认证证书 8.进口报关单 9.产品合格证 10.质量明示卡 11.环保证明 12.其他*/
+   PUBBP007             VARCHAR2(10),                              /*备用日期         */ 
+   PUBBP008             VARCHAR2(10),                              /*备用日期         */ 
+   PUBBP009             INTEGER,                                    /*录入人           */
+   PUBBP010             DATE,                                       /*录入日期         */
+   PUBBP011             INTEGER,                                    /*修改人           */
+   PUBBP012             DATE,                                       /*修改日期        */
+   PUBBP013             INTEGER,                                    /*审核人           */
+   PUBBP014             DATE,                                       /*审核日期         */
+   PUBBP015             VARCHAR2(10),                              /*备注             */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员           */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门       */                               
+   CREATE_DATE          DATE,                                      /*建立日期           */
+   MODIFIER             VARCHAR2(12),                              /*修改人员           */
+   MODI_DATE            DATE,                                      /*修改日期           */
+   FLAG                 NUMBER,                                 /*资料状态           */
+   constraint PK_TB_PUBBP primary key (PUBBP_ID)
+);
+create unique index AK_TB_PUBBP on TB_PUBBP (PUBBP001,PUBBP002);
+create sequence SEQ_TB_PUBBP minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PUBBP to public;
+grant index  on TB_PUBBP to public;
+grant update on TB_PUBBP to public; 
+grant delete on TB_PUBBP to public;  
+grant insert on TB_PUBBP to public; 
+grant select on SEQ_TB_PUBBP to public;   

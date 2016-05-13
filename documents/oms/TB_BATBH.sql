@@ -1,0 +1,110 @@
+/* 
+================================================================================
+表结构代码:TB_BATBH
+表结构名称:库存汇总表-套件2
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_BATBH;                       
+drop index AK_TB_BATBH;                       
+drop table TB_BATBH;                       
+create table TB_BATBH  (                       
+			BATBH_ID	NUMBER	not null,				                      /*主键*/
+			BATBH001	DATE	not null,					                      /*日期（精确到天）*/
+			BATBH002	NUMBER	not null,				                      /*仓库ID*/
+			BATBH003	NUMBER	not null,				                      /*仓位ID*/
+			BATBH004	NUMBER	not null,				                      /*商品ID*/
+			BATBH005	NUMBER,								                        /*维度1ID*/
+			BATBH006	NUMBER,								                        /*维度2ID*/
+			BATBH007	NUMBER,								                        /*维度3ID*/
+			BATBH008	NUMBER,								                        /*维度4ID*/
+			BATBH009	NUMBER,								                        /*维度5ID*/
+			BATBH010	NUMBER	not null,				                      /*商品服务属性（1、套件 2、组装件 3、补件）*/
+			BATBH011	NUMBER	not null,				                      /*销售属性（1、正常商品 2、定制商品 3、赠品 4、样品 5、处理品）*/
+			BATBH012	NUMBER(18,3)	not null,	                      /*当前库存数量（截止到当前时间）*/
+			BATBH013	NUMBER(18,3)	not null,	                      /*当前库存金额（截止到当前时间）*/
+			BATBH014	NUMBER(18,3)	not null,	                      /*采购入库数量*/
+			BATBH015	NUMBER(18,3)	not null,	                      /*采购入库金额*/
+			BATBH016	NUMBER(18,3)	not null,	                      /*配送到货入库数量*/
+			BATBH017	NUMBER(18,3)	not null,	                      /*配送到货入库金额*/
+			BATBH018	NUMBER(18,3)	not null,	                      /*配退到货入库数量*/
+			BATBH019	NUMBER(18,3)	not null,	                      /*配退到货入库金额*/
+			BATBH020	NUMBER(18,3)	not null,	                      /*销售退货入库数量*/
+			BATBH021	NUMBER(18,3)	not null,	                      /*销售退货入库金额*/
+			BATBH022	NUMBER(18,3)	not null,	                      /*赠品退回入库数量*/
+			BATBH023	NUMBER(18,3)	not null,	                      /*赠品退回入库金额*/
+			BATBH024	NUMBER(18,3)	not null,	                      /*调拨收货入库数量*/
+			BATBH025	NUMBER(18,3)	not null,	                      /*调拨收货入库金额*/
+			BATBH026	NUMBER(18,3)	not null,	                      /*出样入库数量*/
+			BATBH027	NUMBER(18,3)	not null,	                      /*出样入库金额*/
+			BATBH028	NUMBER(18,3)	not null,	                      /*退样入库数量*/
+			BATBH029	NUMBER(18,3)	not null,	                      /*退样入库金额*/
+			BATBH030	NUMBER(18,3)	not null,	                      /*组装入库数量*/
+			BATBH031	NUMBER(18,3)	not null,	                      /*组装入库金额*/
+			BATBH032	NUMBER(18,3)	not null,	                      /*损益入库数量*/
+			BATBH033	NUMBER(18,3)	not null,	                      /*损益入库金额*/
+			BATBH034	NUMBER(18,3)	not null,	                      /*移仓入库数量*/
+			BATBH035	NUMBER(18,3)	not null,	                      /*移仓入库金额*/
+			BATBH036	NUMBER(18,3)	not null,	                      /*拆分入库数量*/
+			BATBH037	NUMBER(18,3)	not null,	                      /*拆分入库金额*/
+			BATBH038	NUMBER(18,3)	not null,	                      /*移仓出库数量*/
+			BATBH039	NUMBER(18,3)	not null,	                      /*移仓出库成本金额*/
+			BATBH040	NUMBER(18,3)	not null,	                      /*移仓出库结算金额*/
+			BATBH041	NUMBER(18,3)	not null,	                      /*组装出库数量*/
+			BATBH042	NUMBER(18,3)	not null,	                      /*组装出库成本金额*/
+			BATBH043	NUMBER(18,3)	not null,	                      /*组装出库结算金额*/
+			BATBH044	NUMBER(18,3)	not null,	                      /*拆分出库数量*/
+			BATBH045	NUMBER(18,3)	not null,	                      /*拆分出库成本金额*/
+			BATBH046	NUMBER(18,3)	not null,	                      /*拆分出库结算金额*/
+			BATBH047	NUMBER(18,3)	not null,	                      /*损益出库数量*/
+			BATBH048	NUMBER(18,3)	not null,	                      /*损益出库成本金额*/
+			BATBH049	NUMBER(18,3)	not null,	                      /*损益出库结算金额*/
+			BATBH050	NUMBER(18,3)	not null,	                      /*采购退货出库数量*/
+			BATBH051	NUMBER(18,3)	not null,	                      /*采购退货出库成本金额*/
+			BATBH052	NUMBER(18,3)	not null,	                      /*采购退货出库结算金额*/
+			BATBH053	NUMBER(18,3)	not null,	                      /*配送发货在途数量*/
+			BATBH054	NUMBER(18,3)	not null,	                      /*配送发货在途金额*/
+			BATBH055	NUMBER(18,3)	not null,	                      /*配送发货出库结算金额*/
+			BATBH056	NUMBER(18,3)	not null,	                      /*配送发货出库数量*/
+			BATBH057	NUMBER(18,3)	not null,	                      /*配送发货出库成本金额*/
+			BATBH058	NUMBER(18,3)	not null,	                      /*配退发货出库数量*/
+			BATBH059	NUMBER(18,3)	not null,	                      /*配退发货出库成本金额*/
+			BATBH060	NUMBER(18,3)	not null,	                      /*配退发货出库结算金额*/
+			BATBH061	NUMBER(18,3)	not null,	                      /*配退发货在途数量*/
+			BATBH062	NUMBER(18,3)	not null,	                      /*配退发货在途金额*/
+			BATBH063	NUMBER(18,3)	not null,	                      /*销售出库数量*/
+			BATBH064	NUMBER(18,3)	not null,	                      /*销售出库成本金额*/
+			BATBH065	NUMBER(18,3)	not null,	                      /*销售出库结算金额*/
+			BATBH066	NUMBER(18,3)	not null,	                      /*销售在途数量*/
+			BATBH067	NUMBER(18,3)	not null,	                      /*销售在途金额*/
+			BATBH068	NUMBER(18,3)	not null,	                      /*赠品出库数量*/
+			BATBH069	NUMBER(18,3)	not null,	                      /*赠品出库成本金额*/
+			BATBH070	NUMBER(18,3)	not null,	                      /*赠品在途数量*/
+			BATBH071	NUMBER(18,3)	not null,	                      /*赠品在途金额*/
+			BATBH072	NUMBER(18,3)	not null,	                      /*赠品出库结算金额*/
+			BATBH073	NUMBER(18,3)	not null,	                      /*调拨发货出库数量*/
+			BATBH074	NUMBER(18,3)	not null,	                      /*调拨发货出库成本金额*/
+			BATBH075	NUMBER(18,3)	not null,	                      /*调拨发货在途数量*/
+			BATBH076	NUMBER(18,3)	not null,	                      /*调拨发货在途金额*/
+			BATBH077	NUMBER(18,3)	not null,	                      /*调拨发货出库结算金额*/
+			BATBH078	NUMBER(18,3)	not null,	                      /*出样出库数量*/
+			BATBH079	NUMBER(18,3)	not null,	                      /*出样出库成本金额*/
+			BATBH080	NUMBER(18,3)	not null,	                      /*出样在途数量*/
+			BATBH081	NUMBER(18,3)	not null,	                      /*出样在途金额*/
+			BATBH082	NUMBER(18,3)	not null,	                      /*出样出库结算金额*/
+			BATBH083	NUMBER(18,3)	not null,	                      /*退样出库数量*/
+			BATBH084	NUMBER(18,3)	not null,	                      /*退样出库成本金额*/
+			BATBH085	NUMBER(18,3)	not null,	                      /*退样在途数量*/
+			BATBH086	NUMBER(18,3)	not null,	                      /*退样在途金额*/
+			BATBH087	NUMBER(18,3)	not null,	                      /*退样库结算金额*/
+   constraint PK_TB_BATBH primary key (BATBH_ID)
+);*/
+--create unique index AK_TB_BATBH on TB_BATBH (BATBH_ID);
+create sequence SEQ_TB_BATBH minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BATBH to public;
+grant index  on TB_BATBH to public;
+grant update on TB_BATBH to public;
+grant delete on TB_BATBH to public;
+grant insert on TB_BATBH to public;
+grant select on SEQ_TB_BATBH to public;

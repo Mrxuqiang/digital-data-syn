@@ -1,0 +1,49 @@
+/*
+================================================================================
+表结构代码:TB_PURGA
+表结构名称:采购退货单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PURGA;
+drop index AK_TB_PURGA;
+drop table TB_PURGA;
+create table TB_PURGA  (
+   PURGA_ID             INTEGER                    not null,       /*退货单ID    */                                                                                
+   PURGA001             VARCHAR2(1)                not null,       /*退货类型    */    -- mark 20100428                                                                               
+   PURGA002             INTEGER                    not null,       /*退货单别      */                                                                                
+   PURGA003             VARCHAR2(30)               not null,       /*退货单号  */                                                                                
+   PURGA004             DATE                       not null,       /*退货日期        */                                                                                
+   PURGA005             INTEGER,                                    /*入库单号        */                                                                               
+   PURGA006             INTEGER                   not null,        /*退货营运组织*/                                                                                
+   PURGA007             INTEGER                   not null,        /*退货部门      */                                                                                
+   PURGA008             INTEGER                   not null,        /*退货人员      */                                                                                
+   PURGA009             INTEGER,                                    /*防损人员        */       -- mark 20100428                                                                           
+   PURGA010             INTEGER,                                    /*商品组人员      */       -- mark 20100428                                                                           
+   PURGA011             INTEGER                   not null,        /*供应商          */                                                                                
+   PURGA012             VARCHAR2(1)               not null,        /*经营方式        */     -- mark 20100428                                                                                
+   PURGA013             INTEGER,                                  /*应付暂估单ID        */   -- modify 20100427 
+   PURGA014             INTEGER                   not null,        /*退货原因        */                                                                                
+   PURGA015             VARCHAR2(255),                             /*备注            */                                                                               
+   PURGA016             VARCHAR2(1),                               /*审核状态        */                                                                               
+   PURGA017             INTEGER,                                   /*录入人          */                                                                               
+   PURGA018             DATE,                                      /*录入日期        */                                                                                
+   PURGA019             INTEGER,                                   /*审核人          */                                                                                
+   PURGA020             DATE,                                      /*审核日期        */                                                                                
+   CREATE_USER          VARCHAR2(12),                              /*建立人员         */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门     */                               
+   CREATE_DATE          DATE,                                      /*建立日期         */
+   MODIFIER             VARCHAR2(12),                              /*修改人员         */
+   MODI_DATE            DATE,                                      /*修改日期         */
+   FLAG                 NUMBER(1),                                 /*资料状态         */
+   constraint PK_TB_PURGA primary key (PURGA_ID)
+);
+create unique index AK_TB_PURGA on TB_PURGA (PURGA002,PURGA003);
+create sequence SEQ_TB_PURGA minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PURGA to public;
+grant index  on TB_PURGA to public;
+grant update on TB_PURGA to public; 
+grant delete on TB_PURGA to public;  
+grant insert on TB_PURGA to public; 
+grant select on SEQ_TB_PURGA to public;   

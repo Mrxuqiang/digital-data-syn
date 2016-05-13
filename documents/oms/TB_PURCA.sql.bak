@@ -1,0 +1,44 @@
+/*
+================================================================================
+表结构代码:TB_PURCA
+表结构名称:要货汇总单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PURCA;
+drop index AK_TB_PURCA;
+drop table TB_PURCA;
+create table TB_PURCA  (
+   PURCA_ID             INTEGER                         not null,  /*要货汇总单ID        */
+   PURCA001             INTEGER                         not null,  /*单别ID              */
+   PURCA002             VARCHAR2(30)                    not null,  /*要货汇总单号        */
+   PURCA003             DATE                            not null,  /*汇总日期            */
+   PURCA004             INTEGER                         not null,  /*汇总营运组织ID      */
+   PURCA005             INTEGER                         not null,  /*汇总部门ID          */
+   PURCA006             INTEGER                         not null,  /*汇总人员ID          */
+   PURCA007             VARCHAR2(255),                             /*备注                */
+   PURCA008             VARCHAR2(1)                     not null,  /*状态                */
+   PURCA009             VARCHAR2(1),                               /*是否签核            */
+   PURCA010             VARCHAR2(30),                              /*签核单号            */
+   PURCA011             VARCHAR2(1),                               /*签核码              */
+   PURCA012             INTEGER,                                   /*录入人ID            */
+   PURCA013             DATE,                                      /*录入日期            */
+   PURCA014             INTEGER,                                   /*审核人ID            */
+   PURCA015             DATE,                                      /*审核日期            */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员            */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门        */                               
+   CREATE_DATE          DATE,                                      /*建立日期            */
+   MODIFIER             VARCHAR2(12),                              /*修改人员            */
+   MODI_DATE            DATE,                                      /*修改日期            */
+   FLAG                 NUMBER(1),                                 /*资料状态            */
+   constraint PK_TB_PURCA primary key (PURCA_ID)
+);
+create unique index AK_TB_PURCA on TB_PURCA (PURCA002);
+create sequence SEQ_TB_PURCA minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PURCA to public;
+grant index  on TB_PURCA to public;
+grant update on TB_PURCA to public; 
+grant delete on TB_PURCA to public;  
+grant insert on TB_PURCA to public; 
+grant select on SEQ_TB_PURCA to public;   

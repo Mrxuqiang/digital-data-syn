@@ -1,0 +1,39 @@
+/*
+================================================================================
+表结构代码:TB_PMTFK
+表结构名称:促销单生效商场品牌范围表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTFK;
+drop index AK_TB_PMTFK;
+drop table TB_PMTFK;
+create table TB_PMTFK  (
+   PMTFK_ID             INTEGER                         not null,  /*生效商场品牌范围ID*/
+   PMTFK001             INTEGER                         not null,  /*促销单ID          */
+   PMTFK002             INTEGER                         ,          /*楼栋ID            */
+   PMTFK003             INTEGER                         ,          /*楼层ID            */
+   PMTFK004             INTEGER                         ,          /*品牌ID            */
+   PMTFK005             INTEGER                         ,          /*品牌系列ID        */
+   PMTFK006             INTEGER                         ,          /*商户ID            */
+   PMTFK007             INTEGER                         ,          /*展位ID            */
+   PMTFK008             INTEGER                         ,          /*合同ID            */
+   PMTFK009             INTEGER                         ,          /*生效商场ID        */
+   PMTFK010             INTEGER                         ,          /*生效商场范围表ID(二级子表外键) */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTFK primary key (PMTFK_ID)
+);
+--create unique index AK_TB_PMTFK on TB_PMTFK (PMTFK001,PMTFK010);
+create sequence SEQ_TB_PMTFK minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTFK to public;
+grant index  on TB_PMTFK to public;
+grant update on TB_PMTFK to public; 
+grant delete on TB_PMTFK to public;  
+grant insert on TB_PMTFK to public; 
+grant select on SEQ_TB_PMTFK to public;  

@@ -1,0 +1,44 @@
+/*
+================================================================================
+表结构代码:TB_BILMD
+表结构名称:促销费用分摊单明细子表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_BILMD;
+drop index AK_TB_BILMD;
+drop table TB_BILMD;
+create table TB_BILMD  (
+   BILMD_ID             INTEGER                         not null,  /*促销费用分摊单明细ID */
+   BILMD001             INTEGER                         not null,  /*促销费用分摊单ID     */
+   BILMD002             INTEGER                         not null,  /*促销费用分摊促销单明细ID（TB_BILMC二级子表）     */
+   BILMD003             VARCHAR2(2)                     not null,  /*促销单类型           */
+   BILMD004             INTEGER                         not null,  /*促销单ID             */
+   BILMD005             INTEGER                         not null,  /*商户ID               */
+   BILMD006             INTEGER                         not null,  /*合同ID               */
+   BILMD007             INTEGER                         ,  /*品牌ID               */
+   BILMD008             INTEGER                         not null,  /*展位ID               */
+   BILMD009             NUMBER(12,2),                              /*分摊销售限额         */ 
+   BILMD010             NUMBER(12,2),                              /*促销金额             */ 
+   BILMD011             NUMBER(12,2),                              /*商户承担费用         */ 
+   BILMD012             NUMBER(12,2),                              /*公司承担费用         */ 
+   BILMD013             NUMBER(12,2),                              /*公司承担特殊营销金   */ 
+   BILMD014             INTEGER                                 ,  /*销售单ID             */
+   BILMD015             NUMBER(12,2),                              /*销售金额             */ 
+   CREATE_USER          VARCHAR2(12),                              /*建立人员             */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门         */                               
+   CREATE_DATE          DATE,                                      /*建立日期             */
+   MODIFIER             VARCHAR2(12),                              /*修改人员             */
+   MODI_DATE            DATE,                                      /*修改日期             */
+   FLAG                 NUMBER(1),                                 /*资料状态             */
+   constraint PK_TB_BILMD primary key (BILMD_ID)
+);
+create unique index AK_TB_BILMD on TB_BILMD (BILMD001,BILMD002,BILMD003,BILMD004,BILMD005,BILMD006);
+create sequence SEQ_TB_BILMD minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BILMD to public;
+grant index  on TB_BILMD to public;
+grant update on TB_BILMD to public; 
+grant delete on TB_BILMD to public;  
+grant insert on TB_BILMD to public; 
+grant select on SEQ_TB_BILMD to public;   

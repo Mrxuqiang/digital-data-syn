@@ -1,0 +1,54 @@
+/*
+================================================================================
+表结构代码:TB_PUBIP
+表结构名称:excel导出模板定义主表
+表结构目的:局部表
+================================================================================
+*/
+
+drop sequence SEQ_TB_PUBIP;
+drop index AK_TB_PUBIP;
+drop table TB_PUBIP;
+create table TB_PUBIP  (
+   PUBIP_ID             INTEGER                         not null,  /*excel模板ID        */
+   PUBIP001             VARCHAR2(100)                   not null,  /*模板编号        */
+   PUBIP002             VARCHAR2(100),                             /*模板名称      */
+   PUBIP003             VARCHAR2(1),                               /*模板类型      */
+   PUBIP004             VARCHAR2(4000),                             /*模板sql语句1  */ 
+   PUBIP005             VARCHAR2(4000),                             /*模板sql语句2  */  
+   PUBIP006             VARCHAR2(4000),                             /*模板sql语句3  */  
+   PUBIP007             VARCHAR2(4000),                             /*模板sql语句4 */  
+   PUBIP008             VARCHAR2(200),                              /*模板组*/  
+   PUBIP009             VARCHAR2(200),                              /*备用1*/  
+   PUBIP010             VARCHAR2(200),                              /*备用1*/  
+   PUBIP011             VARCHAR2(200),                              /*备用1*/  
+   PUBIP012             VARCHAR2(200),                              /*备用1*/ 
+   PUBIP013             VARCHAR2(200),                              /*备用1*/ 
+   PUBIP014             VARCHAR2(100),                              /*备用1*/ 
+   PUBIP015             VARCHAR2(200),                              /*备用1*/ 
+   PUBIP016             VARCHAR2(200),                              /*备用1*/     
+   PUBIP017             VARCHAR2(200),                              /*备用1*/    
+   PUBIP018             VARCHAR2(200),                              /*备用1*/  
+   PUBIP019             VARCHAR2(200),                              /*备用1*/   
+   PUBIP020             VARCHAR2(200),                              /*备用1*/ 
+   PUBIP021             VARCHAR2(200),                              /*备用1*/    
+   PUBIP022             VARCHAR2(200),                              /*备用1*/  
+   PUBIP023             VARCHAR2(200),                              /*备用1*/  
+   PUBIP024             VARCHAR2(200),                              /*备用1*/  
+   PUBIP025             VARCHAR2(200),                              /*备用1*/                                             
+   CREATE_USER          VARCHAR2(12),                               /*建立人员           */
+   USER_GROUP           VARCHAR2(12),                               /*建立人员部门       */                               
+   CREATE_DATE          DATE,                                       /*建立日期           */
+   MODIFIER             VARCHAR2(12),                               /*修改人员           */
+   MODI_DATE            DATE,                                       /*修改日期           */
+   FLAG                 NUMBER,                                     /*资料状态           */
+   constraint PK_TB_PUBIP primary key (PUBIP_ID)
+);
+create unique index AK_TB_PUBIP on TB_PUBIP(PUBIP031,PUBIP032,FLAG);
+create sequence SEQ_TB_PUBIP minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PUBIP to public;
+grant index  on TB_PUBIP to public;
+grant update on TB_PUBIP to public; 
+grant delete on TB_PUBIP to public;  
+grant insert on TB_PUBIP to public;  
+grant select on SEQ_TB_PUBIP to public;   

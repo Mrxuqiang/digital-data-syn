@@ -1,0 +1,48 @@
+================================================================================
+表结构代码:TB_OTCEE
+表结构名称:销售单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_OTCEE;
+drop index AK_TB_OTCEE;
+drop table TB_OTCEE;
+create table TB_OTCEE  (
+   OTCEE_ID             INTEGER                         not null,  /*自动增长ID         */
+   OTCEE001             VARCHAR2(30)                    not null,  /*销售单号         */
+   OTCEE002             DATE                            not null,  /*销售日期         */
+   OTCEE003             INTEGER                         not null,  /*销售组织ID       */
+   OTCEE004             INTEGER                         not null,  /*主品牌ID         */
+   OTCEE005             INTEGER                         ,          /*展位ID         */
+   OTCEE006             VARCHAR2(255),                             /*送货地址         */
+   OTCEE007             VARCHAR2(30),                              /*顾客姓名         */
+   OTCEE008             VARCHAR2(30),                              /*联系电话         */
+   OTCEE009             VARCHAR2(255),                             /*商品名称         */
+   OTCEE010             NUMBER(12,2)                    not null,  /*单价             */
+   OTCEE011	            NUMBER(18,3)                    not null,  /*数量             */
+   OTCEE012             NUMBER(18,3),                              /*含税金额                                       */
+   OTCEE013             NUMBER(12,2)                    not null,  /*退货数量                                       */
+   OTCEE014             NUMBER(12,2),                              /*折扣率(%)                                      */
+   OTCEE015             NUMBER(12,2),                              /*实交款金额                                     */
+   OTCEE016             NUMBER(12,2),                              /*首付款金额                                     */
+   OTCEE017             NUMBER(22,2),                              /*销售整单折扣率(%)    */ 
+   OTCEE018             NUMBER(22,2),                              /*整单整单优惠金额     */  
+   OTCEE019             DATE                            not null,  /*订货日期         */
+   OTCEE020             DATE                            not null,  /*约定送货日期         */
+   OTCEE021             VARCHAR2(1),                               /*是否参加促销     */
+   OTCEE022             VARCHAR2(255),                             /*商户名称             */
+   OTCEE023             VARCHAR2(255),                             /*备注             */
+   OTCEE024             VARCHAR2(1),                               /*状态标识           0表示待发送，1表示CC已接收  */
+ 
+   
+   constraint PK_TB_OTCEE primary key (OTCEE_ID)
+);
+create unique index AK_TB_OTCEE on TB_OTCEE (OTCEE001,OTCEE003);
+create sequence SEQ_TB_OTCEE minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_OTCEE to public;
+grant index  on TB_OTCEE to public;
+grant update on TB_OTCEE to public; 
+grant delete on TB_OTCEE to public;  
+grant insert on TB_OTCEE to public; 
+grant select on SEQ_TB_OTCEE to public;   

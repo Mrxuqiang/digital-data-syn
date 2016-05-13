@@ -1,0 +1,58 @@
+/*
+================================================================================
+表结构代码:TB_PMTFA
+表结构名称:交款返券促销单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTFA;
+drop index AK_TB_PMTFA;
+drop table TB_PMTFA;
+create table TB_PMTFA  (
+   PMTFA_ID             INTEGER                         not null,  /*交款返券单ID      */
+   PMTFA001             INTEGER                         not null,  /*单别ID            */
+   PMTFA002             VARCHAR2(30)                    not null,  /*促销单号          */
+   PMTFA003             DATE                            not null,  /*单据日期          */
+   PMTFA004             INTEGER                         not null,  /*负责营运组织      */
+   PMTFA005             INTEGER                         not null,  /*负责部门ID        */
+   PMTFA006             INTEGER                         not null,  /*负责人员ID        */
+   PMTFA007             INTEGER                         not null,  /*促销主题ID        */
+   PMTFA008             VARCHAR2(255),                             /*促销描述          */
+   PMTFA009             VARCHAR2(1),                               /*是否能积分        */
+   PMTFA010             VARCHAR2(1),                               /*促销能否同时交款返券  */
+   PMTFA011             VARCHAR2(2),                               /*返券方式          */
+   PMTFA012             VARCHAR2(2),                               /*返券金额          */
+   PMTFA013             VARCHAR2(2),                               /*金额条件类型      */
+   PMTFA014             NUMBER(12,2),                              /*条件额度          */
+   PMTFA015             VARCHAR2(1),                               /*尾款不参加促销    */
+   PMTFA016             VARCHAR2(2),                               /*分摊方式          */
+   PMTFA017             VARCHAR2(2),                               /*分摊金额          */
+   PMTFA018             INTEGER,                                   /*录入人ID          */
+   PMTFA019             DATE,                                      /*录入日期          */
+   PMTFA020             INTEGER,                                   /*审核人ID          */
+   PMTFA021             DATE,                                      /*审核日期          */
+   PMTFA022             VARCHAR2(1)                     not null,  /*审核状态          */
+   PMTFA023             VARCHAR2(1),                               /*是否签核          */
+   PMTFA024             VARCHAR2(30),                              /*签核单号          */
+   PMTFA025             VARCHAR2(1),                               /*签核码            */
+   PMTFA026             VARCHAR2(2)                     not null,  /*促销类型          */
+   PMTFA027             INTEGER,                                   /*券种ID            */
+   PMTFA028             VARCHAR2(1),                               /*促销活动叠加      */
+   PMTFA029             VARCHAR2(255),                             /*备注      */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTFA primary key (PMTFA_ID)
+);
+create unique index AK_TB_PMTFA on TB_PMTFA (PMTFA002);
+create sequence SEQ_TB_PMTFA minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTFA to public;
+grant index  on TB_PMTFA to public;
+grant update on TB_PMTFA to public; 
+grant delete on TB_PMTFA to public;  
+grant insert on TB_PMTFA to public; 
+grant select on SEQ_TB_PMTFA to public;   

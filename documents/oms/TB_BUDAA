@@ -1,0 +1,40 @@
+/*
+================================================================================
+表结构代码:TB_BUDAA
+表结构名称:预算主题表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_BUDAA;
+drop index AK_TB_BUDAA;
+drop table TB_BUDAA;
+create table TB_BUDAA  (
+   BUDAA_ID             INTEGER                         not null,  /*主题ID             */
+   BUDAA001             VARCHAR2(20),                              /*编码                */
+   BUDAA002             VARCHAR2(30),                              /*名称                */
+   BUDAA003             VARCHAR2(60),                              /*别名                */
+   BUDAA004             DATE,                                      /*生效日期            */
+   BUDAA005             DATE,                                      /*失效日期             */
+   BUDAA006             INTEGER,                                   /*创建单位             */
+   BUDAA007             INTEGER,                                   /*创建人               */
+   BUDAA008             VARCHAR2(1),                               /*是否控制场景         */
+   BUDAA009             VARCHAR2(4),                               /*预算年度             */   
+   BUDAA010             VARCHAR2(255),                             /*备注                 */
+   BUDAA011             DATE,                                      /*创建日期             */           
+   CREATE_USER          VARCHAR2(12),                              /*建立人员             */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门         */                               
+   CREATE_DATE          DATE,                                      /*建立日期             */
+   MODIFIER             VARCHAR2(12),                              /*修改人员             */
+   MODI_DATE            DATE,                                      /*修改日期             */
+   FLAG                 NUMBER(1),                                 /*资料状态             */
+   constraint PK_TB_BUDAA primary key (BUDAA_ID)
+);
+create unique index AK_TB_BUDAA on TB_BUDAA (BUDAA001);
+create sequence SEQ_TB_BUDAA minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BUDAA to public;
+grant index  on TB_BUDAA to public;
+grant update on TB_BUDAA to public; 
+grant delete on TB_BUDAA to public;  
+grant insert on TB_BUDAA to public; 
+grant select on SEQ_TB_BUDAA to public;   

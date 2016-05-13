@@ -1,0 +1,39 @@
+/*
+================================================================================
+表结构代码:TB_SALBM
+表结构名称:销售单促销表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_SALBM;
+drop index AK_TB_SALBM;
+drop table TB_SALBM;
+create table TB_SALBM  (
+   SALBM_ID             INTEGER                         not null,  /*销售单促销表ID                                 */
+   SALBM001             INTEGER                         not null,  /*销售单ID                                       */
+   SALBM002             VARCHAR2(2)                     not null,  /*促销单类型                                     */
+   SALBM003             INTEGER,                                   /*促销单ID                                       */
+   SALBM004             INTEGER,                                   /*促销主题ID                                     */
+   SALBM005             VARCHAR2(1),                               /*促销活动类型（0.活动独享,1.活动叠加)           */
+   SALBM006             NUMBER(18),                                /*活动期已购物笔数          				              */
+   SALBM007             VARCHAR2(1),                               /*是否销售参与活动（0.未参与,1.参与)             */
+   SALBM008             INTEGER,                                   /*促销单券种ID                                   */
+   SALBM009             VARCHAR2(255),                               /*备注          */
+   SALBM010             NUMBER(22,2),                              /*促销金额（交款折扣，直降折扣）        */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员                                       */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门                                   */                               
+   CREATE_DATE          DATE,                                      /*建立日期                                       */
+   MODIFIER             VARCHAR2(12),                              /*修改人员                                       */
+   MODI_DATE            DATE,                                      /*修改日期                                       */
+   FLAG                 NUMBER(1),                                 /*资料状态                                       */
+   constraint PK_TB_SALBM primary key (SALBM_ID)
+);
+create index AK_TB_SALBM on TB_SALBM (SALBM001,SALBM002,SALBM003,SALBM004);
+create sequence SEQ_TB_SALBM minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_SALBM to public;
+grant index  on TB_SALBM to public;
+grant update on TB_SALBM to public; 
+grant delete on TB_SALBM to public;  
+grant insert on TB_SALBM to public; 
+grant select on SEQ_TB_SALBM to public;   

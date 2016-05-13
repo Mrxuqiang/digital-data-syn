@@ -1,0 +1,50 @@
+/*
+================================================================================
+表结构代码:TB_PMTRP
+表结构名称:拼单交款返现促销单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTRP;
+drop index AK_TB_PMTRP;
+drop table TB_PMTRP;
+create table TB_PMTRP  (
+   PMTRP_ID             INTEGER                         not null,  /*拼单交款返现促销单ID      */
+   PMTRP001             INTEGER                         not null,  /*单别ID            */
+   PMTRP002             VARCHAR2(30)                    not null,  /*促销单号          */
+   PMTRP003             DATE                            not null,  /*单据日期          */
+   PMTRP004             INTEGER                         not null,  /*负责营运组织      */
+   PMTRP005             INTEGER                         not null,  /*负责部门ID        */
+   PMTRP006             INTEGER                         not null,  /*负责人员ID        */
+   PMTRP007             INTEGER                         not null,  /*促销主题ID        */
+   PMTRP008             VARCHAR2(255),                             /*促销描述          */
+   PMTRP009             VARCHAR2(1),                               /*是否能积分        */
+   PMTRP010             VARCHAR2(2),                               /*返现方式          */
+   PMTRP011             VARCHAR2(2)                     not null,  /*促销类型          */
+   PMTRP012             INTEGER,                                   /*录入人ID          */
+   PMTRP013             DATE,                                      /*录入日期          */
+   PMTRP014             INTEGER,                                   /*审核人ID          */
+   PMTRP015             DATE,                                      /*审核日期          */
+   PMTRP016             VARCHAR2(1)                     not null,  /*审核状态          */
+   PMTRP017             VARCHAR2(1),                               /*促销活动叠加      */
+   PMTRP018             VARCHAR2(1),                               /*补贴类型          */
+   PMTRP019             VARCHAR2(1),                               /*分摊金额          */
+   PMTRP020             NUMBER(12,2),                               /*活动补贴租金倍数          */
+   PMTRP021             NUMBER(12,2),                               /*公司承担费用          */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTRP primary key (PMTRP_ID)
+);
+create unique index AK_TB_PMTRP on TB_PMTRP (PMTRP002,PMTRP004);
+create sequence SEQ_TB_PMTRP minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTRP to public;
+grant index  on TB_PMTRP to public;
+grant update on TB_PMTRP to public; 
+grant delete on TB_PMTRP to public;  
+grant insert on TB_PMTRP to public; 
+grant select on SEQ_TB_PMTRP to public;   

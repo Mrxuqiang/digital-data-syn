@@ -1,0 +1,56 @@
+/*
+================================================================================
+表结构代码:TB_PMTIA
+表结构名称:交款收券促销单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTIA;
+drop index AK_TB_PMTIA;
+drop table TB_PMTIA;
+create table TB_PMTIA  (
+   PMTIA_ID             INTEGER                         not null,  /*交款收券单ID      */
+   PMTIA001             INTEGER                         not null,  /*单别ID            */
+   PMTIA002             VARCHAR2(30)                    not null,  /*促销单号          */
+   PMTIA003             DATE                            not null,  /*单据日期          */
+   PMTIA004             INTEGER                         not null,  /*负责营运组织      */
+   PMTIA005             INTEGER                         not null,  /*负责部门ID        */
+   PMTIA006             INTEGER                         not null,  /*负责人员ID        */
+   PMTIA007             INTEGER                         not null,  /*促销主题ID        */
+   PMTIA008             VARCHAR2(255),                             /*促销描述          */
+   PMTIA009             VARCHAR2(1),                               /*促销能否同时交款收券  */
+   PMTIA010             VARCHAR2(2),                               /*收券方式          */
+   PMTIA011             VARCHAR2(2),                               /*分摊方式          */
+   PMTIA012             VARCHAR2(2),                               /*分摊金额          */
+   PMTIA013             INTEGER,                                   /*录入人ID          */
+   PMTIA014             DATE,                                      /*录入日期          */
+   PMTIA015             INTEGER,                                   /*审核人ID          */
+   PMTIA016             DATE,                                      /*审核日期          */
+   PMTIA017             VARCHAR2(1)                     not null,  /*审核状态          */
+   PMTIA018             VARCHAR2(1),                               /*是否签核          */
+   PMTIA019             VARCHAR2(30),                              /*签核单号          */
+   PMTIA020             VARCHAR2(1),                               /*签核码            */
+   PMTIA021             VARCHAR2(2)                     not null,  /*促销类型          */
+   PMTIA022             VARCHAR2(1),                               /*补贴类型          */
+   PMTIA023             VARCHAR2(1),                               /*分摊金额          */
+   PMTIA024             NUMBER(12,2),                               /*活动补贴租金倍数          */
+   PMTIA025             NUMBER(12,2),                               /*公司承担费用          */
+   PMTIA026             VARCHAR2(255),                               /*备注          */
+   PMTIA027             NUMBER(12,2),                               /*封顶值          */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTIA primary key (PMTIA_ID)
+);
+create unique index AK_TB_PMTIA on TB_PMTIA (PMTIA002);
+create sequence SEQ_TB_PMTIA minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTIA to public;
+grant index  on TB_PMTIA to public;
+grant update on TB_PMTIA to public; 
+grant delete on TB_PMTIA to public;  
+grant insert on TB_PMTIA to public; 
+grant select on SEQ_TB_PMTIA to public;   

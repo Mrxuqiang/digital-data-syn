@@ -1,0 +1,39 @@
+/*
+================================================================================
+表结构代码:TB_BUDAC
+表结构名称:预算角度表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_BUDAC;
+drop index AK_TB_BUDAC;
+drop table TB_BUDAC;
+create table TB_BUDAC  (
+   BUDAC_ID             INTEGER                         not null,  /*角度ID              */
+   BUDAC001             VARCHAR2(20),                              /*编码                */
+   BUDAC002             VARCHAR2(30),                              /*名称                */
+   BUDAC003             VARCHAR2(60),                              /*别名                */
+   BUDAC004             DATE,                                      /*生效日期            */
+   BUDAC005             DATE,                                      /*失效日期             */
+   BUDAC006             INTEGER,                                   /*创建单位             */
+   BUDAC007             DATE,                                      /*创建日期             */    
+   BUDAC008             INTEGER,                                   /*创建人               */   
+   BUDAC009             VARCHAR2(255),                             /*备注                 */  
+   BUDAC010             VARCHAR2(1),                               /*系统预置             */        
+   CREATE_USER          VARCHAR2(12),                              /*建立人员             */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门         */                               
+   CREATE_DATE          DATE,                                      /*建立日期             */
+   MODIFIER             VARCHAR2(12),                              /*修改人员             */
+   MODI_DATE            DATE,                                      /*修改日期             */
+   FLAG                 NUMBER(1),                                 /*资料状态             */
+   constraint PK_TB_BUDAC primary key (BUDAC_ID)
+);
+create unique index AK_TB_BUDAC on TB_BUDAC (BUDAC001);
+create sequence SEQ_TB_BUDAC minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BUDAC to public;
+grant index  on TB_BUDAC to public;
+grant update on TB_BUDAC to public; 
+grant delete on TB_BUDAC to public;  
+grant insert on TB_BUDAC to public; 
+grant select on SEQ_TB_BUDAC to public;   

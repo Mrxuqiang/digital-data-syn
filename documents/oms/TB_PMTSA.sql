@@ -1,0 +1,53 @@
+ /*
+================================================================================
+表结构代码:TB_PMTSA
+表结构名称:交款直降促销单(主表)
+表结构目的:   
+================================================================================
+*/
+
+drop sequence SEQ_TB_PMTSA;
+drop index AK_TB_PMTSA;
+drop table TB_PMTSA;
+create table TB_PMTSA  (
+   PMTSA_ID             INTEGER                         not null,  /*交款直降单ID      */
+   PMTSA001             INTEGER                         not null,  /*单别ID            */
+   PMTSA002             VARCHAR2(30)                    not null,  /*促销单号          */
+   PMTSA003             DATE                            not null,  /*单据日期          */
+   PMTSA004             INTEGER                         not null,  /*营运组织ID        */
+   PMTSA005             INTEGER                         not null,  /*负责部门ID        */
+   PMTSA006             INTEGER                         not null,  /*负责人员ID        */
+   PMTSA007             INTEGER                         not null,  /*促销主题ID        */
+   PMTSA008             VARCHAR2(255),                             /*促销描述          */
+   PMTSA009             VARCHAR2(1),                               /*是否能积分        */
+   PMTSA010             VARCHAR2(2),                               /*折扣方式          */
+   PMTSA011             VARCHAR2(1),                               /*与其他活动叠加    */
+   PMTSA012             VARCHAR2(2)                     not null,  /*促销类型          */
+   PMTSA013             INTEGER,                                   /*录入人ID          */
+   PMTSA014             DATE,                                      /*录入日期          */
+   PMTSA015             INTEGER,                                   /*审核人ID          */
+   PMTSA016             DATE,                                      /*审核日期          */
+   PMTSA017             VARCHAR2(1)                     not null,  /*审核状态          */
+   PMTSA018             VARCHAR2(1),                               /*全款参与促销      */
+   PMTSA019             VARCHAR2(1),                               /*补贴类型          */
+   PMTSA020             VARCHAR2(1),                               /*分摊金额          */
+   PMTSA021             NUMBER(12,2),                               /*活动补贴租金倍数          */
+   PMTSA022             NUMBER(12,2),                               /*公司承担费用          */
+   PMTSA023             VARCHAR2(255),                               /*备注          */
+   PMTSA024             NUMBER(12,2),                              /*封顶值            */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_PMTSA primary key (PMTSA_ID)
+);
+create unique index AK_TB_PMTSA on TB_PMTSA (PMTSA002,PMTSA004);
+create sequence SEQ_TB_PMTSA minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_PMTSA to public;
+grant index  on TB_PMTSA to public;
+grant update on TB_PMTSA to public; 
+grant delete on TB_PMTSA to public;  
+grant insert on TB_PMTSA to public; 
+grant select on SEQ_TB_PMTSA to public;   

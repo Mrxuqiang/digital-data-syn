@@ -1,0 +1,77 @@
+/*
+20140912 add by gaoxl for ：增加收款单子id(bilam043)
+*/
+
+
+/*
+================================================================================
+表结构代码:TB_BILAM
+表结构名称:网银账扣申请单子表
+表结构目的:局部表
+================================================================================
+*/
+
+drop sequence SEQ_TB_BILAM;
+drop index AK_TB_BILAM;
+drop table TB_BILAM;
+create table TB_BILAM  (
+   BILAM_ID             INTEGER                         not null,  /*申请单子id         */
+   BILAM001             INTEGER                         not null,  /*申请单主id         */
+   BILAM002             INTEGER                         not null,  /*商户id             */   
+   BILAM003             VARCHAR2(60),                              /*商户号             */  
+   BILAM004             VARCHAR2(80),                              /*商户名称           */  
+   BILAM005             INTEGER,                                   /*展位id             */         
+   BILAM006             VARCHAR2(60),                              /*展位号             */
+   BILAM007             VARCHAR2(100),                             /*门牌号             */
+   BILAM008             INTEGER,                                   /*品牌id             */
+   BILAM009             VARCHAR2(30),                              /*品牌号             */
+   BILAM010             VARCHAR2(60),                              /*品牌名称           */
+   BILAM011             VARCHAR2(30),                              /*费用单号           */
+   BILAM012             DATE,                                      /*费用日期           */
+   BILAM013             INTEGER,                                   /*费用id             */
+   BILAM014             VARCHAR2(8),                               /*费用编码           */
+   BILAM015             VARCHAR2(30),                              /*费用名称           */
+   BILAM016             VARCHAR2(16),                              /*公司代码           */
+   BILAM017             NUMBER(22,2),                              /*费用金额           */
+   BILAM018             NUMBER(22,2),                              /*未收金额           */
+   BILAM019             NUMBER(22,2),                              /*本次收款金额       */
+   BILAM020             DATE,                                      /*费用起日           */
+   BILAM021             DATE,                                      /*费用止日           */
+   BILAM022             VARCHAR2(255),                             /*备注               */
+   BILAM023             NUMBER(22,2),                              /*实际扣款金额       */
+   BILAM024             VARCHAR2(255),                             /*扣款说明           */
+   BILAM025             VARCHAR2(30),                              /*收款单号           */
+   BILAM026             NUMBER(22,2),                              /*审核时未收金额     */
+   BILAM027             INTEGER,                                   /*费用单主id         */
+   BILAM028             INTEGER,                                   /*费用单子id         */
+   BILAM029             INTEGER,                                   /*收款单主id         */ 
+   BILAM030             INTEGER,                                   /*合同id             */  
+   BILAM031             VARCHAR2(30),                              /*合同号             */    
+   BILAM032             VARCHAR2(30),                              /*商户身份识别卡1    */
+   BILAM033             VARCHAR2(30),                              /*商户身份识别卡2    */
+   BILAM034             VARCHAR2(30),                              /*商户身份识别卡3    */
+   BILAM035             VARCHAR2(30),                              /*商户身份识别卡4    */  
+   BILAM036             VARCHAR2(30),                              /*商户身份识别卡5    */ 
+   BILAM037             NUMBER(22,2),                              /*实扣金额1          */  
+   BILAM038             NUMBER(22,2),                              /*实扣金额2          */  
+   BILAM039             NUMBER(22,2),                              /*实扣金额3          */  
+   BILAM040             NUMBER(22,2),                              /*实扣金额4          */  
+   BILAM041             NUMBER(22,2),                              /*实扣金额5          */   
+   BILAM042             VARCHAR2(4),                               /*贸易伙伴           */ 
+   BILAM043             INTEGER,                                   /*收款单子id         */                                              
+   CREATE_USER          VARCHAR2(12),                              /*建立人员            */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门        */                               
+   CREATE_DATE          DATE,                                      /*建立日期            */
+   MODIFIER             VARCHAR2(12),                              /*修改人员            */
+   MODI_DATE            DATE,                                      /*修改日期            */
+   FLAG                 NUMBER,                                    /*资料状态            */
+   constraint PK_TB_BILAM primary key (BILAM_ID)
+);
+create unique index AK_TB_BILAM on TB_BILAM (BILAM001,BILAM027,BILAM028,flag);
+create sequence SEQ_TB_BILAM minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BILAM to public;
+grant index  on TB_BILAM to public;
+grant update on TB_BILAM to public; 
+grant delete on TB_BILAM to public;  
+grant insert on TB_BILAM to public; 
+grant select on SEQ_TB_BILAM to public;   

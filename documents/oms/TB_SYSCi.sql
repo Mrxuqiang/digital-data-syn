@@ -1,0 +1,31 @@
+/*
+================================================================================
+表结构代码:TB_SYSCI
+表结构名称:客户端ping命令记录子表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_SYSCI;
+drop table TB_SYSCI;
+create table TB_SYSCI  (
+   SYSCI_ID             INTEGER                         not null,    /*ping日志子表ID   */
+   SYSCI001             INTEGER                         not null,    /*ping日志主表ID   */
+   SYSCI002             DATE,                                        /*ping执行时间     */
+   SYSCI003             INTEGER,                                     /*字节数           */
+   SYSCI004             INTEGER,                                     /*RTT时间          */
+   SYSCI005             VARCHAR2(2),                                 /*测试类型         */
+   SYSCI006             NUMBER(12,2),                                /*速率             */
+   CREATE_DATE          DATE,                                        /*建立日期         */
+   MODIFIER             VARCHAR2(12),                                /*修改人员         */
+   MODI_DATE            DATE,                                        /*修改日期         */
+   FLAG                 NUMBER,                                      /*资料状态         */
+   constraint PK_TB_SYSCI primary key (SYSCI_ID)
+);
+create sequence SEQ_TB_SYSCI minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_SYSCI to public;
+grant index  on TB_SYSCI to public;
+grant update on TB_SYSCI to public; 
+grant delete on TB_SYSCI to public;  
+grant insert on TB_SYSCI to public; 
+grant select on SEQ_TB_SYSCI to public;   

@@ -1,0 +1,36 @@
+/*
+================================================================================
+表结构代码:TB_SERES
+表结构名称:赠品回收单子表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_SERES;
+drop index AK_TB_SERES;
+drop table TB_SERES;
+create table TB_SERES  (
+   SERES_ID             INTEGER                         not null,  /*赠品回收单子表ID  */
+   SERES001             INTEGER                         not null,  /*赠品回收单ID      */
+   SERES002             INTEGER                         not null,  /*赠品ID            */
+   SERES003             INTEGER,                                   /*单位ID            */
+   SERES004             NUMBER(18,3)                    not null,  /*回收数量          */
+   SERES005             NUMBER(18,3),                              /*单价              */
+   SERES006             NUMBER(18,3),                              /*退现金额          */
+   SERES007             INTEGER,                                   /*发放单赠品明细ID  */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员          */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门      */                               
+   CREATE_DATE          DATE,                                      /*建立日期          */
+   MODIFIER             VARCHAR2(12),                              /*修改人员          */
+   MODI_DATE            DATE,                                      /*修改日期          */
+   FLAG                 NUMBER(1),                                 /*资料状态          */
+   constraint PK_TB_SERES primary key (SERES_ID)
+);
+create unique index AK_TB_SERES on TB_SERES (SERES002,SERES004);
+create sequence SEQ_TB_SERES minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_SERES to public;
+grant index  on TB_SERES to public;
+grant update on TB_SERES to public; 
+grant delete on TB_SERES to public;  
+grant insert on TB_SERES to public; 
+grant select on SEQ_TB_SERES to public;   

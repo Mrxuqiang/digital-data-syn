@@ -1,0 +1,39 @@
+/*
+================================================================================
+表结构代码:TB_SEROL
+表结构名称:营业员入职证件信息
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_SEROL;
+drop index AK_TB_SEROL;
+drop table TB_SEROL;
+create table TB_SEROL  (
+   SEROL_ID             INTEGER                         not null,  /*入职证件信息ID         */
+   SEROL001             INTEGER                         not null,  /*营业员入职申请ID             */
+   SEROL002             VARCHAR2(255),                             /*附件名称             */
+   SEROL003             VARCHAR2(1),                               /*状态         */ 
+   SEROL004             VARCHAR2(1),                               /*证件类型：1.身份证、 2.免冠照、3.工服*/
+   SEROL005             INTEGER,                                   /*录入人             */
+   SEROL006             DATE,                                      /*录入日期           */
+   SEROL007             INTEGER,                                   /*修改人             */
+   SEROL008             DATE,                                      /*修改日期           */
+   SEROL009             VARCHAR2(255),                             /*附件UUID名称       */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员           */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门       */                               
+   CREATE_DATE          DATE,                                      /*建立日期           */
+   MODIFIER             VARCHAR2(12),                              /*修改人员           */
+   MODI_DATE            DATE,                                      /*修改日期           */
+   FLAG                 NUMBER,                                    /*资料状态           */
+   constraint PK_TB_SEROL primary key (SEROL_ID)
+);
+create unique index AK_TB_SEROL on TB_SEROL (SEROL001,SEROL006);
+create unique index INDEX_TB_SEROL001 on TB_SEROL (SEROL001);
+create sequence SEQ_TB_SEROL minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_SEROL to public;
+grant index  on TB_SEROL to public;
+grant update on TB_SEROL to public; 
+grant delete on TB_SEROL to public;  
+grant insert on TB_SEROL to public; 
+grant select on SEQ_TB_SEROL to public;   

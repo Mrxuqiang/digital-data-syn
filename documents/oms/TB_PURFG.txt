@@ -1,0 +1,44 @@
+/*
+================================================================================
+表结构代码:TB_PURFG
+表结构名称:出货通知单表
+表结构目的:局部
+================================================================================
+*/
+
+drop sequence SEQ_TB_PURFG
+drop index AK_TB_PURFG;
+drop table TB_PURFG;
+create table TB_PURFG  (
+   PURFG_ID             INTEGER             not null,    /*出货通知更单ID       */   
+   PURFG001             INTEGER             not null,    /*单别               */   
+   PURFG002             VARCHAR2(30)        not null,    /*出货通知单号       */   
+   PURFG003             DATE                not null,    /*单据日期           */  
+   PURFG004             INTEGER             not null,    /*出货营运组织       */ 
+   PURFG005             INTEGER             not null,    /*出货仓库           */  
+   PURFG006             INTEGER,                         /*销售单号ID         */   
+   PURFG007	        INTEGER,  		         /*出库单ID           */   
+   PURFG008             INTEGER,                         /*录入人             */   
+   PURFG009             DATE,                            /*录入日期           */   
+   PURFG010             INTEGER,                         /*审核人             */   
+   PURFG011             DATE,                            /*审核日期           */
+   PURFG012             VARCHAR2(1)         not null,    /*审核状态           */  
+   PURFE013             VARCHAR2(255),                   /*备注               */   
+   CREATE_USER          VARCHAR2(12),                    /*建立人员           */
+   USER_GROUP           VARCHAR2(12),                    /*建立人员部门       */                          
+   CREATE_DATE          DATE,                            /*建立日期           */
+   MODIFIER             VARCHAR2(12),                    /*修改人员           */
+   MODI_DATE            DATE,                            /*修改日期           */
+   FLAG                 NUMBER,                          /*资料状态           */
+   constraint PK_TB_PURFG primary key (PURFG_ID)
+);
+create unique index AK_TB_PURFG on TB_PURFG (PURFG001,PURFG002,FLAG);
+create sequence SEQ_TB_PURFG minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 
+
+nocache;
+grant select on TB_PURFG to public;
+grant index  on TB_PURFG to public;
+grant update on TB_PURFG to public; 
+grant delete on TB_PURFG to public;  
+grant insert on TB_PURFG to public; 
+grant select on SEQ_TB_PURFG to public;   

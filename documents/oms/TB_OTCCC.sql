@@ -1,0 +1,44 @@
+
+================================================================================
+表结构代码:TB_OTCCC
+表结构名称:投诉回访单主表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_OTCCC;
+drop index AK_TB_OTCCC;
+drop table TB_OTCCC;
+create table TB_OTCCC  (                                       
+   OTCCC_ID             INTEGER                        not null,   /*自动增长IDID            */                   
+   OTCCC001             VARCHAR2(30)                   not null,   /*回访单号            */            
+   OTCCC002             VARCHAR2(30)                   not null,   /*投诉受理单号        */                      
+   OTCCC003             DATE                           not null,   /*回访日期            */            
+   OTCCC004             INTEGER ,                                  /*回访人              */
+   OTCCC005             VARCHAR2(255),                             /*回访内容            */     
+   OTCCC006             VARCHAR2(1),				                       /*建议不回访                   */  
+   OTCCC007             VARCHAR2(1),				                       /*信息不完整                   */  
+   OTCCC008             VARCHAR2(255),				                     /*建议不回访原因               */  
+   OTCCC009             VARCHAR2(255),				                     /*不完整信息内容               */  
+   OTCCC010             VARCHAR2(1),				                     /*是否解决完毕             */ 
+   OTCCC011             VARCHAR2(1),				                       /*是否达成一致解决方案         */
+   OTCCC012             VARCHAR2(255),				                     /*是否达成一致解决方案备注     */  
+   OTCCC013             VARCHAR2(1),				                       /*处理结果是否满意             */
+   OTCCC014             VARCHAR2(1),				                       /*对处理人员态度               */  
+   OTCCC015             VARCHAR2(255),				                     /*意见建议                     */    
+   OTCCC016             VARCHAR2(255),				                     /*是否解决完毕备注             */ 
+   OTCCC017             VARCHAR2(255),				                       /*处理结果是否满意备注             */
+   OTCCC018             VARCHAR2(255),				                       /*对处理人员态度备注               */ 
+   OTCCC019             INTEGER                        not null,   /*营运组织            */  
+   SY_STATE             VARCHAR2(1),                               /*状态   0：表示CC增量回传、1：表示CC变更回传 9 结束完成同步状态cc上传的数据已传到ERP库*/
+  
+   constraint PK_TB_OTCCC primary key (OTCCC_ID)                               
+);                                           
+create unique index AK_TB_OTCCC on TB_OTCCC (OTCCC001,OTCCC002,OTCCC019);               
+create sequence SEQ_TB_OTCCC minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_OTCCC to public;                                     
+grant index  on TB_OTCCC to public;                                     
+grant update on TB_OTCCC to public;                                      
+grant delete on TB_OTCCC to public;                                       
+grant insert on TB_OTCCC to public;                                      
+grant select on SEQ_TB_OTCCC to public;                                        

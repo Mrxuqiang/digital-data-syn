@@ -1,0 +1,101 @@
+
+/*
+================================================================================
+表结构代码:TB_SALBI
+表结构名称:销售单商品表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_SALBI;
+drop index AK_TB_SALBI;
+drop table TB_SALBI;
+create table TB_SALBI  (
+   SALBI_ID             INTEGER                         not null,  /*销售单商品ID                                   */
+   SALBI001             INTEGER                         not null,  /*销售单ID                                       */
+   SALBI002             INTEGER,                                   /*来源单商品ID                                   */
+   SALBI003             INTEGER,                                   /*商品条码ID                                     */
+   SALBI004             INTEGER                         not null,  /*商品编码ID                                     */
+   SALBI005             VARCHAR2(1)                     not null,  /*是否组装品                                     */
+   SALBI006             VARCHAR2(1),                               /*是否成份                                       */
+   SALBI007             INTEGER,                                   /*所属组装品ID                                   */
+   SALBI008             VARCHAR2(1),                               /*是否替代品                                     */
+   SALBI009             INTEGER                         not null,  /*原商品ID                                       */
+   SALBI010             INTEGER,                                   /*单套单位ID        				    */
+   SALBI011             NUMBER(18,3),                              /*单套数量          				    */
+   SALBI012             VARCHAR2(1)                     not null,  /*经营方式                                       */
+   SALBI013             INTEGER                         not null,  /*客商ID                                         */
+   SALBI014             NUMBER(5),                                 /*供货天数                                       */
+   SALBI015             INTEGER                         not null,  /*品牌ID                                         */
+   SALBI016             INTEGER                         not null,  /*品类ID                                         */
+   SALBI017             INTEGER,                                   /*维度1ID                                        */
+   SALBI018             INTEGER,                                   /*维度2ID                                        */
+   SALBI019             INTEGER,                                   /*维度3ID                                        */
+   SALBI020             INTEGER,                                   /*维度4ID                                        */
+   SALBI021             INTEGER,                                   /*维度5ID                                        */
+   SALBI022             INTEGER                         not null,  /*销售单位ID                                     */
+   SALBI023             NUMBER(12,2)                    not null,  /*换算率                                         */
+   SALBI024             INTEGER                         ,  /*仓库ID                                         */
+   SALBI025             NUMBER(18,3),                              /*可用库存量                                     */
+   SALBI026             NUMBER(12,2)                    not null,  /*原售价(零售价)                                         */
+   SALBI027             NUMBER(12,2)                    not null,  /*单价（原价）                                           */
+   SALBI028             NUMBER(18,3)                    not null,  /*数量                                           */
+   SALBI029             NUMBER(18,3),                              /*退货数量                                       */
+   SALBI030             NUMBER(18,3),                              /*已结数量                                       */
+   SALBI031             INTEGER                         not null,  /*税率ID                                         */
+   SALBI032             NUMBER(12,2)                    not null,  /*税率(%)                                        */
+   SALBI033             NUMBER(12,2)                    not null,  /*未税金额                                       */
+   SALBI034             NUMBER(12,2)                    not null,  /*含税金额                                       */
+   SALBI035             NUMBER(12,2),                              /*原扣率(%)（折扣率）                                      */
+   SALBI036             NUMBER(12,2),                              /*新扣率(%)                                      */
+   SALBI037             NUMBER(12,2),                              /*单项折价                                       */
+   SALBI038             NUMBER(12,2),                              /*小计折价                                       */
+   SALBI039             NUMBER(12,2),                              /*批发折价                                       */
+   SALBI040             NUMBER(12,2),                              /*促销折价                                       */
+   SALBI041             NUMBER(12,2),                              /*会员折价                                       */
+   SALBI042             NUMBER(12,2),                              /*会员折扣卡折价                                 */
+   SALBI043             NUMBER(12,2),                              /*促销特价折价                                   */
+   SALBI044             NUMBER(12,2),                              /*促销折扣折价                                   */
+   SALBI045             NUMBER(12,2),                              /*促销组合折价                                   */
+   SALBI046             NUMBER(12,2)                    not null,  /*折后未税金额(不含交款折价)                     */
+   SALBI047             NUMBER(12,2)                    not null,  /*折后含税金额(不含交款折价)                     */
+   SALBI048             NUMBER(12,2),                              /*促销交款折价                                   */
+   SALBI049             NUMBER(12,2),                              /*实交款金额                                     */
+   SALBI050             NUMBER(12,2)                    not null,  /*折后单价                                       */
+   SALBI051             NUMBER(12,2)                    not null,  /*折后未税金额                                   */
+   SALBI052             NUMBER(12,2)                    not null,  /*折后含税金额（实售金额）                                   */
+   SALBI053             VARCHAR2(255),                             /*备注                                           */
+   SALBI054             INTEGER,                                   /*单品特价促销单ID    	   		    */
+   SALBI055             INTEGER,                                   /*单品折扣促销单ID 				    */
+   SALBI056             INTEGER,                                   /*单品组合促销单ID  				    */
+   SALBI057             INTEGER,                                   /*单品买赠促销单ID 				    */
+   SALBI058             INTEGER,                                   /*交款折扣促销单ID  				    */
+   SALBI059             INTEGER,                                   /*交款返券促销单ID  				    */
+   SALBI060             INTEGER,                                   /*累计返券促销单ID  				    */
+   SALBI061             INTEGER,                                   /*累计送赠促销单ID  				    */
+   SALBI062             VARCHAR2(30),                              /*主批号                                         */
+   SALBI063             VARCHAR2(30),                              /*辅批号                                         */
+   SALBI064             NUMBER(12,2),                              /*退货金额                                       */
+   SALBI065             NUMBER(18,3),                              /*已寄送量                                         */
+   SALBI066             NUMBER(18,3),                              /*已送货量                                         */
+   SALBI067             INTEGER                                      /*应付暂估单ID                                   */
+   SALBI068             VARCHAR2(1),                               /*商品服务属性*/
+   SALBI069             NUMBER(12,3),				       /*排车量*/
+   SALBI070             NUMBER(12,3),				        /*送货量*/
+   SALBI071             NUMBER(12,3),			        	/*完成量*/
+   CREATE_USER          VARCHAR2(12),                              /*建立人员                                       */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门                                   */                               
+   CREATE_DATE          DATE,                                      /*建立日期                                       */
+   MODIFIER             VARCHAR2(12),                              /*修改人员                                       */
+   MODI_DATE            DATE,                                      /*修改日期                                       */
+   FLAG                 NUMBER(1),                                 /*资料状态                                       */
+   constraint PK_TB_SALBI primary key (SALBI_ID)
+);
+create index AK_TB_SALBI on TB_SALBI (SALBI_ID,SALBI001,SALBI004);
+create sequence SEQ_TB_SALBI minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_SALBI to public;
+grant index  on TB_SALBI to public;
+grant update on TB_SALBI to public; 
+grant delete on TB_SALBI to public;  
+grant insert on TB_SALBI to public; 
+grant select on SEQ_TB_SALBI to public;   

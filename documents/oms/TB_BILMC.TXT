@@ -1,0 +1,33 @@
+/*
+================================================================================
+表结构代码:TB_BILMC
+表结构名称:促销费用分摊促销单子表
+表结构目的:
+================================================================================
+*/
+
+drop sequence SEQ_TB_BILMC;
+drop index AK_TB_BILMC;
+drop table TB_BILMC;
+create table TB_BILMC  (
+   BILMC_ID             INTEGER                         not null,  /*促销费用分摊促销单明细ID */
+   BILMC001             INTEGER                         not null,  /*促销费用分摊单ID     */
+   BILMC002             VARCHAR2(2)                     not null,  /*促销单类型           */
+   BILMC003             INTEGER                         not null,  /*促销单ID             */
+   BILMC004             VARCHAR2(255),                             /*促销描述             */
+   CREATE_USER          VARCHAR2(12),                              /*建立人员             */
+   USER_GROUP           VARCHAR2(12),                              /*建立人员部门         */                               
+   CREATE_DATE          DATE,                                      /*建立日期             */
+   MODIFIER             VARCHAR2(12),                              /*修改人员             */
+   MODI_DATE            DATE,                                      /*修改日期             */
+   FLAG                 NUMBER(1),                                 /*资料状态             */
+   constraint PK_TB_BILMC primary key (BILMC_ID)
+);
+create unique index AK_TB_BILMC on TB_BILMC (BILMC001,BILMC002,BILMC003);
+create sequence SEQ_TB_BILMC minvalue 1 maxvalue 9999999999999999999999999999 start with 1 increment by 1 nocache;
+grant select on TB_BILMC to public;
+grant index  on TB_BILMC to public;
+grant update on TB_BILMC to public; 
+grant delete on TB_BILMC to public;  
+grant insert on TB_BILMC to public; 
+grant select on SEQ_TB_BILMC to public;   
