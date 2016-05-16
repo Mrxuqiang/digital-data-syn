@@ -3,7 +3,11 @@
 	展位店铺 oms_shop_info		     TB_PUBIG   摊位表		
 品牌工厂 oms_company           TB_PUBHA   生产厂家表
 	品牌表   oms_brand_info              TB_PUBHB_BRAND 品牌表                     
+<<<<<<< HEAD
 	品牌系列表  oms_brand_series	     TB_PUBHB   品牌系列表表	
+=======
+	品牌系列表  oms_brand_series	     TB_PUBHB   品牌表	
+>>>>>>> origin/master
 	经销商    oms_dealer                 TB_PUBGO   客商主表
 	入住合同 oms_contract                TB_CONBE   合同主表
 	展位合同中间表 oms_contract_shop
