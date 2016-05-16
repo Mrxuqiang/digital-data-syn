@@ -1,13 +1,15 @@
-﻿	城市地区 oms_region                  TB_PUBBA   区域表
-	商场     oms_market_info             TB_PUBCB   营运组织表
-	展位店铺 oms_shop_info		     TB_PUBIG   摊位表		
-品牌工厂 oms_company           TB_PUBHA   生产厂家表
-	品牌表   oms_brand_info              TB_PUBHB_BRAND 品牌表
-	品牌系列表  oms_brand_series	     TB_PUBHB   品牌系列表表
-	经销商    oms_dealer                 TB_PUBGO   客商主表
-	入住合同 oms_contract                TB_CONBE   合同主表
-	展位合同中间表 oms_contract_shop
-	经销商品牌系列表 oms_contract_brand_series 
-				     TB_PUBBE    产地表
-                                     TB_PUBGE    计价单位
-				     TB_PUBGI	等级表		
+﻿城市地区 oms_region                  TB_PUBBA   区域表
+商场     oms_market_info             TB_PUBCB   营运组织表
+展位店铺 oms_shop_info		        TB_PUBIG   摊位表
+品牌工厂 oms_company                 TB_PUBHA   生产厂家表
+品牌表   oms_brand_info              TB_PUBHB_BRAND 品牌表
+品牌系列表  oms_brand_series          TB_PUBHB   品牌系列
+经销商    oms_dealer                  TB_PUBGO   客商主表
+
+入住合同 oms_contract                 TB_CONBE   合同主表
+合同展位中间表 oms_contract_shop       TB_CONBF   合同场地表
+合同系列中间表
+经销商品牌系列表 oms_contract_brand_series   TB_CONBS 合同子品牌表
+TB_PUBBE    产地表(产品部给出)
+TB_PUBGE    计价单位(产品部给出)
+TB_PUBGI	等级表(产品部给出)
