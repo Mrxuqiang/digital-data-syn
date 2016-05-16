@@ -1,0 +1,10 @@
+--测试库
+SH_HX_Test_NORMAL =(DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST =172.16.4.123)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = bigzone)
+    )
+  )
+用户名和密码都是dy8383
