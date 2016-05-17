@@ -4,8 +4,8 @@
     <title>数字化项目数据同步</title>
 </head>
 <body>
-<hr/>
 
+<h4>数据导入</h4>
 <br/>
 <a href="/org/cleanOrg/">清空组织机构</a>&nbsp;&nbsp;
 <a href="/org/importOrg/">导入组织机构</a>
@@ -23,6 +23,8 @@
 <a href="/dealer/cleanDealer/">清空经销商数据</a>&nbsp;&nbsp;
 <a href="/dealer/importDealer/">导入经销商</a>&nbsp;&nbsp;
 
+
+<h4>数据修复</h4>
 
 </body>
 </html>
