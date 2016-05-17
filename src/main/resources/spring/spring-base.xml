@@ -98,4 +98,42 @@
         <property name="dataSource" ref="dataSource_oms_oracle"/>
     </bean>
 
+    <!--rem_oracle dataSource-->
+    <bean id="dataSource_rem_oracle" class="org.apache.tomcat.jdbc.pool.DataSource">
+        <property name="driverClassName" value="${JDBC.Oracle.Driver}"></property>
+        <property name="url" value="${JDBC.Url.rem_oracle.ConnectionURL}"></property>
+        <property name="username" value="${JDBC.Username.rem_oracle}"></property>
+        <property name="password" value="${JDBC.Password.rem_oracle}"></property>
+        <!--jmx是否开启-->
+        <property name="jmxEnabled" value="true"></property>
+        <!--空闲链接检查-->
+        <property name="testWhileIdle" value="true"></property>
+        <!--从池中获得链接时是否先测试-->
+        <property name="testOnBorrow" value="true"></property>
+        <!--mysql,sqlserver可以使用select 1;但是oracle只能使用select 1 from dual-->
+        <property name="validationQuery" value="select 1 from dual "></property>
+        <!--将链接返回池中时是否验证-->
+        <property name="testOnReturn" value="false"></property>
+        <!--验证频率,默认30s-->
+        <property name="validationInterval" value="30000"></property>
+        <!--检查空闲链接,默认5s-->
+        <property name="timeBetweenEvictionRunsMillis" value="10000"></property>
+        <property name="maxActive" value="100"></property>
+        <property name="initialSize" value="10"></property>
+        <!--请求链接最长等待时间,默认15s-->
+        <property name="maxWait" value="15000"></property>
+        <!--是否开启链接回收,默认为false,如果开启,超过removeAbandonedTimeout的所有链接都会回收-->
+        <property name="removeAbandoned" value="false"></property>
+        <!--多少时间之前的链接可以放弃,重置计时器后返回池中,用户拦截器查询-->
+        <property name="removeAbandonedTimeout" value="60"></property>
+        <!--是否开启抛弃链接的堆栈追踪-->
+        <property name="logAbandoned" value="false"></property>
+        <!--多少时间之后便表示该链接是空闲链接,默认60s-->
+        <property name="minEvictableIdleTimeMillis" value="30"></property>
+        <property name="minIdle" value="10"></property>
+    </bean>
+    <bean id="remOracleJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource_rem_oracle"/>
+    </bean>
+
 </beans>

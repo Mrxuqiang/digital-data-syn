@@ -18,7 +18,7 @@ public class TestController {
     @RequestMapping(value = "listTest/")
     public String listTest() {
         try {
-            orgService.importOrgData();
+//            orgService.importOrg();
         } catch (Exception e) {
         }
         return null;
