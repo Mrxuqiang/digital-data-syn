@@ -41,7 +41,11 @@ public class DataResult {
     }
 
     public int getTotalCount() {
-        return this.getErrorCount() + this.getSuccessCount();
+        if (this.totalCount != 0) {
+            return this.totalCount;
+        } else {
+            return this.getErrorCount() + this.getSuccessCount();
+        }
     }
 
     public Long getStartTime() {
@@ -78,5 +82,9 @@ public class DataResult {
 
     public String getRunTimeStr() {
         return DateUtil.countDateTime(getStartTime(), getEndTime());
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 }
