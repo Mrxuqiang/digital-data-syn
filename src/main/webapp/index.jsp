@@ -22,7 +22,21 @@
 <hr/>
 <a href="/dealer/cleanDealer/">清空经销商数据</a>&nbsp;&nbsp;
 <a href="/dealer/importDealer/">导入经销商</a>&nbsp;&nbsp;
-
+<hr/>
+<a href="/omsShopInfo/cleanOrg/">清空展位店铺</a>&nbsp;&nbsp;
+<a href="/omsShopInfo/importOrg/">导入展位店铺</a>
+<hr/>
+<a href="/omsContract/cleanOrg/">清空合同</a>&nbsp;&nbsp;
+<a href="/omsContract/importOrg/">导入合同</a>
+<hr/>
+<a href="/omsContShop/cleanOrg/">清空合同店铺</a>&nbsp;&nbsp;
+<a href="/omsContShop/importOrg/">导入合同店铺</a>
+<hr/>
+<a href="/omsContBrandShop/cleanOrg/">清空合同代理品牌系列</a>&nbsp;&nbsp;
+<a href="/omsContBrandShop/importOrg/">导入合同代理品牌系列</a>
+<hr/>
+<a href="/omsMarkInfo/cleanOrg/">清空商场</a>&nbsp;&nbsp;
+<a href="/omsMarkInfo/importOrg/">导入商场</a>
 
 <h4>数据修复</h4>
 
