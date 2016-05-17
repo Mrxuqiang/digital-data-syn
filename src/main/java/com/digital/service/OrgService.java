@@ -29,10 +29,15 @@ public class OrgService {
     JdbcTemplate remOracleJdbcTemplate;
 
 
-    public String cleanOrg() {
+    public DataResult cleanOrg() {
         try {
+            DataResult dataResult = new DataResult();
+            dataResult.setStartTime(System.currentTimeMillis());
+            int count =mysqlJdbcTemplate.queryForObject("select count(1) from oms_org",Integer.class);
+            dataResult.setTotalCount(count);
             mysqlJdbcTemplate.update("truncate table oms_org");
-            System.out.println(">>end>>");
+            dataResult.setEndTime(System.currentTimeMillis());
+            return dataResult;
         } catch (Exception e) {
             e.printStackTrace();
         }
