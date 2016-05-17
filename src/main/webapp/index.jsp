@@ -19,5 +19,10 @@
 <a href="/company/cleanCompany/">清空工厂品牌公司数据</a>&nbsp;&nbsp;
 <a href="/company/importCompany/">导入工厂品牌公司</a>&nbsp;&nbsp;
 
+<hr/>
+<a href="/dealer/cleanDealer/">清空经销商数据</a>&nbsp;&nbsp;
+<a href="/dealer/importDealer/">导入经销商</a>&nbsp;&nbsp;
+
+
 </body>
 </html>
