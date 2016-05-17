@@ -43,4 +43,15 @@ public class OmsContractController {
         return null;
     }
 
+    @RequestMapping(value = "updateContract")
+    public String updateContract(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            DataResult dataResult = omsContractService.taskOmsContract();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
+            return null;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
 }

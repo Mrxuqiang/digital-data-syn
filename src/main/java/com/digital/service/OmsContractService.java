@@ -41,7 +41,7 @@ public class OmsContractService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            //从REM读取数据
+            //从REM读取数据 TODO contract_number 未处理
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT \n" +
                     "CONBE_ID id_uuid,\n" +
                     "''contract_number,\n" +
@@ -87,5 +87,26 @@ public class OmsContractService {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    //定时更新数据
+    public DataResult taskOmsContract() {
+        DataResult dataResult = new DataResult();
+        dataResult.setStartTime(System.currentTimeMillis());
+        int successCount = 0;
+        {
+            try {
+                //修复展位店铺表中的 market_id
+                String sql = "update oms_contract osi set osi.dealer_id=(select omi.id from oms_dealer omi where omi.id_uuid=osi.dealer_id_uuid limit 0,1)";
+                successCount = mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        dataResult.setErrorCount(0);
+        dataResult.setSuccessCount(successCount);
+        dataResult.setEndTime(System.currentTimeMillis());
+        return dataResult;
     }
 }

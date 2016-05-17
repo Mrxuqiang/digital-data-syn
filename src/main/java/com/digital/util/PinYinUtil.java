@@ -14,7 +14,7 @@ public class PinYinUtil {
     /**
      * 获取首字母
      *
-     * @param str
+     * @param
      * @return
      */
     public static String getFirstPinYin(String tempStr) {

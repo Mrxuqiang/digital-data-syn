@@ -43,4 +43,14 @@ public class OmsConShopController {
         return null;
     }
 
+    @RequestMapping(value = "updateConShop")
+    public String updateConShop(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            DataResult dataResult = omsContractShopService.taskContractShop();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
+            return null;
+        } catch (Exception e) {
+        }
+        return null;
+    }
 }

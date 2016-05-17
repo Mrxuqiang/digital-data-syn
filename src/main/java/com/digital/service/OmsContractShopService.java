@@ -74,4 +74,33 @@ public class OmsContractShopService {
         }
         return null;
     }
+
+    //定时更新数据
+    public DataResult taskContractShop() {
+        DataResult dataResult = new DataResult();
+        dataResult.setStartTime(System.currentTimeMillis());
+        int successCount = 0;
+        {
+            try {
+                //修复合同店铺表中的 shop_id
+                String sql = "update oms_contract_shop osi set osi.shop_id=(select omi.id from oms_shop_info omi where omi.id_uuid=osi.shop_id_uuid limit 0,1)";
+                successCount = mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        {
+            try {
+                //修复展位店铺表中的 market_name
+                String sql = "update oms_contract_shop osi set osi.contract_id=(select omi.id from oms_contract omi where omi.id_uuid=osi.contract_id_uuid limit 0,1)";
+                successCount += mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        dataResult.setErrorCount(0);
+        dataResult.setSuccessCount(successCount);
+        dataResult.setEndTime(System.currentTimeMillis());
+        return dataResult;
+    }
 }

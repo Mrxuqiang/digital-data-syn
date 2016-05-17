@@ -1,5 +1,8 @@
 -- 更新oms_shop_info
-market_name,market_id,company_id,dealer_id,brand_id,brand_name,series_id,series_name
+market_name,market_id,
+
+company_id,dealer_id,brand_id,brand_name,series_id,series_name
+
 SELECT a.id market_id,a.market_name from oms_market_info a RIGHT JOIN oms_shop_info b on a.id_uuid=b.market_id_uuid
 
 SELECT

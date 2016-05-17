@@ -32,6 +32,17 @@ public class OmsShopInfoController {
         return null;
     }
 
+    @RequestMapping(value = "taskOmsShopInfo")
+    public String OmsShopInfo(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            DataResult dataResult = omsShopInfoService.taskOmsShopInfo();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
+            return null;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     @RequestMapping(value = "importOrg")
     public String importOrg(HttpServletRequest request, HttpServletResponse response) {
         try {
