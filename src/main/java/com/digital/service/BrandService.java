@@ -60,7 +60,7 @@ public class BrandService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            //从REM读取数据 TODO company_id
+            //从REM读取数据
             String sql = "select PUBHB_ID id_uuid, '' company_id, PUBHB006 company_id_uuid, UUID brand_number, PUBHB002 brand_name  " +
                     " from tb_pubhb_brand where rownum<100";
             logger.info(sql);
