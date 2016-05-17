@@ -28,7 +28,13 @@ public class StringUtil {
      */
     public static String ObjectToDateString(Object obj) {
         try {
-            return DateUtil.formatDate(DateUtil.parse(ObjectToString(obj), DateUtil.datetimePattern));
+            String dateStr = ObjectToString(obj);
+            if (dateStr.contains("9999")) {
+                return null;
+            } else {
+                return DateUtil.formatDate(DateUtil.parse(dateStr, DateUtil.datetimePattern));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
