@@ -39,6 +39,7 @@
 <a href="/omsMarkInfo/importOrg/">导入商场</a>
 
 <h4>数据修复</h4>
+<a href="/brand/fixBrand/">品牌表相关修复</a>&nbsp;&nbsp;
 
 </body>
 </html>

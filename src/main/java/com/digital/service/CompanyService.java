@@ -51,9 +51,12 @@ public class CompanyService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据 TODO province_id city_id 未处理
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("select PUBHA_ID id_uuid,UUID company_number,PUBHA003 company_name,PUBHA005 company_address " +
+            String sql = "select PUBHA_ID id_uuid,UUID company_number,PUBHA003 company_name,PUBHA005 company_address " +
                     ",PUBHA006 post_code,PUBHA008 corporation,PUBHA009 corporation_tel,PUBHA010 manager,PUBHA011 manager_tel,PUBHA012 contract,PUBHA013 contract_tel" +
-                    ",PUBHA015 web_url from TB_PUBHA where rownum<100");
+                    ",PUBHA015 web_url from TB_PUBHA where rownum<2000";
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
+            logger.info(sql);
+
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -76,9 +79,7 @@ public class CompanyService {
                             ID_UUID, COMPANY_NUMBER, COMPANY_NAME, COMPANY_ADDRESS, POST_CODE,
                             CORPORATION, CORPORATION_TEL, MANAGER, MANAGER_TEL, CONTRACT, CONTRACT_TEL, WEB_URL
                     });
-
-
-                    System.out.println(map);
+                    logger.info(map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;

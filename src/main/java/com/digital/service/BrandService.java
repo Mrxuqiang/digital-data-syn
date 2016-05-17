@@ -1,6 +1,7 @@
 package com.digital.service;
 
 import com.digital.common.DataResult;
+import com.digital.util.PinYinUtil;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +60,7 @@ public class BrandService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            //从REM读取数据
+            //从REM读取数据 TODO company_id
             String sql = "select PUBHB_ID id_uuid, '' company_id, PUBHB006 company_id_uuid, UUID brand_number, PUBHB002 brand_name  " +
                     " from tb_pubhb_brand where rownum<100";
             logger.info(sql);
@@ -73,11 +74,11 @@ public class BrandService {
                     String COMPANY_ID_UUID = StringUtil.ObjectToString(map.get("COMPANY_ID_UUID"));
                     String BRAND_NUMBER = StringUtil.ObjectToString(map.get("BRAND_NUMBER"));
                     String BRAND_NAME = StringUtil.ObjectToString(map.get("BRAND_NAME"));
-
-                    String insertSql = "insert into oms_brand_info(id_uuid,company_id,company_id_uuid,brand_number,brand_name" +
-                            ")values(?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{ID_UUID, COMPANY_ID, COMPANY_ID_UUID, BRAND_NUMBER, BRAND_NAME});
-                    System.out.println(">>>>" + map);
+                    String BRAND_PY = PinYinUtil.getFirstPinYin(BRAND_NAME);
+                    String insertSql = "insert into oms_brand_info(id_uuid,company_id,company_id_uuid,brand_number,brand_name,brand_py" +
+                            ")values(?,?,?,?,?,?)";
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{ID_UUID, COMPANY_ID, COMPANY_ID_UUID, BRAND_NUMBER, BRAND_NAME, BRAND_PY});
+                    logger.info(map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;
@@ -121,7 +122,7 @@ public class BrandService {
                     String insertSql = "insert into oms_brand_series(id_uuid,brand_id,brand_id_uuid,series_number,series_name" +
                             ")values(?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{ID_UUID, BRAND_ID, BRAND_ID_UUID, SERIES_NUMBER, SERIES_NAME});
-                    System.out.println(">>>>" + map);
+                    logger.info(map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;
@@ -137,5 +138,39 @@ public class BrandService {
         }
         return null;
     }
+
+    /**
+     * 修复品牌及品牌系列表
+     *
+     * @return
+     */
+    public DataResult fixBrand() {
+        DataResult dataResult = new DataResult();
+        dataResult.setStartTime(System.currentTimeMillis());
+        int successCount = 0;
+        {
+            try {
+                //修复品牌表中的 company_id
+                String sql = "update oms_brand_info obi set obi.company_id =(select oc.id from oms_company oc where oc.id_uuid=obi.company_id_uuid limit 0,1)";
+                successCount = mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        {
+            try {
+                //修复品牌系列表中的 brand_id
+                String sql = "update oms_brand_series obs set obs.brand_id=(select obi.id from oms_brand_info obi where obi.id_uuid=obs.brand_id_uuid limit 0,1)";
+                successCount += mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        dataResult.setErrorCount(0);
+        dataResult.setSuccessCount(successCount);
+        dataResult.setEndTime(System.currentTimeMillis());
+        return dataResult;
+    }
+
 
 }

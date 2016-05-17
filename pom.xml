@@ -135,6 +135,14 @@
             <version>1.1.2</version>
         </dependency>
 
+        <!--拼音转换-->
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <!--拼音转换-->
+
     </dependencies>
 
 
