@@ -46,7 +46,7 @@ public class MarketService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            //从REM读取数据
+            //从REM读取数据 TODO province_id city_id 需要修复
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name," +
                     "PUBCB038 first_org_id,PUBCB039 second_org_id,''first_org_name,''second_org_name," +
                     "PUBCB013 province_id,PUBCB014 city_id,PUBCB015 district_id,PUBCB017 market_address,''lon,''lat " +
@@ -62,8 +62,10 @@ public class MarketService {
                     String second_org_id = StringUtil.ObjectToString(map.get("second_org_id"));
                     String first_org_name = StringUtil.ObjectToString(map.get("first_org_name"));
                     String second_org_name = StringUtil.ObjectToString(map.get("second_org_name"));
-                    String province_id = StringUtil.ObjectToString(map.get("province_id"));
-                    String city_id = StringUtil.ObjectToString(map.get("city_id"));
+//                    String province_id = StringUtil.ObjectToString(map.get("province_id"));
+//                    String city_id = StringUtil.ObjectToString(map.get("city_id"));
+                    String province_id = null;
+                    String city_id = null;
                     String district_id = StringUtil.ObjectToString(map.get("district_id"));
                     String market_address = StringUtil.ObjectToString(map.get("market_address"));
                     String lon = StringUtil.ObjectToString(map.get("lon"));
