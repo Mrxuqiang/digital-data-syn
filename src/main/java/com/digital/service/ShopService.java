@@ -96,7 +96,7 @@ public class ShopService {
         {
             try {
                 //修复展位店铺表中的 market_id
-                String sql = "update oms_shop_info osi set osi.market_id=(select omi.id from oms_market_info omi where omi.id_uuid=osi.market_id_uuid limit 0,1);";
+                String sql = "update oms_shop_info osi set osi.market_id=(select omi.id from oms_market_info omi where omi.id_uuid=osi.market_id_uuid limit 0,1)";
                 successCount = mysqlJdbcTemplate.update(sql);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -105,7 +105,7 @@ public class ShopService {
         {
             try {
                 //修复展位店铺表中的 market_name
-                String sql = "update oms_shop_info osi set osi.market_name=(select omi.market_name from oms_market_info omi where omi.id_uuid=osi.market_id_uuid limit 0,1);";
+                String sql = "update oms_shop_info osi set osi.market_name=(select omi.market_name from oms_market_info omi where omi.id_uuid=osi.market_id_uuid limit 0,1)";
                 successCount += mysqlJdbcTemplate.update(sql);
             } catch (Exception e) {
                 e.printStackTrace();
