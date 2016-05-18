@@ -69,7 +69,7 @@ public class MarketService {
                     String lon = StringUtil.ObjectToString(map.get("lon"));
                     String lat = StringUtil.ObjectToString(map.get("lat"));
                     try {
-                        
+
                         //处理大区小区ID
                         //查找所对应的大区
                         Map<String, Object> firstMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1", new Object[]{first_org_id});
@@ -84,10 +84,12 @@ public class MarketService {
                             second_org_name = StringUtil.ObjectToString(secondMap.get("org_name"));
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        first_org_id=null;
+                        second_org_id=null;
                     }
                     String insertSql = "insert into oms_market_info(id_uuid,market_number,market_name,first_org_id,second_org_id,first_org_name,second_org_name,province_id,city_id,district_id,market_address,lon,lat)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, market_number, market_name, first_org_id, second_org_id, first_org_name, second_org_name, province_id, city_id, district_id, market_address, lon, lat});
+                    successCount++;
                     logger.info(map + "");
                 } catch (Exception e) {
                     errorCount++;

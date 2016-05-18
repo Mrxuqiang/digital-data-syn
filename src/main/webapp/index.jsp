@@ -77,6 +77,7 @@
 <script>
     $(function () {
         $('button[name="link"]').click(function () {
+            if(confirm("是否确认操作？")){
             var url = $(this).attr('href');
             $(this).attr('disabled', 'disabled');
             var btn = $(this);
@@ -90,6 +91,7 @@
                     btn.removeAttr("disabled");
                 }
             });
+        }
         });
     });
 </script>
