@@ -18,10 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/market")
 public class MarketController {
 
-
     @Autowired
     MarketService marketService;
-
 
     @RequestMapping(value = "clean")
     public String clean(HttpServletRequest request, HttpServletResponse response) {
@@ -37,6 +35,17 @@ public class MarketController {
     public String importMarket(HttpServletRequest request, HttpServletResponse response) {
         try {
             DataResult dataResult = marketService.importMarket();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
+            return null;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "fixMarket")
+    public String fixMarket(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            DataResult dataResult = marketService.fixMarket();
             response.getWriter().write(JsonUtil.toJson(dataResult, true));
             return null;
         } catch (Exception e) {

@@ -47,21 +47,9 @@ public class MarketService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT\n" +
-                    "PUBCB_ID id_uuid,\n" +
-                    "PUBCB001 market_number,\n" +
-                    "PUBCB003 market_name,\n" +
-                    "PUBCB012 first_org_id,\n" +
-                    "''second_org_id,\n" +
-                    "''first_org_name,\n" +
-                    "''second_org_name,\n" +
-                    "PUBCB013 province_id,\n" +
-                    "PUBCB014 city_id,\n" +
-                    "PUBCB015 district_id,\n" +
-                    "PUBCB017 market_address,\n" +
-                    "''lon,\n" +
-                    "''lat\n" +
-                    "from TB_PUBCB  where rownum <100");
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name,PUBCB012 first_org_id," +
+                    " ''second_org_id,''first_org_name,''second_org_name,PUBCB013 province_id,PUBCB014 city_id,PUBCB015 district_id,PUBCB017 market_address,''lon,''lat " +
+                    " from TB_PUBCB  where rownum <100");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -97,4 +85,26 @@ public class MarketService {
         }
         return null;
     }
+
+    //修复数据
+    public DataResult fixMarket() {
+        DataResult dataResult = new DataResult();
+        dataResult.setStartTime(System.currentTimeMillis());
+        int successCount = 0;
+        {
+            try {
+                //修复 小区id second_org_id,大区名first_org_name,小区名second_org_name,
+                //TODO 需要以其他方式处理lon,lat
+                String sql = "";
+                successCount = mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        dataResult.setErrorCount(0);
+        dataResult.setSuccessCount(successCount);
+        dataResult.setEndTime(System.currentTimeMillis());
+        return dataResult;
+    }
+
 }
