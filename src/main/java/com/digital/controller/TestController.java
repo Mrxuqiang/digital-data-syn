@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by ccdashu on 16/3/25.
  */
 @Controller
-@RequestMapping("/syn/syn")
+@RequestMapping("/test")
 public class TestController {
     @Autowired
     OrgService orgService;
