@@ -69,6 +69,7 @@ public class MarketService {
                     String lon = StringUtil.ObjectToString(map.get("lon"));
                     String lat = StringUtil.ObjectToString(map.get("lat"));
                     try {
+                        
                         //处理大区小区ID
                         //查找所对应的大区
                         Map<String, Object> firstMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1", new Object[]{first_org_id});
