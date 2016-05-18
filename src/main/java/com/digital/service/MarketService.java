@@ -70,13 +70,13 @@ public class MarketService {
                     String lat = StringUtil.ObjectToString(map.get("lat"));
                     //处理大区小区ID
                     //查找所对应的大区
-                    Map<String, Object> firstMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? limit 0,1", new Object[]{first_org_id});
+                    Map<String, Object> firstMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1", new Object[]{first_org_id});
                     if (null != firstMap) {
                         first_org_id = StringUtil.ObjectToString(firstMap.get("id"));
                         first_org_name = StringUtil.ObjectToString(firstMap.get("org_name"));
                     }
                     //查找所对应的小区
-                    Map<String, Object> secondMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? limit 0,1", new Object[]{second_org_id});
+                    Map<String, Object> secondMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=2 limit 0,1", new Object[]{second_org_id});
                     if (null != firstMap) {
                         second_org_id = StringUtil.ObjectToString(secondMap.get("id"));
                         second_org_name = StringUtil.ObjectToString(secondMap.get("org_name"));
