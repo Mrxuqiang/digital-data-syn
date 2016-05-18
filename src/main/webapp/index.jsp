@@ -10,7 +10,9 @@
 
 
 <h4>基础数据导入</h4>
-<a href="/org/cleanOrg/">清空组织机构</a>&nbsp;&nbsp;
+<a name="link" href="aaaaaaa">清空组织机构</a>&nbsp;&nbsp;
+<%--<a name="link" href="/org/cleanOrg/">清空组织机构</a>&nbsp;&nbsp;--%>
+<a href="/org/importOrg/">导入组织机构</a>
 <a href="/org/importOrg/">导入组织机构</a>
 <hr/>
 <a href="/market/clean/">清空商场</a>&nbsp;&nbsp;
@@ -55,5 +57,14 @@
 <a href="/contractShop/fixContractShop/">合同店铺相关修复</a>
 <br/>
 <a href="/conBrandSeries/fixConBrandSeries/">合同代理品牌系列修复</a>
+
+<script>
+    $(function () {
+        $('a[name="link"]').click(function () {
+           var url = $(this).attr('href');
+            alert(url);
+        });
+    });
+</script>
 </body>
 </html>

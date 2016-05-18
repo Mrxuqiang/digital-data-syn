@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by ccdashu on 16/3/25.
  */
 @Controller
-@RequestMapping("/dealer")
+@RequestMapping("/syn/dealer")
 public class DealerController {
 
 

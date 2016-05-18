@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by ccdashu on 16/3/25.
  */
 @Controller
-@RequestMapping("/org")
+@RequestMapping("/syn/org")
 public class OrgController {
 
 

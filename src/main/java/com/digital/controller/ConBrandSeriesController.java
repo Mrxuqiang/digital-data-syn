@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * 合同代理品牌系列
  */
 @Controller
-@RequestMapping("/conBrandSeries")
+@RequestMapping("/syn/conBrandSeries")
 public class ConBrandSeriesController {
 
 
