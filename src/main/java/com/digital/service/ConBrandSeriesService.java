@@ -59,7 +59,7 @@ public class ConBrandSeriesService {
                     "\tTB_CONBS a\n" +
                     "LEFT JOIN TB_PUBHB b ON A.CONBS002 = b.PUBHB_ID\n" +
                     "WHERE\n" +
-                    "\tROWNUM < 100");
+                    "\t");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {

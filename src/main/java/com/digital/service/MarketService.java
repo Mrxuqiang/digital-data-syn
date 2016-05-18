@@ -50,7 +50,7 @@ public class MarketService {
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name," +
                     "PUBCB038 first_org_id,PUBCB039 second_org_id,''first_org_name,''second_org_name," +
                     "PUBCB013 province_id,PUBCB014 city_id,PUBCB015 district_id,PUBCB017 market_address,''lon,''lat " +
-                    " from TB_PUBCB  where rownum <100");
+                    " from TB_PUBCB ");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -70,6 +70,7 @@ public class MarketService {
                     String lat = StringUtil.ObjectToString(map.get("lat"));
                     //处理大区小区ID
                     //查找所对应的大区
+
                     Map<String, Object> firstMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1", new Object[]{first_org_id});
                     if (null != firstMap) {
                         first_org_id = StringUtil.ObjectToString(firstMap.get("id"));

@@ -59,7 +59,7 @@ public class ContractService {
                     "CONBE076 sap_contract_code,\n" +
                     "'' contract_status_code,\n" +
                     "CONBE023 remark\n" +
-                    "from TB_CONBE where CONBE025='Y' AND rownum <100");
+                    "from TB_CONBE where CONBE025='Y'");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {

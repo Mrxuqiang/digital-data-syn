@@ -48,7 +48,7 @@ public class ShopService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("select PUBIG_ID id_uuid,PUBIG_ID shop_number,PUBIG002 market_id_uuid,'' market_id,'' market_name,PUBIG003 booth_code,'' shop_level,'' oms_shop_infocol, '' really_area,'' vector_area,'' share_ratio,'' budgetary_price,'' doorplate_remarks,PUBIG004 booth_desc,'' company_id FROM TB_PUBIG where rownum < 100 ");
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("select PUBIG_ID id_uuid,PUBIG_ID shop_number,PUBIG002 market_id_uuid,'' market_id,'' market_name,PUBIG003 booth_code,'' shop_level,'' oms_shop_infocol, '' really_area,'' vector_area,'' share_ratio,'' budgetary_price,'' doorplate_remarks,PUBIG004 booth_desc,'' company_id FROM TB_PUBIG ");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {

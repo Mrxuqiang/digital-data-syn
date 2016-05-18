@@ -53,7 +53,7 @@ public class CompanyService {
             //从REM读取数据 TODO province_id city_id 未处理
             String sql = "select PUBHA_ID id_uuid,UUID company_number,PUBHA003 company_name,PUBHA005 company_address " +
                     ",PUBHA006 post_code,PUBHA008 corporation,PUBHA009 corporation_tel,PUBHA010 manager,PUBHA011 manager_tel,PUBHA012 contract,PUBHA013 contract_tel" +
-                    ",PUBHA015 web_url from TB_PUBHA where rownum<2000";
+                    ",PUBHA015 web_url from TB_PUBHA ";
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             logger.info(sql);
 

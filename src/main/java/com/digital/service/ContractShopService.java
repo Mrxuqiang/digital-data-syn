@@ -53,7 +53,7 @@ public class ContractShopService {
                     "CONBF003 shop_id_uuid,\n" +
                     "''contract_id,\n" +
                     "CONBF001 contract_id_uuid\n" +
-                    "FROM TB_CONBF WHERE ROWNUM<100");
+                    "FROM TB_CONBF");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {

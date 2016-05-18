@@ -62,7 +62,7 @@ public class BrandService {
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
             String sql = "select PUBHB_ID id_uuid, '' company_id, PUBHB006 company_id_uuid, UUID brand_number, PUBHB002 brand_name  " +
-                    " from tb_pubhb_brand where rownum<100";
+                    " from tb_pubhb_brand ";
             logger.info(sql);
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;
@@ -106,7 +106,7 @@ public class BrandService {
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
             String sql = "select PUBHB_ID id_uuid,'' brand_id,PUBHB_ID brand_id_uuid,UUID series_number,PUBHB002 series_name " +
-                    " from TB_PUBHB where rownum<100";
+                    " from TB_PUBHB";
             logger.info(sql);
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;
