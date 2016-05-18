@@ -42,15 +42,4 @@ public class MarketController {
         return null;
     }
 
-    @RequestMapping(value = "fixMarket")
-    public String fixMarket(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            DataResult dataResult = marketService.fixMarket();
-            response.getWriter().write(JsonUtil.toJson(dataResult, true));
-            return null;
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
 }
