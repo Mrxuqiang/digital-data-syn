@@ -2,7 +2,7 @@ package com.digital.controller;
 
 import com.chinaredstar.perseus.utils.JsonUtil;
 import com.digital.common.DataResult;
-import com.digital.service.OmsContractShopService;
+import com.digital.service.ContractShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,26 +15,26 @@ import javax.servlet.http.HttpServletResponse;
  * Created by ccdashu on 16/3/25.
  */
 @Controller
-@RequestMapping("/omsContShop")
-public class OmsConShopController {
+@RequestMapping("/contractShop")
+public class ContractShopController {
 
 
     @Autowired
-    OmsContractShopService omsContractShopService;
+    ContractShopService contractShopService;
 
-    @RequestMapping(value = "cleanOrg")
-    public String cleanOrg() {
+    @RequestMapping(value = "cleanContractShop")
+    public String cleanContractShop() {
         try {
-            omsContractShopService.cleanOrg();
+            contractShopService.cleanContractShop();
         } catch (Exception e) {
         }
         return null;
     }
 
-    @RequestMapping(value = "importOrg")
-    public String importOrg(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "importContractShop")
+    public String importContractShop(HttpServletRequest request, HttpServletResponse response) {
         try {
-            DataResult dataResult = omsContractShopService.omsShopInfo();
+            DataResult dataResult = contractShopService.importContractShop();
             response.getWriter().write(JsonUtil.toJson(dataResult, true));
             return null;
         } catch (Exception e) {
@@ -42,10 +42,10 @@ public class OmsConShopController {
         return null;
     }
 
-    @RequestMapping(value = "updateConShop")
-    public String updateConShop(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "fixContractShop")
+    public String fixContractShop(HttpServletRequest request, HttpServletResponse response) {
         try {
-            DataResult dataResult = omsContractShopService.taskContractShop();
+            DataResult dataResult = contractShopService.fixContractShop();
             response.getWriter().write(JsonUtil.toJson(dataResult, true));
             return null;
         } catch (Exception e) {

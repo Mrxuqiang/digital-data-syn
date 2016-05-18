@@ -15,7 +15,7 @@ import java.util.Map;
  * Created by lenovo on 2016/5/17.
  */
 @Component
-public class OmsContBrandShopService {
+public class ConBrandSeriesService {
     private static Logger logger = LoggerFactory.getLogger(OrgService.class);
 
     @Autowired
@@ -27,17 +27,23 @@ public class OmsContBrandShopService {
     @Autowired
     JdbcTemplate remOracleJdbcTemplate;
 
-    public String cleanOrg() {
+    public DataResult cleanConBrandSeries() {
         try {
+            DataResult dataResult = new DataResult();
+            dataResult.setStartTime(System.currentTimeMillis());
+            int count = mysqlJdbcTemplate.queryForObject("select count(1) from oms_contract_brand_series", Integer.class);
+            dataResult.setTotalCount(count);
             mysqlJdbcTemplate.update("truncate table oms_contract_brand_series");
-            System.out.println(">>end>>");
+            dataResult.setEndTime(System.currentTimeMillis());
+            return dataResult;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public DataResult omsShopInfo() {
+    public DataResult importConBrandSeries() {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
@@ -78,4 +84,48 @@ public class OmsContBrandShopService {
         }
         return null;
     }
+
+    /**
+     * 修复合同代理的品牌系列表
+     *
+     * @return
+     */
+    public DataResult fixContractBrandSeries() {
+        DataResult dataResult = new DataResult();
+        dataResult.setStartTime(System.currentTimeMillis());
+        int successCount = 0;
+        {
+            try {
+                //修复合同代理品牌系列中的 brand_id
+                String sql = "update oms_contract_brand_series obs set obs.brand_id=(select obi.id from oms_brand_info obi where obi.id_uuid=obs.brand_id_uuid limit 0,1)";
+                successCount = mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        {
+            try {
+                //修复合同代理品牌系列中的 contract_id
+                String sql = "update oms_contract_brand_series obs set obs.contract_id=(select obi.id from oms_contract obi where obi.id_uuid=obs.contract_id_uuid limit 0,1)";
+                successCount += mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        {
+            try {
+                //修复合同代理品牌系列中的 brand_series_id
+                String sql = "update oms_contract_brand_series obs set obs.brand_series_id=(select obi.id from oms_brand_series obi where obi.id_uuid=obs.brand_series_id_uuid limit 0,1)";
+                successCount += mysqlJdbcTemplate.update(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        dataResult.setErrorCount(0);
+        dataResult.setSuccessCount(successCount);
+        dataResult.setEndTime(System.currentTimeMillis());
+        return dataResult;
+    }
+
+
 }

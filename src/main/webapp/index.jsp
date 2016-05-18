@@ -23,23 +23,30 @@
 <a href="/dealer/cleanDealer/">清空经销商数据</a>&nbsp;&nbsp;
 <a href="/dealer/importDealer/">导入经销商</a>&nbsp;&nbsp;
 <hr/>
-<a href="/omsShopInfo/cleanOrg/">清空展位店铺</a>&nbsp;&nbsp;
-<a href="/omsShopInfo/importOrg/">导入展位店铺</a>
+<a href="/shop/clean/">清空展位店铺</a>&nbsp;&nbsp;
+<a href="/shop/importShop/">导入展位店铺</a>
 <hr/>
-<a href="/omsContract/cleanOrg/">清空合同</a>&nbsp;&nbsp;
-<a href="/omsContract/importOrg/">导入合同</a>
+<a href="/contract/cleanContract/">清空合同</a>&nbsp;&nbsp;
+<a href="/contract/importContract/">导入合同</a>
 <hr/>
-<a href="/omsContShop/cleanOrg/">清空合同店铺</a>&nbsp;&nbsp;
-<a href="/omsContShop/importOrg/">导入合同店铺</a>
+<a href="/contractShop/cleanContractShop/">清空合同店铺</a>&nbsp;&nbsp;
+<a href="/contractShop/importContractShop/">导入合同店铺</a>
 <hr/>
-<a href="/omsContBrandShop/cleanOrg/">清空合同代理品牌系列</a>&nbsp;&nbsp;
-<a href="/omsContBrandShop/importOrg/">导入合同代理品牌系列</a>
+<a href="/conBrandSeries/cleanConBrandSeries/">清空合同代理品牌系列</a>&nbsp;&nbsp;
+<a href="/conBrandSeries/importConBrandSeries/">导入合同代理品牌系列</a>
 <hr/>
-<a href="/omsMarkInfo/cleanOrg/">清空商场</a>&nbsp;&nbsp;
-<a href="/omsMarkInfo/importOrg/">导入商场</a>
+<a href="/market/clean/">清空商场</a>&nbsp;&nbsp;
+<a href="/market/importMarket/">导入商场</a>
 
 <h4>数据修复</h4>
 <a href="/brand/fixBrand/">品牌表相关修复</a>&nbsp;&nbsp;
-
+<br/>
+<a href="/shop/fixShop/">展位店铺相关修复</a>
+<br/>
+<a href="/contract/fixContract/">合同相关修复</a>
+<br/>
+<a href="/contractShop/fixContractShop/">合同店铺相关修复</a>
+<br/>
+<a href="/conBrandSeries/fixConBrandSeries/">合同代理品牌系列修复</a>
 </body>
 </html>

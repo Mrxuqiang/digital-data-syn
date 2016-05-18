@@ -2,7 +2,7 @@ package com.digital.controller;
 
 import com.chinaredstar.perseus.utils.JsonUtil;
 import com.digital.common.DataResult;
-import com.digital.service.OmsContractService;
+import com.digital.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,27 +15,27 @@ import javax.servlet.http.HttpServletResponse;
  * Created by ccdashu on 16/3/25.
  */
 @Controller
-@RequestMapping("/omsContract")
-public class OmsContractController {
+@RequestMapping("/contract")
+public class ContractController {
 
 
     @Autowired
-    OmsContractService omsContractService;
+    ContractService contractService;
 
 
-    @RequestMapping(value = "cleanOrg")
-    public String cleanOrg() {
+    @RequestMapping(value = "cleanContract")
+    public String cleanContract() {
         try {
-            omsContractService.cleanOrg();
+            contractService.cleanContract();
         } catch (Exception e) {
         }
         return null;
     }
 
-    @RequestMapping(value = "importOrg")
-    public String importOrg(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "importContract")
+    public String importContract(HttpServletRequest request, HttpServletResponse response) {
         try {
-            DataResult dataResult = omsContractService.importOrg();
+            DataResult dataResult = contractService.importContract();
             response.getWriter().write(JsonUtil.toJson(dataResult, true));
             return null;
         } catch (Exception e) {
@@ -43,10 +43,10 @@ public class OmsContractController {
         return null;
     }
 
-    @RequestMapping(value = "updateContract")
-    public String updateContract(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "fixContract")
+    public String fixContract(HttpServletRequest request, HttpServletResponse response) {
         try {
-            DataResult dataResult = omsContractService.taskOmsContract();
+            DataResult dataResult = contractService.fixContract();
             response.getWriter().write(JsonUtil.toJson(dataResult, true));
             return null;
         } catch (Exception e) {

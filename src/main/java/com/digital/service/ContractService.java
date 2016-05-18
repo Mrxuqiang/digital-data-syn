@@ -15,7 +15,7 @@ import java.util.Map;
  * Created by lenovo on 2016/5/17.
  */
 @Component
-public class OmsContractService {
+public class ContractService {
     private static Logger logger = LoggerFactory.getLogger(OrgService.class);
 
     @Autowired
@@ -27,17 +27,22 @@ public class OmsContractService {
     @Autowired
     JdbcTemplate remOracleJdbcTemplate;
 
-    public String cleanOrg() {
+    public DataResult cleanContract() {
         try {
+            DataResult dataResult = new DataResult();
+            dataResult.setStartTime(System.currentTimeMillis());
+            int count = mysqlJdbcTemplate.queryForObject("select count(1) from oms_contract", Integer.class);
+            dataResult.setTotalCount(count);
             mysqlJdbcTemplate.update("truncate table oms_contract");
-            System.out.println(">>end>>");
+            dataResult.setEndTime(System.currentTimeMillis());
+            return dataResult;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public DataResult importOrg() {
+    public DataResult importContract() {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
@@ -91,7 +96,7 @@ public class OmsContractService {
 
 
     //定时更新数据
-    public DataResult taskOmsContract() {
+    public DataResult fixContract() {
         DataResult dataResult = new DataResult();
         dataResult.setStartTime(System.currentTimeMillis());
         int successCount = 0;
