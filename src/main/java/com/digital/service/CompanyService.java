@@ -79,7 +79,7 @@ public class CompanyService {
                             ID_UUID, COMPANY_NUMBER, COMPANY_NAME, COMPANY_ADDRESS, POST_CODE,
                             CORPORATION, CORPORATION_TEL, MANAGER, MANAGER_TEL, CONTRACT, CONTRACT_TEL, WEB_URL
                     });
-                    logger.info(map + "");
+                    logger.info(successCount+">>"+map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;

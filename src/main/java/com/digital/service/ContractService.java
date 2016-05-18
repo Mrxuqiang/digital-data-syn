@@ -78,6 +78,7 @@ public class ContractService {
                     String insertSql = "insert into oms_contract(id_uuid,contract_number,contract_code,dealer_id,dealer_id_uuid,contract_startDate,contract_endDate,contract_type_id,sap_contract_code,contract_status_code,remark)values(?,?,?,?,?,?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid,contract_number,contract_code,dealer_id,dealer_id_uuid,contract_startDate,contract_endDate,contract_type_id,sap_contract_code,contract_status_code,remark});
                     System.out.println(">>>>" + map);
+                    logger.info(successCount+">>"+map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;

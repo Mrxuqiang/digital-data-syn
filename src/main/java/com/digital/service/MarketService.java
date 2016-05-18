@@ -92,7 +92,7 @@ public class MarketService {
                     String insertSql = "insert into oms_market_info(id_uuid,market_number,market_name,first_org_id,second_org_id,first_org_name,second_org_name,province_id,city_id,district_id,market_address,lon,lat)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, market_number, market_name, first_org_id, second_org_id, first_org_name, second_org_name, province_id, city_id, district_id, market_address, lon, lat});
                     successCount++;
-                    logger.info(map + "");
+                    logger.info(successCount+">>"+map + "");
                 } catch (Exception e) {
                     errorCount++;
                     e.printStackTrace();

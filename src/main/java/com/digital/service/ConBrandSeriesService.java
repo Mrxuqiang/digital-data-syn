@@ -74,6 +74,7 @@ public class ConBrandSeriesService {
                     mysqlJdbcTemplate.update(insertSql, new Object[]{contract_id,contract_id_uuid,brand_id,brand_id_uuid,brand_series_id,brand_series_id_uuid});
                     System.out.println(">>>>" + map);
                     successCount++;
+                    logger.info(successCount+">>"+map + "");
                 } catch (Exception e) {
                     errorCount++;
                     e.printStackTrace();

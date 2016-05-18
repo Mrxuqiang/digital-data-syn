@@ -65,6 +65,7 @@ public class ContractShopService {
                     String insertSql = "insert into oms_contract_shop(shop_id,shop_id_uuid,contract_id,contract_id_uuid)values(?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{shop_id,shop_id_uuid,contract_id,contract_id_uuid});
                     System.out.println(">>>>" + map);
+                    logger.info(successCount+">>"+map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;

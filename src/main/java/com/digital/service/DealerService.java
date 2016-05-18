@@ -88,6 +88,7 @@ public class DealerService {
                     mysqlJdbcTemplate.update(insertSql, new Object[]{ID_UUID, DEALER_NUMBER, DEALER_TYPE, PERSON_DEALER_NAME, PERSON_DEALER_TEL, PERSON_DEALER_IDNUM,
                             PERSON_CONTACT_ADD, COMPANY_NAME, ADDRESS, POST_CODE, LEGAL_REP_TEL, LEGAL_REPID_NUM, TELE_PHONE
                     });
+                    logger.info(successCount+">>"+map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;

@@ -78,7 +78,7 @@ public class BrandService {
                     String insertSql = "insert into oms_brand_info(id_uuid,company_id,company_id_uuid,brand_number,brand_name,brand_py" +
                             ")values(?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{ID_UUID, COMPANY_ID, COMPANY_ID_UUID, BRAND_NUMBER, BRAND_NAME, BRAND_PY});
-                    logger.info(map + "");
+                    logger.info(successCount+">>"+map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;
