@@ -18,10 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/market")
 public class MarketController {
 
-
     @Autowired
     MarketService marketService;
-
 
     @RequestMapping(value = "clean")
     public String clean(HttpServletRequest request, HttpServletResponse response) {

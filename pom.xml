@@ -143,6 +143,14 @@
         </dependency>
         <!--拼音转换-->
 
+        <!--JSTL-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!--JSTL-->
+
     </dependencies>
 
 

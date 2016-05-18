@@ -47,21 +47,10 @@ public class MarketService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT\n" +
-                    "PUBCB_ID id_uuid,\n" +
-                    "PUBCB001 market_number,\n" +
-                    "PUBCB003 market_name,\n" +
-                    "PUBCB012 first_org_id,\n" +
-                    "''second_org_id,\n" +
-                    "''first_org_name,\n" +
-                    "''second_org_name,\n" +
-                    "PUBCB013 province_id,\n" +
-                    "PUBCB014 city_id,\n" +
-                    "PUBCB015 district_id,\n" +
-                    "PUBCB017 market_address,\n" +
-                    "''lon,\n" +
-                    "''lat\n" +
-                    "from TB_PUBCB  where rownum <100");
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name," +
+                    "PUBCB038 first_org_id,PUBCB039 second_org_id,''first_org_name,''second_org_name," +
+                    "PUBCB013 province_id,PUBCB014 city_id,PUBCB015 district_id,PUBCB017 market_address,''lon,''lat " +
+                    " from TB_PUBCB  where rownum <100");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -79,9 +68,21 @@ public class MarketService {
                     String market_address = StringUtil.ObjectToString(map.get("market_address"));
                     String lon = StringUtil.ObjectToString(map.get("lon"));
                     String lat = StringUtil.ObjectToString(map.get("lat"));
+                    //处理大区小区ID
+                    //查找所对应的大区
+                    Map<String, Object> firstMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1", new Object[]{first_org_id});
+                    if (null != firstMap) {
+                        first_org_id = StringUtil.ObjectToString(firstMap.get("id"));
+                        first_org_name = StringUtil.ObjectToString(firstMap.get("org_name"));
+                    }
+                    //查找所对应的小区
+                    Map<String, Object> secondMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=2 limit 0,1", new Object[]{second_org_id});
+                    if (null != firstMap) {
+                        second_org_id = StringUtil.ObjectToString(secondMap.get("id"));
+                        second_org_name = StringUtil.ObjectToString(secondMap.get("org_name"));
+                    }
                     String insertSql = "insert into oms_market_info(id_uuid,market_number,market_name,first_org_id,second_org_id,first_org_name,second_org_name,province_id,city_id,district_id,market_address,lon,lat)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, market_number, market_name, first_org_id, second_org_id, first_org_name, second_org_name, province_id, city_id, district_id, market_address, lon, lat});
-                    System.out.println(">>>>" + map);
                     logger.info(map + "");
                 } catch (Exception e) {
                     errorCount++;
@@ -97,4 +98,5 @@ public class MarketService {
         }
         return null;
     }
+
 }

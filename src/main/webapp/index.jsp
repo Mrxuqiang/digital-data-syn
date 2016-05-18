@@ -1,16 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/tags.jsp" %>
 <html>
 <head>
     <title>数字化项目数据同步</title>
 </head>
 <body>
 
-<h4>数据导入</h4>
-<br/>
+
+<h4>基础数据导入</h4>
 <a href="/org/cleanOrg/">清空组织机构</a>&nbsp;&nbsp;
 <a href="/org/importOrg/">导入组织机构</a>
-
 <hr/>
+<a href="/market/clean/">清空商场</a>&nbsp;&nbsp;
+<a href="/market/importMarket/">导入商场</a>
+
+<h4>业务数据导入</h4>
+
 <a href="/brand/cleanBrand/">清空品牌数据</a>&nbsp;&nbsp;
 <a href="/brand/importBrandInfo/">导入品牌</a>&nbsp;&nbsp;
 <a href="/brand/importBrandSeries/">导入品牌系列</a>&nbsp;&nbsp;
@@ -34,9 +41,7 @@
 <hr/>
 <a href="/conBrandSeries/cleanConBrandSeries/">清空合同代理品牌系列</a>&nbsp;&nbsp;
 <a href="/conBrandSeries/importConBrandSeries/">导入合同代理品牌系列</a>
-<hr/>
-<a href="/market/clean/">清空商场</a>&nbsp;&nbsp;
-<a href="/market/importMarket/">导入商场</a>
+
 
 <h4>数据修复</h4>
 <a href="/org/fixOrg/">组织机构表修复</a>&nbsp;&nbsp;
