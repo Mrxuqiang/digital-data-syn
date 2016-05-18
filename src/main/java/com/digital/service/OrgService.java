@@ -70,13 +70,20 @@ public class OrgService {
                 }
             }
             List<Map<String, Object>> listTwo = omsOracleJdbcTemplate.queryForList("SELECT PUBBK_ID id_uuid,PUBBK001 org_code,PUBBK002 org_name,'2'org_level ,PUBBK003 from TB_PUBBK");
+            String parent_id;
             for (Map map : listTwo) {
                 try {
                     String id_uuid = StringUtil.ObjectToString(map.get("id_uuid"));
                     String org_code = StringUtil.ObjectToString(map.get("org_code"));
                     String org_name = StringUtil.ObjectToString(map.get("org_name"));
                     String org_level = StringUtil.ObjectToString(map.get("org_level"));
-                    String parent_id = StringUtil.ObjectToString(map.get("PUBBK003"));
+                    String parent_id_uuid = StringUtil.ObjectToString(map.get("PUBBK003"));
+                   Map<String,Object> Omsmap=mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1",new Object[]{parent_id_uuid});
+                    if(Omsmap!=null){
+                        parent_id=StringUtil.ObjectToString(Omsmap.get("id"));
+                    }else{
+                        return null;
+                    }
                     String insertSql = "insert into oms_org(id_uuid,org_code,org_name,org_level,parent_id)values(?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, org_code, org_name, org_level,parent_id});
                     System.out.println(">>>>" + map);

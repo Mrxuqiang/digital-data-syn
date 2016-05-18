@@ -44,8 +44,8 @@
 
 
 <h4>数据修复</h4>
-<a href="/org/fixOrg/">组织机构表修复</a>&nbsp;&nbsp;
-<br/>
+<%--<a href="/org/fixOrg/">组织机构表修复</a>&nbsp;&nbsp;--%>
+<%--<br/>--%>
 <a href="/brand/fixBrand/">品牌表相关修复</a>&nbsp;&nbsp;
 <br/>
 <a href="/shop/fixShop/">展位店铺相关修复</a>
