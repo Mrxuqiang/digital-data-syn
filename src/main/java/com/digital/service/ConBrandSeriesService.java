@@ -50,7 +50,7 @@ public class ConBrandSeriesService {
             //从REM读取数据
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT\n" +
                     "''contract_id,\n" +
-                    "''contract_id_uuid,\n" +
+                    "CONBS001 contract_id_uuid,\n" +
                     "''brand_id,\n" +
                     "''brand_id_uuid,\n" +
                     "''brand_series_id,\n" +
@@ -66,6 +66,10 @@ public class ConBrandSeriesService {
                     String brand_id_uuid = StringUtil.ObjectToString(map.get("brand_id_uuid"));
                     String brand_series_id = StringUtil.ObjectToString(map.get("brand_series_id"));
                     String brand_series_id_uuid = StringUtil.ObjectToString(map.get("brand_series_id_uuid"));
+                    Map<String,Object> Omsmap=omsOracleJdbcTemplate.queryForMap("SELECT * from TB_PUBHB  WHERE PUBHB004=?",new Object[]{brand_series_id_uuid});
+                    if(Omsmap!=null){
+                        brand_id_uuid=StringUtil.ObjectToString(Omsmap.get("pubhb_id"));
+                    }
                     String insertSql = "insert into oms_contract_brand_series(contract_id,contract_id_uuid,brand_id,brand_id_uuid,brand_series_id,brand_series_id_uuid)values(?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{contract_id,contract_id_uuid,brand_id,brand_id_uuid,brand_series_id,brand_series_id_uuid});
                     System.out.println(">>>>" + map);

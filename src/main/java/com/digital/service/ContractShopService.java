@@ -97,7 +97,7 @@ public class ContractShopService {
         }
         {
             try {
-                //修复展位店铺表中的 market_name
+                //修复合同店铺表中的 contract_id
                 String sql = "update oms_contract_shop osi set osi.contract_id=(select omi.id from oms_contract omi where omi.id_uuid=osi.contract_id_uuid limit 0,1)";
                 successCount += mysqlJdbcTemplate.update(sql);
             } catch (Exception e) {

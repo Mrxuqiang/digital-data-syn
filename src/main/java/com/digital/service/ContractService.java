@@ -102,7 +102,7 @@ public class ContractService {
         int successCount = 0;
         {
             try {
-                //修复展位店铺表中的 market_id
+                //修复合同表中的 dealer_id
                 String sql = "update oms_contract osi set osi.dealer_id=(select omi.id from oms_dealer omi where omi.id_uuid=osi.dealer_id_uuid limit 0,1)";
                 successCount = mysqlJdbcTemplate.update(sql);
             } catch (Exception e) {
