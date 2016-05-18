@@ -28,7 +28,7 @@ public class ShopService {
     @Autowired
     JdbcTemplate remOracleJdbcTemplate;
 
-    public String clean() {
+    public DataResult clean() {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
@@ -36,6 +36,7 @@ public class ShopService {
             dataResult.setTotalCount(count);
             mysqlJdbcTemplate.update("truncate table oms_shop_info");
             dataResult.setEndTime(System.currentTimeMillis());
+            return dataResult;
         } catch (Exception e) {
             e.printStackTrace();
         }

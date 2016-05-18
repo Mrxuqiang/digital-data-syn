@@ -2,8 +2,7 @@ package com.digital.controller;
 
 import com.chinaredstar.perseus.utils.JsonUtil;
 import com.digital.common.DataResult;
-import com.digital.service.OmsContractService;
-import com.digital.service.OmsMarketInfoService;
+import com.digital.service.MarketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,27 +15,28 @@ import javax.servlet.http.HttpServletResponse;
  * Created by ccdashu on 16/3/25.
  */
 @Controller
-@RequestMapping("/omsMarkInfo")
-public class OmsMarkInfoController {
+@RequestMapping("/market")
+public class MarketController {
 
 
     @Autowired
-    OmsMarketInfoService omsMarketInfoService;
+    MarketService marketService;
 
 
-    @RequestMapping(value = "cleanOrg")
-    public String cleanOrg() {
+    @RequestMapping(value = "clean")
+    public String clean(HttpServletRequest request, HttpServletResponse response) {
         try {
-            omsMarketInfoService.cleanOrg();
+            DataResult dataResult = marketService.clean();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
         } catch (Exception e) {
         }
         return null;
     }
 
-    @RequestMapping(value = "importOrg")
-    public String importOrg(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "importMarket")
+    public String importMarket(HttpServletRequest request, HttpServletResponse response) {
         try {
-            DataResult dataResult = omsMarketInfoService.importOrg();
+            DataResult dataResult = marketService.importMarket();
             response.getWriter().write(JsonUtil.toJson(dataResult, true));
             return null;
         } catch (Exception e) {

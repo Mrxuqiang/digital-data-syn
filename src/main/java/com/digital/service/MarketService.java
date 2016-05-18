@@ -15,7 +15,7 @@ import java.util.Map;
  * Created by lenovo on 2016/5/17.
  */
 @Component
-public class OmsMarketInfoService {
+public class MarketService {
     private static Logger logger = LoggerFactory.getLogger(OrgService.class);
 
     @Autowired
@@ -27,17 +27,22 @@ public class OmsMarketInfoService {
     @Autowired
     JdbcTemplate remOracleJdbcTemplate;
 
-    public String cleanOrg() {
+    public DataResult clean() {
         try {
+            DataResult dataResult = new DataResult();
+            dataResult.setStartTime(System.currentTimeMillis());
+            int count = mysqlJdbcTemplate.queryForObject("select count(1) from oms_market_info", Integer.class);
+            dataResult.setTotalCount(count);
             mysqlJdbcTemplate.update("truncate table oms_market_info");
-            System.out.println(">>end>>");
+            dataResult.setEndTime(System.currentTimeMillis());
+            return dataResult;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public DataResult importOrg() {
+    public DataResult importMarket() {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
@@ -75,9 +80,9 @@ public class OmsMarketInfoService {
                     String lon = StringUtil.ObjectToString(map.get("lon"));
                     String lat = StringUtil.ObjectToString(map.get("lat"));
                     String insertSql = "insert into oms_market_info(id_uuid,market_number,market_name,first_org_id,second_org_id,first_org_name,second_org_name,province_id,city_id,district_id,market_address,lon,lat)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid,market_number,market_name,first_org_id,second_org_id,first_org_name,second_org_name,province_id,city_id,district_id,market_address,lon,lat});
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, market_number, market_name, first_org_id, second_org_id, first_org_name, second_org_name, province_id, city_id, district_id, market_address, lon, lat});
                     System.out.println(">>>>" + map);
-                    successCount++;
+                    logger.info(map + "");
                 } catch (Exception e) {
                     errorCount++;
                     e.printStackTrace();

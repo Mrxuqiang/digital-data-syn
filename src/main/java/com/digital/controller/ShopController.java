@@ -23,9 +23,10 @@ public class ShopController {
     ShopService shopService;
 
     @RequestMapping(value = "clean")
-    public String clean() {
+    public String clean(HttpServletRequest request, HttpServletResponse response) {
         try {
-            shopService.clean();
+            DataResult dataResult = shopService.clean();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
         } catch (Exception e) {
         }
         return null;
