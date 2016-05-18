@@ -43,5 +43,15 @@ public class OrgController {
         }
         return null;
     }
+    @RequestMapping(value = "fixOrg")
+    public String fixOrg(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            DataResult dataResult = orgService.fixOrg();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
+            return null;
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
 }
