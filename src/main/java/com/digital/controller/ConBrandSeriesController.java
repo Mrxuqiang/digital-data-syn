@@ -24,9 +24,10 @@ public class ConBrandSeriesController {
     ConBrandSeriesService conBrandSeriesService;
 
     @RequestMapping(value = "cleanConBrandSeries")
-    public String cleanOrg() {
+    public String cleanOrg(HttpServletResponse response) {
         try {
-            conBrandSeriesService.cleanConBrandSeries();
+            DataResult dataResult=conBrandSeriesService.cleanConBrandSeries();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
         } catch (Exception e) {
         }
         return null;

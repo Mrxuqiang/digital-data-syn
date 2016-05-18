@@ -25,9 +25,10 @@ public class DealerController {
     DealerService dealerService;
 
     @RequestMapping(value = "cleanDealer")
-    public String cleanDealer() {
+    public String cleanDealer(HttpServletResponse response) {
         try {
-            dealerService.cleanDealer();
+            DataResult dataResult=dealerService.cleanDealer();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
         } catch (Exception e) {
         }
         return null;

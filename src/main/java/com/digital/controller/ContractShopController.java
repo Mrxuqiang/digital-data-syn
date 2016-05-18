@@ -23,9 +23,10 @@ public class ContractShopController {
     ContractShopService contractShopService;
 
     @RequestMapping(value = "cleanContractShop")
-    public String cleanContractShop() {
+    public String cleanContractShop(HttpServletResponse response) {
         try {
-            contractShopService.cleanContractShop();
+            DataResult dataResult=contractShopService.cleanContractShop();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
         } catch (Exception e) {
         }
         return null;

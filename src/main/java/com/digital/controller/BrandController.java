@@ -24,9 +24,10 @@ public class BrandController {
     BrandService brandService;
 
     @RequestMapping(value = "cleanBrand")
-    public String cleanBrand() {
+    public String cleanBrand(HttpServletResponse response) {
         try {
-            brandService.cleanBrand();
+            DataResult dataResult=brandService.cleanBrand();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
         } catch (Exception e) {
         }
         return null;

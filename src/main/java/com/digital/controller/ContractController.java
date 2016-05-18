@@ -24,9 +24,10 @@ public class ContractController {
 
 
     @RequestMapping(value = "cleanContract")
-    public String cleanContract() {
+    public String cleanContract(HttpServletResponse response) {
         try {
-            contractService.cleanContract();
+            DataResult dataResult=contractService.cleanContract();
+            response.getWriter().write(JsonUtil.toJson(dataResult, true));
         } catch (Exception e) {
         }
         return null;
