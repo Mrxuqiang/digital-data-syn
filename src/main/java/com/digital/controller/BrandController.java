@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/brand")
 public class BrandController {
 
-
     @Autowired
     BrandService brandService;
 

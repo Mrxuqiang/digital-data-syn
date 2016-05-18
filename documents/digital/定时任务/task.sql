@@ -1,19 +1,12 @@
--- 更新oms_shop_info
+-- 更新 oms_shop_info
 market_name,market_id,
+
+
 
 company_id,dealer_id,brand_id,brand_name,series_id,series_name
 
 SELECT a.id market_id,a.market_name from oms_market_info a RIGHT JOIN oms_shop_info b on a.id_uuid=b.market_id_uuid
 
-SELECT
-	a.brand_id,d.brand_name,d.company_id,e.dealer_id,f.id as series_id ,f.series_name
-FROM
-	oms_contract_brand_series a
-LEFT JOIN oms_contract_shop b ON a.contract_id = b.contract_id
-LEFT JOIN oms_shop_info c ON b.shop_id = c.id
-LEFT JOIN oms_brand_info d on a.brand_id=d.id
-LEFT JOIN oms_contract e on e.id=b.contract_id
-LEFT JOIN oms_brand_series f on a.brand_id=f.brand_id
 
 
 UPDATE oms_shop_info set market_id=market_id,market_nae=market_name,company_id=company_id,
