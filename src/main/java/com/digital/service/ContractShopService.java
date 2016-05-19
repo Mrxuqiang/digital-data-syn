@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ public class ContractShopService {
                     "CONBF003 shop_id_uuid,\n" +
                     "''contract_id,\n" +
                     "CONBF001 contract_id_uuid\n" +
-                    "FROM TB_CONBF");
+                    "FROM " + Constants.database + ".TB_CONBF");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -63,9 +64,9 @@ public class ContractShopService {
                     String contract_id = StringUtil.ObjectToString(map.get("contract_id"));
                     String contract_id_uuid = StringUtil.ObjectToString(map.get("contract_id_uuid"));
                     String insertSql = "insert into oms_contract_shop(shop_id,shop_id_uuid,contract_id,contract_id_uuid)values(?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{shop_id,shop_id_uuid,contract_id,contract_id_uuid});
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{shop_id, shop_id_uuid, contract_id, contract_id_uuid});
                     System.out.println(">>>>" + map);
-                    logger.info(successCount+">>"+map + "");
+                    logger.info(successCount + ">>" + map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;

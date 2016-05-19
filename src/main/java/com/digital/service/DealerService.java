@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
@@ -61,7 +62,7 @@ public class DealerService {
             //TODO 经销商类型dealer_type 省份province_id  城市city_id 组织机构代码org_cretification_no
             String sql = "SELECT PUBGO_ID id_uuid,PUBGO001 dealer_number,PUBGO004 person_dealer_name,PUBGO017 person_dealer_tel,PUBGO022 person_dealer_idnum," +
                     "PUBGO031 person_contact_add,PUBGO004 company_name,PUBGO029 address,PUBGO030 post_code,PUBGO013 legal_rep_tel,PUBGO012 legal_repid_num," +
-                    "PUBGO013 tele_phone from TB_PUBGO ";
+                    "PUBGO013 tele_phone from "+ Constants.database+".TB_PUBGO ";
             logger.info(sql);
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;
@@ -116,7 +117,7 @@ public class DealerService {
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
             String sql = "select PUBHB_ID id_uuid,'' brand_id,PUBHB_ID brand_id_uuid,UUID series_number,PUBHB002 series_name " +
-                    " from TB_PUBHB ";
+                    " from "+Constants.database+".TB_PUBHB ";
             logger.info(sql);
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;

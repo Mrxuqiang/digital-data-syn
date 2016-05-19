@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
@@ -50,7 +51,7 @@ public class MarketService {
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name," +
                     "PUBCB038 first_org_id,PUBCB039 second_org_id,''first_org_name,''second_org_name," +
                     "PUBCB013 province_id,PUBCB014 city_id,PUBCB015 district_id,PUBCB017 market_address,''lon,''lat " +
-                    " from TB_PUBCB ");
+                    " from "+ Constants.database+".TB_PUBCB ");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {

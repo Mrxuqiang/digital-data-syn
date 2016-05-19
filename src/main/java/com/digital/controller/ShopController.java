@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/shop")
 public class ShopController {
 
-
     @Autowired
     ShopService shopService;
 
@@ -53,7 +52,4 @@ public class ShopController {
         }
         return null;
     }
-
-
-
 }

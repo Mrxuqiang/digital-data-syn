@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
@@ -55,11 +56,8 @@ public class ConBrandSeriesService {
                     "\tCONBS002 brand_id_uuid,\n" +
                     "\t'' brand_series_id,\n" +
                     "\tb.PUBHB004 brand_series_id_uuid\n" +
-                    "FROM\n" +
-                    "\tTB_CONBS a\n" +
-                    "LEFT JOIN TB_PUBHB b ON A.CONBS002 = b.PUBHB_ID\n" +
-                    "WHERE\n" +
-                    "\t");
+                    "FROM " + Constants.database + ".tTB_CONBS a\n" +
+                    "LEFT JOIN " + Constants.database + ".TB_PUBHB b ON A.CONBS002 = b.PUBHB_ID\n");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -71,10 +69,10 @@ public class ConBrandSeriesService {
                     String brand_series_id = StringUtil.ObjectToString(map.get("brand_series_id"));
                     String brand_series_id_uuid = StringUtil.ObjectToString(map.get("brand_series_id_uuid"));
                     String insertSql = "insert into oms_contract_brand_series(contract_id,contract_id_uuid,brand_id,brand_id_uuid,brand_series_id,brand_series_id_uuid)values(?,?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{contract_id,contract_id_uuid,brand_id,brand_id_uuid,brand_series_id,brand_series_id_uuid});
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{contract_id, contract_id_uuid, brand_id, brand_id_uuid, brand_series_id, brand_series_id_uuid});
                     System.out.println(">>>>" + map);
                     successCount++;
-                    logger.info(successCount+">>"+map + "");
+                    logger.info(successCount + ">>" + map + "");
                 } catch (Exception e) {
                     errorCount++;
                     e.printStackTrace();

@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.PinYinUtil;
 import com.digital.util.StringUtil;
@@ -62,7 +63,7 @@ public class BrandService {
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
             String sql = "select PUBHB_ID id_uuid, '' company_id, PUBHB006 company_id_uuid, UUID brand_number, PUBHB002 brand_name  " +
-                    " from tb_pubhb_brand ";
+                    " from " + Constants.database + ".tb_pubhb_brand ";
             logger.info(sql);
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;
@@ -78,7 +79,7 @@ public class BrandService {
                     String insertSql = "insert into oms_brand_info(id_uuid,company_id,company_id_uuid,brand_number,brand_name,brand_py" +
                             ")values(?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{ID_UUID, COMPANY_ID, COMPANY_ID_UUID, BRAND_NUMBER, BRAND_NAME, BRAND_PY});
-                    logger.info(successCount+">>"+map + "");
+                    logger.info(successCount + ">>" + map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;
@@ -106,7 +107,7 @@ public class BrandService {
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
             String sql = "select PUBHB_ID id_uuid,'' brand_id,PUBHB_ID brand_id_uuid,UUID series_number,PUBHB002 series_name " +
-                    " from TB_PUBHB";
+                    " from " + Constants.database + ".TB_PUBHB";
             logger.info(sql);
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;

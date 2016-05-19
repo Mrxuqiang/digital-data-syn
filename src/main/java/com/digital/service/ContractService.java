@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
@@ -59,7 +60,7 @@ public class ContractService {
                     "CONBE076 sap_contract_code,\n" +
                     "'' contract_status_code,\n" +
                     "CONBE023 remark\n" +
-                    "from TB_CONBE where CONBE025='Y'");
+                    "from " + Constants.database + ".TB_CONBE where CONBE025='Y'");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -76,9 +77,9 @@ public class ContractService {
                     String contract_status_code = StringUtil.ObjectToString(map.get("contract_status_code"));
                     String remark = StringUtil.ObjectToString(map.get("remark"));
                     String insertSql = "insert into oms_contract(id_uuid,contract_number,contract_code,dealer_id,dealer_id_uuid,contract_startDate,contract_endDate,contract_type_id,sap_contract_code,contract_status_code,remark)values(?,?,?,?,?,?,?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid,contract_number,contract_code,dealer_id,dealer_id_uuid,contract_startDate,contract_endDate,contract_type_id,sap_contract_code,contract_status_code,remark});
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, contract_number, contract_code, dealer_id, dealer_id_uuid, contract_startDate, contract_endDate, contract_type_id, sap_contract_code, contract_status_code, remark});
                     System.out.println(">>>>" + map);
-                    logger.info(successCount+">>"+map + "");
+                    logger.info(successCount + ">>" + map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;

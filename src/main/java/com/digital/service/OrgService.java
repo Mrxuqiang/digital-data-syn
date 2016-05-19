@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class OrgService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            int count =mysqlJdbcTemplate.queryForObject("select count(1) from oms_org",Integer.class);
+            int count = mysqlJdbcTemplate.queryForObject("select count(1) from oms_org", Integer.class);
             dataResult.setTotalCount(count);
             mysqlJdbcTemplate.update("truncate table oms_org");
             dataResult.setEndTime(System.currentTimeMillis());
@@ -50,7 +51,7 @@ public class OrgService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBBJ_ID ,PUBBJ001 ,PUBBJ002 ,'1'org_level,'0'parent_id from TB_PUBBJ");
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBBJ_ID ,PUBBJ001 ,PUBBJ002 ,'1'org_level,'0'parent_id from " + Constants.database + ".TB_PUBBJ");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -61,7 +62,7 @@ public class OrgService {
                     String org_level = StringUtil.ObjectToString(map.get("org_level"));
                     String parent_id = StringUtil.ObjectToString(map.get("parent_id"));
                     String insertSql = "insert into oms_org(id_uuid,org_code,org_name,org_level,parent_id)values(?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, org_code, org_name, org_level,parent_id});
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, org_code, org_name, org_level, parent_id});
                     System.out.println(">>>>" + map);
                     successCount++;
                 } catch (Exception e) {
@@ -69,7 +70,7 @@ public class OrgService {
                     e.printStackTrace();
                 }
             }
-            List<Map<String, Object>> listTwo = omsOracleJdbcTemplate.queryForList("SELECT PUBBK_ID id_uuid,PUBBK001 org_code,PUBBK002 org_name,'2'org_level ,PUBBK003 from TB_PUBBK");
+            List<Map<String, Object>> listTwo = omsOracleJdbcTemplate.queryForList("SELECT PUBBK_ID id_uuid,PUBBK001 org_code,PUBBK002 org_name,'2'org_level ,PUBBK003 from " + Constants.database + ".TB_PUBBK");
             for (Map map : listTwo) {
                 try {
                     String id_uuid = StringUtil.ObjectToString(map.get("id_uuid"));
@@ -77,15 +78,15 @@ public class OrgService {
                     String org_name = StringUtil.ObjectToString(map.get("org_name"));
                     String org_level = StringUtil.ObjectToString(map.get("org_level"));
                     String parent_id_uuid = StringUtil.ObjectToString(map.get("PUBBK003"));
-                    String parent_id=null;
-                   Map<String,Object> Omsmap=mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1",new Object[]{parent_id_uuid});
-                    if(Omsmap!=null){
-                        parent_id=StringUtil.ObjectToString(Omsmap.get("id"));
+                    String parent_id = null;
+                    Map<String, Object> Omsmap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1", new Object[]{parent_id_uuid});
+                    if (Omsmap != null) {
+                        parent_id = StringUtil.ObjectToString(Omsmap.get("id"));
                     }
                     String insertSql = "insert into oms_org(id_uuid,org_code,org_name,org_level,parent_id)values(?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, org_code, org_name, org_level,parent_id});
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, org_code, org_name, org_level, parent_id});
                     System.out.println(">>>>" + map);
-                    logger.info(successCount+">>"+map + "");
+                    logger.info(successCount + ">>" + map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;
@@ -120,7 +121,6 @@ public class OrgService {
 //    dataResult.setEndTime(System.currentTimeMillis());
 //    return dataResult;
 //}
-
 
 
 }

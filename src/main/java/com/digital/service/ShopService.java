@@ -1,5 +1,6 @@
 package com.digital.service;
 
+import com.digital.common.Constants;
 import com.digital.common.DataResult;
 import com.digital.util.StringUtil;
 import org.slf4j.Logger;
@@ -48,7 +49,8 @@ public class ShopService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("select PUBIG_ID id_uuid,PUBIG_ID shop_number,PUBIG002 market_id_uuid,'' market_id,'' market_name,PUBIG003 booth_code,'' shop_level,'' oms_shop_infocol, '' really_area,'' vector_area,'' share_ratio,'' budgetary_price,'' doorplate_remarks,PUBIG004 booth_desc,'' company_id FROM TB_PUBIG ");
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("select PUBIG_ID id_uuid,PUBIG_ID shop_number,PUBIG002 market_id_uuid,'' market_id,'' market_name,PUBIG003 booth_code,'' shop_level,'' oms_shop_infocol, '' really_area,'' vector_area," +
+                    "'' share_ratio,'' budgetary_price,'' doorplate_remarks,PUBIG004 booth_desc,'' company_id FROM " + Constants.database + ".TB_PUBIG ");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -71,7 +73,7 @@ public class ShopService {
                     //TODO company_id,dealer_id,brand_id,brand_name,series_id,series_name 冗余字段需要根据合同进行更新
                     String insertSql = "insert into oms_shop_info(id_uuid,shop_number,market_id_uuid,market_id,market_name,booth_code,shop_level,oms_shop_infocol,really_area,vector_area,share_ratio,budgetary_price,doorplate_remarks,booth_desc,company_id)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, shop_number, market_id_uuid, market_id, market_name, booth_code, shop_level, oms_shop_infocol, really_area, vector_area, share_ratio, budgetary_price, doorplate_remarks, booth_desc, company_id});
-                    logger.info(successCount+">>"+map + "");
+                    logger.info(successCount + ">>" + map + "");
                     successCount++;
                 } catch (Exception e) {
                     errorCount++;
