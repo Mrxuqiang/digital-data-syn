@@ -49,15 +49,10 @@ public class ConBrandSeriesService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT\n" +
-                    "\t'' contract_id,\n" +
-                    "\tCONBS001 contract_id_uuid,\n" +
-                    "\t'' brand_id,\n" +
-                    "\tCONBS002 brand_id_uuid,\n" +
-                    "\t'' brand_series_id,\n" +
-                    "\tb.PUBHB004 brand_series_id_uuid\n" +
-                    "FROM " + Constants.database + ".tTB_CONBS a\n" +
-                    "LEFT JOIN " + Constants.database + ".TB_PUBHB b ON A.CONBS002 = b.PUBHB_ID\n");
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT '' contract_id,CONBS001 contract_id_uuid,'' brand_id," +
+                    "b.PUBHB004 brand_id_uuid,'' brand_series_id,CONBS002 brand_series_id_uuid" +
+                    " FROM " + Constants.database + ".TB_CONBS a" +
+                    " LEFT JOIN " + Constants.database + ".TB_PUBHB b ON A.CONBS002 = b.PUBHB_ID");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -99,8 +94,10 @@ public class ConBrandSeriesService {
         int successCount = 0;
         {
             try {
-                //修复合同代理品牌系列中的 brand_id
-                String sql = "update oms_contract_brand_series obs set obs.brand_id=(select obi.id from oms_brand_info obi where obi.id_uuid=obs.brand_id_uuid limit 0,1)";
+                //修复合同代理品牌系列中的 brand_id ,contract_id ,brand_series_id
+                String sql = "update oms_contract_brand_series ocbs set ocbs.brand_id=(select obi.id from oms_brand_info obi where obi.id_uuid=ocbs.brand_id_uuid limit 0,1),\n" +
+                        "ocbs.contract_id=(select obi.id from oms_contract obi where obi.id_uuid=ocbs.contract_id_uuid limit 0,1),\n" +
+                        "ocbs.brand_series_id=(select obs.id from oms_brand_series obs where obs.id_uuid=ocbs.contract_id_uuid limit 0,1)";
                 successCount = mysqlJdbcTemplate.update(sql);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -110,15 +107,6 @@ public class ConBrandSeriesService {
             try {
                 //修复合同代理品牌系列中的 contract_id
                 String sql = "update oms_contract_brand_series obs set obs.contract_id=(select obi.id from oms_contract obi where obi.id_uuid=obs.contract_id_uuid limit 0,1)";
-                successCount += mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        {
-            try {
-                //修复合同代理品牌系列中的 brand_series_id
-                String sql = "update oms_contract_brand_series obs set obs.brand_series_id=(select obi.id from oms_brand_series obi where obi.id_uuid=obs.brand_series_id_uuid limit 0,1)";
                 successCount += mysqlJdbcTemplate.update(sql);
             } catch (Exception e) {
                 e.printStackTrace();

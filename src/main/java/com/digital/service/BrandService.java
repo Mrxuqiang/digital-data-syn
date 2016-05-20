@@ -106,7 +106,7 @@ public class BrandService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            String sql = "select PUBHB_ID id_uuid,'' brand_id,PUBHB_ID brand_id_uuid,UUID series_number,PUBHB002 series_name " +
+            String sql = "select PUBHB_ID id_uuid,'' brand_id,PUBHB004 brand_id_uuid,UUID series_number,PUBHB002 series_name " +
                     " from " + Constants.database + ".TB_PUBHB";
             logger.info(sql);
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
