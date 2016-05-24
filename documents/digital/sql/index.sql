@@ -36,15 +36,13 @@ update oms_shop_info osi set osi.market_name=(select omi.market_name from oms_ma
 
 -- 冗余字段 shop
 -- company_id
-update oms_shop_info shop set  shop.company_id=(
-select  * from (
-select company_id from oms_brand_info a where a.id in (
-	select b.brand_id from oms_contract_brand_series b where b.contract_id=(
-	select c.contract_id from oms_contract_shop c where c.shop_id=1768 and c.contract_id is not null limit 0,1
-	)
-	)
-) tmp limit 0,1
-);
+
+update oms_shop_info t1,oms_brand_info t2,oms_contract_brand_series t3,oms_contract_shop t4
+set t1.company_id=t2.company_id
+where t2.id=t3.brand_id
+and t3.contract_id=t4.contract_id
+and t4.shop_id=t1.id and t4.contract_id is not null;
+
 -- dealer_id
 update oms_shop_info shop set  shop.dealer_id=(
 select b.dealer_id from oms_contract b where b.id=(
