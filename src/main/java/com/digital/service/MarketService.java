@@ -48,10 +48,13 @@ public class MarketService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据 TODO province_id city_id 需要修复
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name," +
-                    "PUBCB038 first_org_id,PUBCB039 second_org_id,''first_org_name,''second_org_name," +
-                    "PUBCB013 province_id,PUBCB014 city_id,PUBCB015 district_id,PUBCB017 market_address,''lon,''lat " +
-                    " from "+ Constants.database+".TB_PUBCB ");
+            String sql = "SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name,\n" +
+                    "PUBCB038 first_org_id,PUBCB039 second_org_id,''first_org_name,''second_org_name,\n" +
+                    "(select b.pubbd002 from "+Constants.database+".TB_PUBBD b where b.pubbd_id=PUBCB013) province_name,\n" +
+                    "(select b.pubbe002 from "+Constants.database+".TB_PUBBE b where b.pubbe_id=PUBCB014) city_name,\n" +
+                    "PUBCB015 district_id,PUBCB017 market_address,''lon,''lat \n" +
+                    "from "+Constants.database+".TB_PUBCB";
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
@@ -63,16 +66,13 @@ public class MarketService {
                     String second_org_id = StringUtil.ObjectToString(map.get("second_org_id"));
                     String first_org_name = StringUtil.ObjectToString(map.get("first_org_name"));
                     String second_org_name = StringUtil.ObjectToString(map.get("second_org_name"));
-//                    String province_id = StringUtil.ObjectToString(map.get("province_id"));
-//                    String city_id = StringUtil.ObjectToString(map.get("city_id"));
-                    String province_id = null;
-                    String city_id = null;
+                    String province_name = StringUtil.ObjectToString(map.get("province_name"));
+                    String city_name = StringUtil.ObjectToString(map.get("city_name"));
                     String district_id = StringUtil.ObjectToString(map.get("district_id"));
                     String market_address = StringUtil.ObjectToString(map.get("market_address"));
                     String lon = StringUtil.ObjectToString(map.get("lon"));
                     String lat = StringUtil.ObjectToString(map.get("lat"));
                     try {
-
                         //处理大区小区ID
                         //查找所对应的大区
                         Map<String, Object> firstMap = mysqlJdbcTemplate.queryForMap("select * from oms_org where id_uuid=? and org_level=1 limit 0,1", new Object[]{first_org_id});
@@ -90,8 +90,8 @@ public class MarketService {
                         first_org_id=null;
                         second_org_id=null;
                     }
-                    String insertSql = "insert into oms_market_info(id_uuid,market_number,market_name,first_org_id,second_org_id,first_org_name,second_org_name,province_id,city_id,district_id,market_address,lon,lat)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, market_number, market_name, first_org_id, second_org_id, first_org_name, second_org_name, province_id, city_id, district_id, market_address, lon, lat});
+                    String insertSql = "insert into oms_market_info(id_uuid,market_number,market_name,first_org_id,second_org_id,first_org_name,second_org_name,province_name,city_name,district_id,market_address,lon,lat)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, market_number, market_name, first_org_id, second_org_id, first_org_name, second_org_name, province_name, city_name, district_id, market_address, lon, lat});
                     successCount++;
                     logger.info(successCount+">>"+map + "");
                 } catch (Exception e) {
