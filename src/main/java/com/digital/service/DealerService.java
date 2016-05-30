@@ -106,48 +106,4 @@ public class DealerService {
         return null;
     }
 
-    /**
-     * 导入品牌InfoSeries
-     *
-     * @return
-     */
-    public DataResult importBrandSeries() {
-        try {
-            DataResult dataResult = new DataResult();
-            dataResult.setStartTime(System.currentTimeMillis());
-            //从REM读取数据
-            String sql = "select PUBHB_ID id_uuid,'' brand_id,PUBHB_ID brand_id_uuid,UUID series_number,PUBHB002 series_name " +
-                    " from "+Constants.database+".TB_PUBHB ";
-            logger.info(sql);
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
-            int successCount = 0;
-            int errorCount = 0;
-            for (Map map : list) {
-                try {
-                    String ID_UUID = StringUtil.ObjectToString(map.get("ID_UUID"));
-                    String BRAND_ID = StringUtil.ObjectToString(map.get("BRAND_ID"));
-                    String BRAND_ID_UUID = StringUtil.ObjectToString(map.get("BRAND_ID_UUID"));
-                    String SERIES_NUMBER = StringUtil.ObjectToString(map.get("SERIES_NUMBER"));
-                    String SERIES_NAME = StringUtil.ObjectToString(map.get("SERIES_NAME"));
-
-                    String insertSql = "insert into oms_brand_series(id_uuid,brand_id,brand_id_uuid,series_number,series_name" +
-                            ")values(?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{ID_UUID, BRAND_ID, BRAND_ID_UUID, SERIES_NUMBER, SERIES_NAME});
-                    System.out.println(">>>>" + map);
-                    successCount++;
-                } catch (Exception e) {
-                    errorCount++;
-                    e.printStackTrace();
-                }
-            }
-            dataResult.setErrorCount(errorCount);
-            dataResult.setSuccessCount(successCount);
-            dataResult.setEndTime(System.currentTimeMillis());
-            return dataResult;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 }

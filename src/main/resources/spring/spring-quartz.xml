@@ -23,30 +23,21 @@
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <!--&lt;!&ndash;分析POS结果-每一分钟触发&ndash;&gt;-->
-                <!--<ref bean="hxjbPostResultTrigger"/>-->
-                <!--&lt;!&ndash;每天全部解析POS结果-每天凌晨3点执行&ndash;&gt;-->
-                <!--<ref bean="hxjbPostResultListTrigger"/>-->
-                <!--&lt;!&ndash;统计全国蓄水用户-每天23点触发&ndash;&gt;-->
-                <!--<ref bean="hxjbStatisticXuShuiTrigger"/>-->
-                <!--&lt;!&ndash;触发短信任务-每10分钟触发&ndash;&gt;-->
-                <!--<ref bean="hxjbSmsTaskTrigger"/>-->
-                <!--&lt;!&ndash;触发微信token-每1个小时触发&ndash;&gt;-->
-                <!--<ref bean="hxjbWxTokenTrigger"/>-->
+                <ref bean="jobTrigger"/>
             </list>
         </property>
         <property name="autoStartup" value="true"/>
     </bean>
 
     <!--每天凌晨1点执行-->
-    <bean id="hxjbPosResultBeanBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="posService"/>
-        <property name="targetMethod" value="posResult"/>
+    <bean id="jobBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="jobService"/>
+        <property name="targetMethod" value="jobMethod"/>
         <property name="concurrent" value="false"/>
     </bean>
-    <bean id="hxjbPostResultTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-        <property name="jobDetail" ref="hxjbPosResultBeanBean"/>
-        <property name="cronExpression" value="0 0/1 * * * ?"/>
+    <bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobBean"/>
+        <property name="cronExpression" value="0 30 1 * * ? *"/>
     </bean>
 
 </beans>
