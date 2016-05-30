@@ -47,7 +47,6 @@ public class MarketService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            //从REM读取数据 TODO province_id city_id 需要修复
             String sql = "SELECT PUBCB_ID id_uuid,PUBCB001 market_number,PUBCB003 market_name,\n" +
                     "PUBCB038 first_org_id,PUBCB039 second_org_id,''first_org_name,''second_org_name,\n" +
                     "(select b.pubbd002 from "+Constants.database+".TB_PUBBD b where b.pubbd_id=PUBCB013) province_name,\n" +
