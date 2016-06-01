@@ -48,11 +48,11 @@ public class ConBrandSeriesService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            //从REM读取数据
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT '' contract_id,CONBS001 contract_id_uuid,'' brand_id," +
-                    "b.PUBHB004 brand_id_uuid,'' brand_series_id,CONBS002 brand_series_id_uuid" +
-                    " FROM " + Constants.database + ".TB_CONBS a" +
-                    " LEFT JOIN " + Constants.database + ".TB_PUBHB b ON A.CONBS002 = b.PUBHB_ID");
+
+            //查找合同中主品牌主品牌系列
+            String sql = "select '' contract_id,a.CONBE_ID contract_id_uuid,'' brand_id,a.conbe058 brand_id_uuid," +
+                    "'' brand_series_id,a.conbe041 brand_series_id_uuid from " + Constants.database + ".TB_CONBE a";
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList(sql);
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {

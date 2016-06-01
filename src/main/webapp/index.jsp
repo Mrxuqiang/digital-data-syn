@@ -29,8 +29,8 @@
         <button class="btn btn-danger" name="link" href="${ctx}/syn/dealer/cleanDealer">清空经销商数据</button>
         <button class="btn" name="link" href="${ctx}/syn/dealer/importDealer">导入经销商</button>
         <hr/>
-        <button class="btn btn-danger" name="link" href="${ctx}/syn/shop/clean">清空展位店铺</button>
-        <button class="btn" name="link" href="${ctx}/syn/shop/importShop">导入展位店铺</button>
+        <button class="btn btn-danger" name="link" href="${ctx}/syn/booth/clean">清空摊位</button>
+        <button class="btn" name="link" href="${ctx}/syn/booth/importBooth">导入摊位</button>
         <hr/>
         <button class="btn btn-danger" name="link" href="${ctx}/syn/contract/cleanContract">清空合同</button>
         <button class="btn" name="link" href="${ctx}/syn/contract/importContract">导入合同</button>
@@ -71,7 +71,6 @@
         </div>
     </div>
 </div>
-<
 
 
 <script>

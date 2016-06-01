@@ -32,7 +32,7 @@ public class JobService {
     @Resource
     MarketService marketService;
     @Resource
-    ShopService shopService;
+    BoothService boothService;
 
     public void jobMethod() {
         try {
@@ -56,9 +56,9 @@ public class JobService {
             //经销商相关数据
             dealerService.cleanDealer();
             dealerService.importDealer();
-            //店铺相关数据
-            shopService.clean();
-            shopService.importShop();
+            //摊位相关数据
+            boothService.clean();
+            boothService.importBooth();
             //合同相关数据
             contractService.cleanContract();
             conBrandSeriesService.cleanConBrandSeries();
