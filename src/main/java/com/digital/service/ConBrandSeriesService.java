@@ -83,40 +83,4 @@ public class ConBrandSeriesService {
         return null;
     }
 
-    /**
-     * 修复合同代理的品牌系列表
-     *
-     * @return
-     */
-    public DataResult fixContractBrandSeries() {
-        DataResult dataResult = new DataResult();
-        dataResult.setStartTime(System.currentTimeMillis());
-        int successCount = 0;
-        {
-            try {
-                //修复合同代理品牌系列中的 brand_id ,contract_id ,brand_series_id
-                String sql = "update oms_contract_brand_series ocbs set ocbs.brand_id=(select obi.id from oms_brand_info obi where obi.id_uuid=ocbs.brand_id_uuid limit 0,1),\n" +
-                        "ocbs.contract_id=(select obi.id from oms_contract obi where obi.id_uuid=ocbs.contract_id_uuid limit 0,1),\n" +
-                        "ocbs.brand_series_id=(select obs.id from oms_brand_series obs where obs.id_uuid=ocbs.contract_id_uuid limit 0,1)";
-                successCount = mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        {
-            try {
-                //修复合同代理品牌系列中的 contract_id
-                String sql = "update oms_contract_brand_series obs set obs.contract_id=(select obi.id from oms_contract obi where obi.id_uuid=obs.contract_id_uuid limit 0,1)";
-                successCount += mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        dataResult.setErrorCount(0);
-        dataResult.setSuccessCount(successCount);
-        dataResult.setEndTime(System.currentTimeMillis());
-        return dataResult;
-    }
-
-
 }

@@ -96,24 +96,4 @@ public class ContractService {
         return null;
     }
 
-
-    //定时更新数据
-    public DataResult fixContract() {
-        DataResult dataResult = new DataResult();
-        dataResult.setStartTime(System.currentTimeMillis());
-        int successCount = 0;
-        {
-            try {
-                //修复合同表中的 dealer_id
-                String sql = "update oms_contract osi set osi.dealer_id=(select omi.id from oms_dealer omi where omi.id_uuid=osi.dealer_id_uuid limit 0,1)";
-                successCount = mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        dataResult.setErrorCount(0);
-        dataResult.setSuccessCount(successCount);
-        dataResult.setEndTime(System.currentTimeMillis());
-        return dataResult;
-    }
 }

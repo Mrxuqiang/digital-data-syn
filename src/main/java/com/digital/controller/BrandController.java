@@ -54,15 +54,4 @@ public class BrandController {
         return null;
     }
 
-    @RequestMapping(value = "fixBrand")
-    public String fixBrand(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            DataResult dataResult = brandService.fixBrand();
-            response.getWriter().write(JsonUtil.toJson(dataResult, true));
-            return null;
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
 }

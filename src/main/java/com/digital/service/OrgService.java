@@ -102,25 +102,4 @@ public class OrgService {
         }
         return null;
     }
-//修复组织机构表中 parent_id
-//public DataResult fixOrg() {
-//    DataResult dataResult = new DataResult();
-//    dataResult.setStartTime(System.currentTimeMillis());
-//    int successCount = 0;
-//    {
-//        try {
-//            //修复组织机构表中 parent_id
-//            String sql = "update oms_org t1 inner join oms_org t2  on t2.id_uuid=t1.parent_id and t2.org_level=1 set t1.parent_id =t2.id";
-//            successCount = mysqlJdbcTemplate.update(sql);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    dataResult.setErrorCount(0);
-//    dataResult.setSuccessCount(successCount);
-//    dataResult.setEndTime(System.currentTimeMillis());
-//    return dataResult;
-//}
-
-
 }

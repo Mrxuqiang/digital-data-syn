@@ -26,7 +26,7 @@ public class JobService {
     @Resource
     ContractService contractService;
     @Resource
-    ContractShopService contractShopService;
+    ContractBoothService contractBoothService;
     @Resource
     DealerService dealerService;
     @Resource
@@ -62,11 +62,11 @@ public class JobService {
             //合同相关数据
             contractService.cleanContract();
             conBrandSeriesService.cleanConBrandSeries();
-            contractShopService.cleanContractShop();
+            contractBoothService.clean();
 
             contractService.importContract();
             conBrandSeriesService.importConBrandSeries();
-            contractShopService.importContractShop();
+            contractBoothService.importContractBooth();
 
             logger.info("...end...");
         } catch (Exception e) {

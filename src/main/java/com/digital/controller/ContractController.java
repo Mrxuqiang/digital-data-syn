@@ -44,15 +44,4 @@ public class ContractController {
         return null;
     }
 
-    @RequestMapping(value = "fixContract")
-    public String fixContract(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            DataResult dataResult = contractService.fixContract();
-            response.getWriter().write(JsonUtil.toJson(dataResult, true));
-            return null;
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
 }

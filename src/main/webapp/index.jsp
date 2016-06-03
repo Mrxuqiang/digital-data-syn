@@ -35,27 +35,13 @@
         <button class="btn btn-danger" name="link" href="${ctx}/syn/contract/cleanContract">清空合同</button>
         <button class="btn" name="link" href="${ctx}/syn/contract/importContract">导入合同</button>
         <hr/>
-        <button class="btn btn-danger" name="link" href="${ctx}/syn/contractShop/cleanContractShop">清空合同店铺</button>
-        <button class="btn" name="link" href="${ctx}/syn/contractShop/importContractShop">导入合同店铺</button>
+        <button class="btn btn-danger" name="link" href="${ctx}/syn/contractBooth/clean">清空合同摊位</button>
+        <button class="btn" name="link" href="${ctx}/syn/contractBooth/importContractBooth">导入合同摊位</button>
         <hr/>
         <button class="btn btn-danger" name="link" href="${ctx}/syn/conBrandSeries/cleanConBrandSeries">清空合同代理品牌系列</button>
         <button class="btn" name="link" href="${ctx}/syn/conBrandSeries/importConBrandSeries">导入合同代理品牌系列</button>
         <hr/>
-
     </div>
-
-    <%--<h4>数据修复</h4>--%>
-    <%--&lt;%&ndash;<a href="/org/fixOrg/">组织机构表修复</a>&nbsp;&nbsp;&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<br/>&ndash;%&gt;--%>
-    <%--<button class="btn" name="link" href="${ctx}/syn/brand/fixBrand">品牌表相关修复</button>--%>
-    <%--<hr/>--%>
-    <%--<button class="btn" name="link" href="${ctx}/syn/shop/fixShop">展位店铺相关修复</button>--%>
-    <%--<hr/>--%>
-    <%--<button class="btn" name="link" href="${ctx}/syn/contract/fixContract">合同相关修复</button>--%>
-    <%--<hr/>--%>
-    <%--<button class="btn" name="link" href="${ctx}/syn/contractShop/fixContractShop">合同店铺相关修复</button>--%>
-    <%--<hr/>--%>
-    <%--<button class="btn" name="link" href="${ctx}/syn/conBrandSeries/fixConBrandSeries">合同代理品牌系列修复</button>--%>
 </div>
 
 <div class="modal fade" id="modal_div">

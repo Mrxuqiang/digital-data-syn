@@ -140,38 +140,4 @@ public class BrandService {
         return null;
     }
 
-    /**
-     * 修复品牌及品牌系列表
-     *
-     * @return
-     */
-    public DataResult fixBrand() {
-        DataResult dataResult = new DataResult();
-        dataResult.setStartTime(System.currentTimeMillis());
-        int successCount = 0;
-        {
-            try {
-                //修复品牌表中的 company_id
-                String sql = "update oms_brand_info obi set obi.company_id =(select oc.id from oms_company oc where oc.id_uuid=obi.company_id_uuid limit 0,1)";
-                successCount = mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        {
-            try {
-                //修复品牌系列表中的 brand_id
-                String sql = "update oms_brand_series obs set obs.brand_id=(select obi.id from oms_brand_info obi where obi.id_uuid=obs.brand_id_uuid limit 0,1)";
-                successCount += mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        dataResult.setErrorCount(0);
-        dataResult.setSuccessCount(successCount);
-        dataResult.setEndTime(System.currentTimeMillis());
-        return dataResult;
-    }
-
-
 }

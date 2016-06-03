@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by lenovo on 2016/5/17.
  */
 @Component
-public class ContractShopService {
+public class ContractBoothService {
     private static Logger logger = LoggerFactory.getLogger(OrgService.class);
 
     @Autowired
@@ -28,13 +28,13 @@ public class ContractShopService {
     @Autowired
     JdbcTemplate remOracleJdbcTemplate;
 
-    public DataResult cleanContractShop() {
+    public DataResult clean() {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            int count = mysqlJdbcTemplate.queryForObject("select count(1) from oms_contract_shop", Integer.class);
+            int count = mysqlJdbcTemplate.queryForObject("select count(1) from oms_contract_booth", Integer.class);
             dataResult.setTotalCount(count);
-            mysqlJdbcTemplate.update("truncate table oms_contract_shop");
+            mysqlJdbcTemplate.update("truncate table oms_contract_booth");
             dataResult.setEndTime(System.currentTimeMillis());
             return dataResult;
 
@@ -44,14 +44,14 @@ public class ContractShopService {
         return null;
     }
 
-    public DataResult importContractShop() {
+    public DataResult importContractBooth() {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
             List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("SELECT \n" +
-                    "''shop_id,\n" +
-                    "CONBF003 shop_id_uuid,\n" +
+                    "''booth_id,\n" +
+                    "CONBF003 booth_id_uuid,\n" +
                     "''contract_id,\n" +
                     "CONBF001 contract_id_uuid\n" +
                     "FROM " + Constants.database + ".TB_CONBF");
@@ -59,12 +59,12 @@ public class ContractShopService {
             int errorCount = 0;
             for (Map map : list) {
                 try {
-                    String shop_id = StringUtil.ObjectToString(map.get("shop_id"));
-                    String shop_id_uuid = StringUtil.ObjectToString(map.get("shop_id_uuid"));
+                    String booth_id = StringUtil.ObjectToString(map.get("booth_id"));
+                    String booth_id_uuid = StringUtil.ObjectToString(map.get("booth_id_uuid"));
                     String contract_id = StringUtil.ObjectToString(map.get("contract_id"));
                     String contract_id_uuid = StringUtil.ObjectToString(map.get("contract_id_uuid"));
-                    String insertSql = "insert into oms_contract_shop(shop_id,shop_id_uuid,contract_id,contract_id_uuid)values(?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{shop_id, shop_id_uuid, contract_id, contract_id_uuid});
+                    String insertSql = "insert into oms_contract_booth(booth_id,booth_id_uuid,contract_id,contract_id_uuid)values(?,?,?,?)";
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{booth_id,booth_id_uuid, contract_id, contract_id_uuid});
                     System.out.println(">>>>" + map);
                     logger.info(successCount + ">>" + map + "");
                     successCount++;
@@ -81,34 +81,5 @@ public class ContractShopService {
             e.printStackTrace();
         }
         return null;
-    }
-
-    //定时更新数据
-    public DataResult fixContractShop() {
-        DataResult dataResult = new DataResult();
-        dataResult.setStartTime(System.currentTimeMillis());
-        int successCount = 0;
-        {
-            try {
-                //修复合同店铺表中的 shop_id
-                String sql = "update oms_contract_shop osi set osi.shop_id=(select omi.id from oms_shop_info omi where omi.id_uuid=osi.shop_id_uuid limit 0,1)";
-                successCount = mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        {
-            try {
-                //修复合同店铺表中的 contract_id
-                String sql = "update oms_contract_shop osi set osi.contract_id=(select omi.id from oms_contract omi where omi.id_uuid=osi.contract_id_uuid limit 0,1)";
-                successCount += mysqlJdbcTemplate.update(sql);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        dataResult.setErrorCount(0);
-        dataResult.setSuccessCount(successCount);
-        dataResult.setEndTime(System.currentTimeMillis());
-        return dataResult;
     }
 }
