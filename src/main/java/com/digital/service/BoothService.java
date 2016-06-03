@@ -48,8 +48,8 @@ public class BoothService {
         try {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
-            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("select PUBIG_ID id_uuid,PUBIG_ID shop_number,PUBIG002 market_id_uuid,'' market_id,'' market_name,PUBIG003 booth_code,'' shop_level,'' oms_shop_infocol, '' really_area,'' vector_area," +
-                    "'' share_ratio,'' budgetary_price,'' doorplate_remarks,PUBIG004 booth_desc FROM " + Constants.database + ".TB_PUBIG ");
+            List<Map<String, Object>> list = omsOracleJdbcTemplate.queryForList("select PUBIF_ID id_uuid,PUBIF005 shop_number,PUBIF002 market_id_uuid,'' market_id,'' market_name,PUBIF005 booth_code,'' shop_level,'' oms_shop_infocol, '' really_area,'' vector_area, '' share_ratio,'' budgetary_price,'' doorplate_remarks,PUBIF006 booth_desc " +
+                    " from " + Constants.database + ".TB_PUBIF ");
             int successCount = 0;
             int errorCount = 0;
             for (Map map : list) {
