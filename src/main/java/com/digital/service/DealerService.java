@@ -59,7 +59,6 @@ public class DealerService {
             DataResult dataResult = new DataResult();
             dataResult.setStartTime(System.currentTimeMillis());
             //从REM读取数据
-            //TODO 经销商类型dealer_type 省份province_id  城市city_id 组织机构代码org_cretification_no
             String sql = "SELECT PUBGO_ID id_uuid,PUBGO001 dealer_number,PUBGO004 person_dealer_name,PUBGO017 person_dealer_tel,PUBGO022 person_dealer_idnum," +
                     "PUBGO031 person_contact_add,PUBGO004 company_name,PUBGO029 address,PUBGO030 post_code,PUBGO013 legal_rep_tel,PUBGO012 legal_repid_num," +
                     "PUBGO013 tele_phone from "+ Constants.database+".TB_PUBGO ";
