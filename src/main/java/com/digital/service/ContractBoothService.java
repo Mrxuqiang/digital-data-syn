@@ -65,7 +65,6 @@ public class ContractBoothService {
                     String contract_id_uuid = StringUtil.ObjectToString(map.get("contract_id_uuid"));
                     String insertSql = "insert into oms_contract_booth(booth_id,booth_id_uuid,contract_id,contract_id_uuid)values(?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{booth_id,booth_id_uuid, contract_id, contract_id_uuid});
-                    System.out.println(">>>>" + map);
                     logger.info(successCount + ">>" + map + "");
                     successCount++;
                 } catch (Exception e) {

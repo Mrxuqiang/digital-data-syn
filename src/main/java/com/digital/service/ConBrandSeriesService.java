@@ -65,9 +65,8 @@ public class ConBrandSeriesService {
                     String brand_series_id_uuid = StringUtil.ObjectToString(map.get("brand_series_id_uuid"));
                     String insertSql = "insert into oms_contract_brand_series(contract_id,contract_id_uuid,brand_id,brand_id_uuid,brand_series_id,brand_series_id_uuid)values(?,?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{contract_id, contract_id_uuid, brand_id, brand_id_uuid, brand_series_id, brand_series_id_uuid});
-                    System.out.println(">>>>" + map);
-                    successCount++;
                     logger.info(successCount + ">>" + map + "");
+                    successCount++;
                 } catch (Exception e) {
                     errorCount++;
                     e.printStackTrace();

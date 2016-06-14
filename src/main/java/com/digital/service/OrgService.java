@@ -85,7 +85,6 @@ public class OrgService {
                     }
                     String insertSql = "insert into oms_org(id_uuid,org_code,org_name,org_level,parent_id)values(?,?,?,?,?)";
                     mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, org_code, org_name, org_level, parent_id});
-                    System.out.println(">>>>" + map);
                     logger.info(successCount + ">>" + map + "");
                     successCount++;
                 } catch (Exception e) {

@@ -1,6 +1,6 @@
-/*
+/*/Users/ccdashu/Work/工作站/project/adam/web/ace/login.html
 ================================================================================
-表结构代码:TB_CONBE
+表结构代码:TB_CONBE/Users/ccdashu/Work/工作站/project/adam/web/ace/login.html
 表结构名称:合同主表
 表结构目的:
 ================================================================================
@@ -16,7 +16,7 @@ create table TB_CONBE  (
    CONBE003             VARCHAR2(30)                    not null,  /*合同号              */
    CONBE004             NUMBER(6,1)                     not null,  /*版本号              */
    CONBE005             DATE                            not null,  /*签订日期            */
-   CONBE006             VARCHAR2(30)                            ,  /*对方签约人          */
+   CONBE006             VARCHAR2(30)                            ,  /*对方签约人          */und
    CONBE007             INTEGER                         not null,  /*合同类型ID          */
    CONBE008             INTEGER                         not null,  /*经营商户ID          */
    CONBE009             INTEGER                         not null,  /*结算商户ID          */
