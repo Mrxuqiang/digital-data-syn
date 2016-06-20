@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `oms_syn_db`.`oms_contract` (
   `contract_status_code` INT NULL COMMENT '合同状态',
   `remark` VARCHAR(120) NULL COMMENT '备注',
   `price_type` INT NULL DEFAULT 0 COMMENT '价格类型1明码实价2明码议价',
-  `discount_rate` DECIMAL(20,2) NULL COMMENT '折扣率',
+  `discount_rate` DECIMAL(20,2) NULL COMMENT '线下开单最低折扣率',
   `is_del` INT NULL DEFAULT 0,
   `create_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
