@@ -1,6 +1,7 @@
 package com.digital.controller;
 
 import com.digital.service.OrgService;
+import com.digital.service.TestService;
 import com.digital.util.PinYinUtil;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -19,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/test")
 public class TestController {
     @Autowired
-    OrgService orgService;
+    TestService testService;
 
-    @RequestMapping(value = "listTest/")
+    @RequestMapping(value = "listTest")
     public String listTest() {
         try {
-//            orgService.importOrg();
+            testService.test();
         } catch (Exception e) {
         }
         return null;
