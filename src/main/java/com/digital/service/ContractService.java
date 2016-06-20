@@ -58,6 +58,8 @@ public class ContractService {
                     "CONBE007 contract_type_id,\n" +
                     "CONBE076 sap_contract_code,\n" +
                     "CONBE025 contract_status_code,\n" +
+                    "CONBE082 discount_rate,\n" +
+                    "CONBE081 price_type,\n" +
                     "CONBE023 remark\n" +
                     "from " + Constants.database + ".TB_CONBE where 1=1");
             int successCount = 0;
@@ -74,6 +76,8 @@ public class ContractService {
                     String contract_type_id = StringUtil.ObjectToString(map.get("contract_type_id"));
                     String sap_contract_code = StringUtil.ObjectToString(map.get("sap_contract_code"));
                     String contract_status_code = StringUtil.ObjectToString(map.get("contract_status_code"));
+                    String discount_rate = StringUtil.ObjectToString(map.get("discount_rate"));
+                    String price_type = StringUtil.ObjectToString(map.get("price_type"));
 
                     String remark = StringUtil.ObjectToString(map.get("remark"));
                     int is_del = 1;
@@ -81,8 +85,11 @@ public class ContractService {
                         is_del = 0;
                     }
                     contract_status_code = "0";
-                    String insertSql = "insert into oms_contract(id_uuid,contract_number,contract_code,dealer_id,dealer_id_uuid,contract_startDate,contract_endDate,contract_type_id,sap_contract_code,contract_status_code,remark,is_del)values(?,?,?,?,?,?,?,?,?,?,?,?)";
-                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, contract_number, contract_code, dealer_id, dealer_id_uuid, contract_startDate, contract_endDate, contract_type_id, sap_contract_code, contract_status_code, remark, is_del});
+                    String insertSql = "insert into oms_contract(id_uuid,contract_number,contract_code,dealer_id,dealer_id_uuid,contract_startDate,contract_endDate,contract_type_id," +
+                            "sap_contract_code,contract_status_code,discount_rate,price_type,remark,is_del)" +
+                            "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    mysqlJdbcTemplate.update(insertSql, new Object[]{id_uuid, contract_number, contract_code, dealer_id, dealer_id_uuid, contract_startDate, contract_endDate, contract_type_id,
+                            sap_contract_code, contract_status_code, discount_rate, price_type, remark, is_del});
                     logger.info(">>>>" + map);
                     logger.info(successCount + ">>" + map + "");
                     successCount++;
