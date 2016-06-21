@@ -9,4 +9,5 @@ public class Constants {
 
     public static String database = PropertiesUtil.getProperty("common.properties").get("database");
 
+    public static String remDatabase = PropertiesUtil.getProperty("common.properties").get("remDatabase");
 }

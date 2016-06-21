@@ -11,6 +11,10 @@
     <h4>基础数据导入</h4>
     <div class="row">
         <button class="btn btn-danger" name="link" href="${ctx}/syn/test/listTest">测试</button>
+
+        <button class="btn btn-danger" name="link" href="${ctx}/syn/remDealer/cleanDealer" >清空经销商</button>
+        <button class="btn" name="link" href="${ctx}/syn/remDealer/importDealer" >导入经销商</button>
+        <hr/>
         <button class="btn btn-danger" name="link" href="${ctx}/syn/org/cleanOrg">清空组织机构</button>
         <button class="btn" name="link" href="${ctx}/syn/org/importOrg">导入组织机构</button>
         <hr/>
